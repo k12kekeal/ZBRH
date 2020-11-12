@@ -13,7 +13,9 @@ import { getProducts, getProducts2 } from './Requests.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      currentProduct: {},
+    };
   }
 
   componentDidMount() {
