@@ -1,1 +1,1 @@
-// Questions and Answers tests go here edit!
+// Questions and Answers tests go here

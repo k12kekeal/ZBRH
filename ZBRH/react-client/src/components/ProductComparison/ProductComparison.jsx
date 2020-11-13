@@ -11,5 +11,3 @@ class ProductComparison extends React.Component {
 }
 
 export default ProductComparison;
-
-// edit!

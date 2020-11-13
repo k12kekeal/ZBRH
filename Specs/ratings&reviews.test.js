@@ -1,1 +1,1 @@
-//Ratings and Review tests go here edit!
+//Ratings and Review tests go here

@@ -5,5 +5,3 @@ const QuestionsAndAnswers = () => {
 };
 
 export default QuestionsAndAnswers;
-
-// edit!

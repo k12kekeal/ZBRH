@@ -1,1 +1,1 @@
-//Product Comparison tests go here edit!
+//Product Comparison tests go here

@@ -1,5 +1,5 @@
 
-TODO:// Fill in tests, finish writing tests for later features edit!
+TODO:// Fill in tests, finish writing tests for later features
 
 // PRODUCT INFORMATION
 
