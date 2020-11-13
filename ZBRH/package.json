@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.jsx",
-
   "scripts": {
     "build:dev": "webpack -d --watch",
     "start": "node server/index.js",
@@ -34,6 +33,7 @@
     "mysql": "^2.14.1",
     "popper.js": "^1.16.1",
     "react": "^16.8.5",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^16.8.5",
     "underscore": "^1.8.3",
     "webpack": "^4.29.6",
