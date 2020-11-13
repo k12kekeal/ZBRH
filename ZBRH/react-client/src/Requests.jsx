@@ -34,3 +34,5 @@ const getStyles = () => {
 export { getProducts, getCart, getProduct, getStyles };
 
 // module.exports = { getProducts }
+
+// edit!
