@@ -3,14 +3,26 @@ import axios from 'axios';
 
 const getProducts = () => {
   axios.get('http://3.21.164.220/products')
-    .then(response => console.log("here's the response: ", response))
+    .then(response => console.log("here are the products: ", response))
     .catch(err => console.log(err));
 }
 
-const getProducts2 = () => {
-  axios.get('http://3.21.164.220/products')
-    .then(response => console.log("here's the response: ", response))
+const getCart = () => {
+  axios.get('http://3.21.164.220/cart')
+    .then(response => console.log("here is the cart: ", response))
     .catch(err => console.log(err));
+}
+
+const getProduct = () => {
+  axios.get('http://3.21.164.220/:product_id')
+  .then(response => console.log("here is the product:", response)
+  .catch(err => console.log(err)));
+}
+
+const getStyles = () => {
+  axios.get('http://3.21.164.220/:product_id')
+  .then(response => console.log("here are the product styles: ", response))
+  .catch(err => console.log(err));
 }
 
 //PRODUCT COMPARISON
