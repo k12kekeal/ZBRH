@@ -20,7 +20,7 @@ class App extends React.Component {
 
   componentDidMount() {
     getProducts();
-    getProducts2();
+
   }
 
   render() {
@@ -34,7 +34,8 @@ class App extends React.Component {
           This is a  bootstrap button
         </button> */}
         <Overview />
-        {/* <ProductComparison />
+        <ProductComparison />
+        {/*
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
       </>

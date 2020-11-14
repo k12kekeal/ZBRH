@@ -27,6 +27,20 @@ const getStyles = () => {
 
 //PRODUCT COMPARISON
 
+// const getRelatedProducts = (productIdArr) => {
+
+//   for (var i = 0; i < productIdArr; i++) {
+
+//     axios.get('http://3.21.164.220/:product_id')
+//       .then(response => console.log('here is the product:', response)
+//         .catch(err => console.log(err)));
+//   };
+
+
+// }
+
+
+
 //QUESTIONS AND ANSWERS
 
 //RATINGS AND REVIEWS
