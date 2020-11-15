@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <>
         <h1>
-          Hello  {name}
+          WELCOME TO ZBRH  {name}
         </h1>
         {/* <button type="button" class="btn btn-primary">
           This is a  bootstrap button
