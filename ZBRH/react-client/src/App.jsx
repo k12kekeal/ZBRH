@@ -20,7 +20,6 @@ class App extends React.Component {
 
   componentDidMount() {
     getProducts();
-    getProducts2();
   }
 
   render() {
