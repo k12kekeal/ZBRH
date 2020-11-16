@@ -11,7 +11,7 @@ import { getRelatedProductIdsRequest, getRelatedProductDataRequest } from '../..
 
 import { Card, Carousel } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class ProductComparison extends React.Component {

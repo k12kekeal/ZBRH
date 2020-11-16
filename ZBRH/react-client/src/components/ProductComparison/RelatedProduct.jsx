@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import { Card, Carousel, Button } from 'react-bootstrap';
 
 class RelatedProduct extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { singleRelatedProduct: this.props.singleRelatedProduct }
+    this.state = { singleRelatedProduct: this.props.singleRelatedProduct };
   }
 
   render() {
@@ -27,7 +27,7 @@ class RelatedProduct extends React.Component {
         </Card>
 
       </Carousel.Item>
-    )
+    );
   }
 }
 

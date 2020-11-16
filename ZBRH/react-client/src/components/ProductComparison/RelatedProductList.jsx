@@ -13,18 +13,18 @@ const RelatedProductList = (props) => {
     <header id="RelatedProductListHeader">RELATED PRODUCTS</header>
 
     <Carousel >
-      {console.log("this is props in relatedproductlist", props)}
+      {console.log('this is props in relatedproductlist', props)}
 
       {
         props.relatedProductData.map(function (singleRelatedProduct) {
           return (
             <RelatedProduct singleRelatedProduct={singleRelatedProduct} />
-          )
+          );
         })
       }
 
     </Carousel>
-  </div>)
+  </div>);
 };
 
 export default RelatedProductList;
