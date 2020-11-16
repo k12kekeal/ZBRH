@@ -24,7 +24,7 @@ afterEach(() => {
   container = null;
 });
 
-it('renders a header for the module', () => {
+xit('renders a header for the module', () => {
   act(() => {
     ReactDOM.render(<ProductComparison />, container);
   });
@@ -34,7 +34,7 @@ it('renders a header for the module', () => {
   expect(header.textContent).toBe('RELATED PRODUCTS');
 });
 
-it('renders a card', () => {
+xit('renders a card', () => {
   // Test first render and componentDidMount
   act(() => {
     ReactDOM.render(<ProductComparison />, container);

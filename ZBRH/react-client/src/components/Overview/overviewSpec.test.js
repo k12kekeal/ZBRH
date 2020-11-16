@@ -1,17 +1,41 @@
-
-
-const sum = require('ZBRH/react-client/src/sum.js');
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
+import React from 'react';
+import Overview from './Overview';
 
 TODO:// Fill in tests, finish writing tests for later features
+
+var container;
+
+beforeEach(() => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
 
 // PRODUCT INFORMATION
 
 //  --Stars--
+describe('Star Rating', () => {
+  test('should always render 5 stars', () => {
+    act(() => {
+      ReactDOM.render(<Overview value = {2.25}/>, container);
+    });
+    expect(document.getElementById('product-overview-rating')).toBe;
+  });
 
+  test('filled stars should correspond to average score', () => {
+    expect(false).toBe(false);
+  });
+
+  test('filled stars should show up to a quarter of a review point', () => {
+    expect(false).toBe(false);
+  });
+});
 //  [TEST] Should render 5 stars
 //  [TEST] Filled stars should correspond to average score
 //  [TEST] Filled stars should show up to a quarter of a review point
@@ -112,4 +136,3 @@ TODO:// Fill in tests, finish writing tests for later features
 // While the image is zoomed, no arrow buttons or thumbnail selection icons will be available.
 // The mouse should display as a “-” symbol.
 // Upon clicking the image in this state, the user should be returned to the normal expanded image gallery view
-;

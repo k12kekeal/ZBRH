@@ -1,12 +1,6 @@
 import axios from 'axios';
 //OVERVIEW
 
-const getProducts = () => {
-  axios.get('http://3.21.164.220/products')
-    .then(response => console.log('here are the products: ', response.data))
-    .catch(err => console.log(err));
-};
-
 const getCart = () => {
   axios.get('http://3.21.164.220/cart')
     .then(response => console.log('here is the cart: ', response.data))
@@ -68,7 +62,7 @@ const getRelatedProductDataRequest = (productIdArr, callback) => {
 //RATINGS AND REVIEWS
 
 export {
-  getProducts, getCart, getProduct, getStyles,
+  getCart, getProduct, getStyles,
   getRelatedProductIdsRequest, getRelatedProductDataRequest
 };
 
