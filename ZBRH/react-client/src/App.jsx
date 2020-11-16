@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import 'bootstrap';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import Overview from './components/Overview/Overview.jsx';
@@ -14,13 +14,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: {},
+      currentProduct: {value: 2.5},
     };
   }
 
   componentDidMount() {
     getProducts();
-    getProducts2();
   }
 
   render() {
@@ -33,7 +32,7 @@ class App extends React.Component {
         {/* <button type="button" class="btn btn-primary">
           This is a  bootstrap button
         </button> */}
-        <Overview />
+        <Overview value = {this.state.currentProduct.value}/>
         {/* <ProductComparison />
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
@@ -43,4 +42,3 @@ class App extends React.Component {
 }
 
 export default App;
-
