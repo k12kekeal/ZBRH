@@ -27,10 +27,49 @@ const getStyles = () => {
 
 //PRODUCT COMPARISON
 
-//QUESTIONS AND ANSWERS
+const getRelatedProductIdsRequest = (productId, callback) => {
+
+  axios.get(`http://3.21.164.220/products/${productId}/related`)
+    .then((response) => {
+      console.log('here are the id_s of related products: ', response.data);
+      callback(null, response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      callback(err, null);
+
+    });
+
+};
+
+const getRelatedProductDataRequest = (productIdArr, callback) => {
+  let result = [];
+
+  for (var i = 0; i < productIdArr.length; i++) {
+
+    axios.get(`http://3.21.164.220/products/${productIdArr[i]}`)
+      .then((response) => {
+        console.log('Pushing object into array...');
+        result.push(response.data);
+      })
+      .then(() => {
+        if (result.length === productIdArr.length) {
+          callback(null, result);
+        }
+      })
+      .catch(err => console.log(err));
+
+
+  }
+};
+
+
 
 //RATINGS AND REVIEWS
 
-export { getProducts, getCart, getProduct, getStyles };
+export {
+  getProducts, getCart, getProduct, getStyles,
+  getRelatedProductIdsRequest, getRelatedProductDataRequest
+};
 
 // module.exports = { getProducts }
