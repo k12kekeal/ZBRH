@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import RelatedProduct from './RelatedProduct.jsx';
 import { Card, Carousel } from 'react-bootstrap';
 

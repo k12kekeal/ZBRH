@@ -3,25 +3,25 @@ import axios from 'axios';
 
 const getProducts = () => {
   axios.get('http://3.21.164.220/products')
-    .then(response => console.log('here are the products: ', response))
+    .then(response => console.log('here are the products: ', response.data))
     .catch(err => console.log(err));
 };
 
 const getCart = () => {
   axios.get('http://3.21.164.220/cart')
-    .then(response => console.log('here is the cart: ', response))
+    .then(response => console.log('here is the cart: ', response.data))
     .catch(err => console.log(err));
 };
 
 const getProduct = () => {
   axios.get('http://3.21.164.220/:product_id')
-    .then(response => console.log('here is the product:', response)
+    .then(response => console.log('here is the product:', response.data)
       .catch(err => console.log(err)));
 };
 
 const getStyles = () => {
-  axios.get('http://3.21.164.220/:product_id')
-    .then(response => console.log('here are the product styles: ', response))
+  axios.get('http://3.21.164.220/:product_id/styles')
+    .then(response => console.log('here are the product styles: ', response.data))
     .catch(err => console.log(err));
 };
 
@@ -31,12 +31,12 @@ const getRelatedProductIdsRequest = (productId, callback) => {
 
   axios.get(`http://3.21.164.220/products/${productId}/related`)
     .then((response) => {
-      console.log('here are the id_s of related products: ', response.data)
-      callback(null, response.data)
+      console.log('here are the id_s of related products: ', response.data);
+      callback(null, response.data);
     })
     .catch((err) => {
       console.log(err);
-      callback(err, null)
+      callback(err, null);
 
     });
 
@@ -61,7 +61,7 @@ const getRelatedProductDataRequest = (productIdArr, callback) => {
 
 
   }
-}
+};
 
 
 

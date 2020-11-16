@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 //Import Components
 import RelatedProductList from './RelatedProductList.jsx';
@@ -27,23 +27,21 @@ class ProductComparison extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount starting...')
-    console.log("This is state in ProductComparison: ", this.state);
-    console.log("This is props in ProductComparison: ", this.props);
+    console.log('componentDidMount starting...');
+    console.log('This is state in ProductComparison: ', this.state);
+    console.log('This is props in ProductComparison: ', this.props);
 
     this.getRelatedProductIds(this.state.currentProduct.id, (err, data) => {
-      if (err) { console.log(err) }
-      else {
-        console.log("setting state soon")
-        this.setState({ relatedProductIds: data })
+      if (err) { console.log(err); } else {
+        console.log('setting state soon');
+        this.setState({ relatedProductIds: data });
 
         this.getRelatedProductData(this.state.relatedProductIds, (err2, data2) => {
-          if (err2) { console.log("we have err2", err2) }
-          else {
-            console.log('setting state again')
-            this.setState({ relatedProductData: data2 })
+          if (err2) { console.log('we have err2', err2); } else {
+            console.log('setting state again');
+            this.setState({ relatedProductData: data2 });
           }
-        })
+        });
 
 
       }
@@ -51,7 +49,7 @@ class ProductComparison extends React.Component {
 
 
 
-    console.log('componentDidMount has ended...')
+    console.log('componentDidMount has ended...');
   }
 
   // componentDidUpdate() {
@@ -59,11 +57,11 @@ class ProductComparison extends React.Component {
   // }
 
   getRelatedProductIds(productId, callback) {
-    getRelatedProductIdsRequest(productId, callback)
+    getRelatedProductIdsRequest(productId, callback);
   }
 
   getRelatedProductData(productIdArr, callback) {
-    getRelatedProductDataRequest(productIdArr, callback)
+    getRelatedProductDataRequest(productIdArr, callback);
   }
 
   render() {
@@ -84,6 +82,9 @@ class ProductComparison extends React.Component {
     );
   }
 
+  render() {
+    <div>Hii....</div>;
+  }
 }
 
 

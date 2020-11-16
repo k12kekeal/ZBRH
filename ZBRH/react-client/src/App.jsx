@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import 'bootstrap';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import Overview from './components/Overview/Overview.jsx';
@@ -46,4 +46,3 @@ class App extends React.Component {
 }
 
 export default App;
-
