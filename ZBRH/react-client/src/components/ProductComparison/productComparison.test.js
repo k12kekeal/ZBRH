@@ -45,13 +45,13 @@ it('renders a card', () => {
   const cardtext = document.getElementById('cardtext');
 
   //CATEGORY
-  console.log(document.getElementById('cardtext').innerHTML)
+  console.log(document.getElementById('cardtext').innerHTML);
 
   //undefined
-  console.log(document.getElementsByClassName('acard').innerHTML)
+  console.log(document.getElementsByClassName('acard').innerHTML);
 
   //<div class="card-body" id="cardbody"><div class="card-title h5" id="cardtitle"></div><p class="card-text" id="cardtext">CATEGORY</p></div>
-  console.log(card.innerHTML)
+  console.log(card.innerHTML);
 
   expect(cardtext.innerHTML).toBe('CATEGORY');
 
