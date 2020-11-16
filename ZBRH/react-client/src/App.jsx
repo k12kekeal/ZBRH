@@ -15,19 +15,30 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProduct: exampleData[0],
-      products: [],
     };
     this.getProducts = this.getProducts.bind(this);
+    this.getProduct = this.getProduct.bind(this);
   }
 
-  componentDidMount() {
-    this.getProducts();
-  }
+  componentDidMount() {}
 
   getProducts() {
     axios
       .get('http://3.21.164.220/products')
-      .then(response => console.log(response.data))
+      .then((response) => {
+        this.setState({
+          products: response.data,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  getProduct(productId, e) {
+    e.preventDefault();
+    axios.get(`http://3.21.164.220/products/${productId}`)
+      .then((response) => this.setState({
+        currentProduct: response.data
+      }, console.log('state after getProduct: ', this.state)))
       .catch((err) => console.log(err));
   }
 
@@ -39,7 +50,11 @@ class App extends React.Component {
         {/* <button type="button" class="btn btn-primary">
           This is a  bootstrap button
         </button> */}
-        <Overview value={2.25} />
+        <Overview
+          currentProduct={this.state.currentProduct}
+          value={2.25}
+          getProduct={this.getProduct}
+        />
         {/* <ProductComparison currentProduct={this.state.currentProduct} /> */}
         {/*
         <QuestionsAndAnswers />
