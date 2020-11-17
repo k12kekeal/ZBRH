@@ -10,6 +10,9 @@ import RatingsAndReviews from './components/RatingsAndReviews/RatingsAndReviews.
 import axios from 'axios';
 import exampleData from './exampleData';
 
+// TODO: calculate average rating of current product and add it to state to pass down to overview
+// TODO: get # of reviews to pass to overview
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -36,9 +39,11 @@ class App extends React.Component {
   getProduct(productId, e) {
     e.preventDefault();
     axios.get(`http://3.21.164.220/products/${productId}`)
-      .then((response) => this.setState({
-        currentProduct: response.data
-      }, console.log('state after getProduct: ', this.state)))
+      .then((response) =>
+        this.setState({
+          currentProduct: response.data,
+        })
+      )
       .catch((err) => console.log(err));
   }
 
@@ -54,6 +59,7 @@ class App extends React.Component {
           currentProduct={this.state.currentProduct}
           value={2.25}
           getProduct={this.getProduct}
+          reviews = {[1, 2, 3]}
         />
         {/* <ProductComparison currentProduct={this.state.currentProduct} /> */}
         {/*

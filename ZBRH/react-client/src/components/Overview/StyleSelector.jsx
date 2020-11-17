@@ -1,8 +1,16 @@
 import React from 'react';
+import Style from './Style.jsx';
 
-const StyleSelector = ({value, getProduct, currentProduct}) => {
+const StyleSelector = ({ value, getProduct, currentProduct }) => {
   return (
-    <div onClick={e => getProduct(1, e)}>CLICK TO GET STYLE</div>
+    <div>
+      {/* map over styles of currentProduct, create Style instance for each available style and pass props  */}
+      <Style getProduct={getProduct} />
+      <h4>{currentProduct.category}</h4>
+      <h3>{currentProduct.name}</h3>
+      <p>{currentProduct.description}</p>
+      <p>${currentProduct.default_price}</p>
+    </div>
   );
 };
 

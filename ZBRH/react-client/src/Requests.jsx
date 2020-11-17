@@ -7,11 +7,7 @@ const getCart = () => {
     .catch(err => console.log(err));
 };
 
-const getStyles = () => {
-  axios.get('http://3.21.164.220/:product_id/styles')
-    .then(response => console.log('here are the product styles: ', response.data))
-    .catch(err => console.log(err));
-};
+
 
 //PRODUCT COMPARISON
 
@@ -56,7 +52,7 @@ const getRelatedProductDataRequest = (productIdArr, callback) => {
 //RATINGS AND REVIEWS
 
 export {
-  getCart, getStyles,
+  getCart,
   getRelatedProductIdsRequest, getRelatedProductDataRequest
 };
 

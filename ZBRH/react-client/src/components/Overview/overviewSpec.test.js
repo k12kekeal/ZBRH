@@ -3,8 +3,6 @@ import { act } from 'react-dom/test-utils';
 import React from 'react';
 import Overview from './Overview';
 
-TODO:// Fill in tests, finish writing tests for later features
-
 var container;
 
 beforeEach(() => {
@@ -36,44 +34,44 @@ describe('Star Rating', () => {
     expect(false).toBe(false);
   });
 });
-//  [TEST] Should render 5 stars
-//  [TEST] Filled stars should correspond to average score
-//  [TEST] Filled stars should show up to a quarter of a review point
+//  [X] Should render 5 stars
+//  [X] Filled stars should correspond to average score
+//  [X] Filled stars should show up to a quarter of a review point
 
 //  --Review Link--
 
-//  [TEST] Should be a link that reads "Read all [#] reviews"
-//  [TEST] [#] should dynamically render the number of reviews for the chosen product
-//  [TEST] Clicking the link should take you to the Ratings & Reviews section
-//  [TEST] This segment should be hidden if there are no reviews
+//  [X] Should be a link that reads "Read all [#] reviews"
+//  [TODO:] [#] should dynamically render the number of reviews for the chosen product
+//  [X] Clicking the link should take you to the Ratings & Reviews section
+//  [TODO:] This segment should be hidden if there are no reviews
 
 //  --Product Category--
 
-//  [TEST] Should render product category
+//  [X] Should render product category
 
 //  --Produce Title--
 
-//  [TEST] Should render product title
+//  [X] Should render product title
 
 //  --Price--
 
-//  [TEST] Should be a price
-//  [TEST] Should dynamically render price of selected style
-//  [TEST] If discounted, sale price should appear in red followed by the origin price, struckthrough
+//  [X] Should be a price
+//  [TODO:] Should dynamically render price of selected style
+//  [TODO:] If discounted, sale price should appear in red followed by the origin price, struckthrough
 
 //  --Default Product--
 
-//  [TEST] Should have default style for each product
-//  [TEST] Default style should appear if no selection is made
+//  [TODO:] Should have default style for each product
+//  [TODO:] Default style should appear if no selection is made
 
 //  --Product Overview--
 
-//  [TEST] Should display if available
+//  [TODO:] Should display if available
 
 //  --Share on Social Media--
 
-//  [TEST] Should render buttons for each social media site
-//  [TEST] Clicking the button should (?)open modal for sharing product(?)
+//  [TODO:] Should render buttons for each social media site
+//  [TODO:] Clicking the button should (?)open modal for sharing product(?)
 
 //  STYLE SELECTOR
 //  Below the product information, the user should be presented all the styles of the product and have the ability to toggle between them.  Each style should be displayed as a thumbnail.
