@@ -8,7 +8,6 @@ const StyleSelector = ({ value, getProduct, currentProduct }) => {
       <Style getProduct={getProduct} />
       <h4>{currentProduct.category}</h4>
       <h3>{currentProduct.name}</h3>
-      <p>{currentProduct.description}</p>
       <p>${currentProduct.default_price}</p>
     </div>
   );

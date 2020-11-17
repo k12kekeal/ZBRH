@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import ImageGallery from './ImageGallery.jsx';
 import Cart from './Cart.jsx';
 import styleData from '../../exampleStyleData.js';
+import ProductOverview from './ProductOverview.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -18,10 +19,10 @@ class Overview extends React.Component {
 
   getStyle(productId, e) {
     e.preventDefault();
-    axios.get('http://3.21.164.220/:product_id/styles')
+    axios.get('http://3.21.164.220/{}/styles')
       .then(response => this.setState({
-        styles: response.data,
-        currentStyle: response.data[0]
+        styles: response.data.results,
+        currentStyle: response.data.results[0]
       }))
       .catch(err => console.log(err));
   }
@@ -33,14 +34,14 @@ class Overview extends React.Component {
           id="product-overview-rating"
           name="quarter-rating"
           value={this.props.value}
-          defaultValue={2.5}
+          defaultValue={4}
           precision={0.25}
+          readOnly
         />
-        {/* TODO: make star rating read only */}
         {this.props.reviews.length && (
           <a href="#ratings-and-reviews">Read all [#] reviews</a>
         )}
-        {/* TODO: render review number dynamically, hide if no reviews */}
+        {/* TODO: render review number dynamically*/}
         <StyleSelector getProduct={this.props.getProduct} currentProduct={this.props.currentProduct} />
         <div>
           <select name="size">
@@ -57,6 +58,7 @@ class Overview extends React.Component {
           </select>
           <Cart />
           {/* TODO: fave button */}
+          <ProductOverview currentProduct={this.props.currentProduct}/>
         </div>
       </div>
     );

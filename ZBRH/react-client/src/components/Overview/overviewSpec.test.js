@@ -43,7 +43,7 @@ describe('Star Rating', () => {
 //  [X] Should be a link that reads "Read all [#] reviews"
 //  [TODO:] [#] should dynamically render the number of reviews for the chosen product
 //  [X] Clicking the link should take you to the Ratings & Reviews section
-//  [TODO:] This segment should be hidden if there are no reviews
+//  [X] This segment should be hidden if there are no reviews
 
 //  --Product Category--
 
@@ -57,16 +57,21 @@ describe('Star Rating', () => {
 
 //  [X] Should be a price
 //  [TODO:] Should dynamically render price of selected style
+//[TODO:] Display price of default style
+//[TODO:] When currentStyle changes, dynamically render new price
 //  [TODO:] If discounted, sale price should appear in red followed by the origin price, struckthrough
+//[TODO:] Look up how to do basic CSS lol - color, strikethrough, conditional rendering
+//[TODO:] Toggle between CSS styling for sale price & origin price
 
 //  --Default Product--
 
 //  [TODO:] Should have default style for each product
-//  [TODO:] Default style should appear if no selection is made
+//[TODO:] Upon GETting all styles of current product, first in resulting styles array should be set as default aka currentStyle in state. Double check later to make sure that the first is always default, but don't worry about it too much yet.
+//[FIXME:] is there any situation where we'd want to hold onto which one is the default? Anything that would reset the page that wouldn't also just re-do the GET, thereby resetting the default anyway? Hmm...
 
 //  --Product Overview--
 
-//  [TODO:] Should display if available
+//  [TODO:] From GET to /products/:product_id, a combination of slogan, description, and features
 
 //  --Share on Social Media--
 
@@ -74,9 +79,11 @@ describe('Star Rating', () => {
 //  [TODO:] Clicking the button should (?)open modal for sharing product(?)
 
 //  STYLE SELECTOR
-//  Below the product information, the user should be presented all the styles of the product and have the ability to toggle between them.  Each style should be displayed as a thumbnail.
-//https://react-bootstrap.github.io/components/images/
-// All styles should display for the current product at all times.  There is no limit to the number of styles a product can have.  The thumbnails should appear in rows of 4.
+//[TODO:] Get all styles of current product
+//[TODO:] map over all styles and for each style create a Style instance
+//[TODO:] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
+//[TODO:] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
+// [FIXME:] styles should display in rows of 4
 // The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.   Additionally, the title for that style should appear typed out in full above the thumbnail list.
 // A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
 // By default, the style selected will be the first in the list.

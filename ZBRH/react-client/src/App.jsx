@@ -57,7 +57,7 @@ class App extends React.Component {
         </button> */}
         <Overview
           currentProduct={this.state.currentProduct}
-          value={2.25}
+          value={4}
           getProduct={this.getProduct}
           reviews = {[1, 2, 3]}
         />
