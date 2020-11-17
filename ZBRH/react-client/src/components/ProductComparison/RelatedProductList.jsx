@@ -1,31 +1,125 @@
 import React from 'react';
 import RelatedProduct from './RelatedProduct.jsx';
 import { Card, Carousel } from 'react-bootstrap';
+import 'bootstrap';
 
 
 
 
 const RelatedProductList = (props) => {
+  // (() => {
+  //   console.log("YO IFFFFFF");
+
+
+  //   $('#recipeCarousel').carousel({
+  //     interval: 10000
+  //   })
+
+  //   $('.carousel .carousel-item').each(function () {
+  //     var minPerSlide = 3;
+  //     var next = $(this).next();
+  //     if (!next.length) {
+  //       next = $(this).siblings(':first');
+  //     }
+  //     next.children(':first-child').clone().appendTo($(this));
+
+  //     for (var i = 0; i < minPerSlide; i++) {
+  //       next = next.next();
+  //       if (!next.length) {
+  //         next = $(this).siblings(':first');
+  //       }
+
+  //       next.children(':first-child').clone().appendTo($(this));
+  //     }
+  //   });
+  // })()
 
 
 
   return (<div>
     <header id="RelatedProductListHeader">RELATED PRODUCTS</header>
 
-    <Carousel >
-      {console.log("this is props in relatedproductlist", props)}
+    <div className="container text-center my-3">
 
-      {
-        props.relatedProductData.map(function (singleRelatedProduct) {
-          return (
-            <RelatedProduct singleRelatedProduct={singleRelatedProduct} />
-          )
-        })
-      }
+      <div id="recipeCarousel" className="carousel slide w-100" data-ride="carousel">
+        <div className="carousel-inner w-100" role="listbox">
 
-    </Carousel>
-  </div>)
+
+
+          {console.log("this is props in relatedproductlist", props)}
+
+          {
+            props.relatedProductData.map(function (singleRelatedProduct, index) {
+
+              if (index === 0) {
+                console.log("index is: ", index)
+
+                return (
+                  < div className="carousel-item active" key={index}>
+                    { console.log("single item", singleRelatedProduct.name)}
+                    <RelatedProduct singleRelatedProduct={singleRelatedProduct} />
+                  </div>
+                )
+              }
+
+              else {
+                console.log("index is: ", index)
+
+                return (
+                  <div className="carousel-item" key={index} >
+                    { console.log("single item", singleRelatedProduct.name)}
+                    < RelatedProduct singleRelatedProduct={singleRelatedProduct} />
+                  </div>
+                )
+              }
+
+
+            })
+          }
+
+          <a className="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
+          </a>
+          <a className="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+            <span className="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <h5 className="mt-2">END OF CAROUSEL</h5>
+    </div>
+
+
+
+  </div >)
 };
+
+/*
+
+ if (index === 0) {
+                return (
+
+                  < div class="carousel-item active" key={index}>
+                    { console.log("single item", singleRelatedProduct.name)}
+                    <RelatedProduct singleRelatedProduct={singleRelatedProduct} />
+                  </div>
+                )
+              }
+
+              else {
+                return
+
+                (<div class="carousel-item" key={index} >
+                  { console.log("single item", singleRelatedProduct.name)}
+                  < RelatedProduct singleRelatedProduct={singleRelatedProduct} />
+                </div>
+                )
+              }
+
+*/
+
 
 export default RelatedProductList;
 

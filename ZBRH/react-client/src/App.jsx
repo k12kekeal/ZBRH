@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap';
 
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from "jquery";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
@@ -26,6 +27,9 @@ class App extends React.Component {
 
   componentDidMount() {
     getProducts();
+
+
+
   }
 
   render() {
