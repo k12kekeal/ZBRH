@@ -58,12 +58,30 @@ const getRelatedProductDataRequest = (productIdArr, callback) => {
         }
       })
       .catch(err => console.log(err));
-
-
   }
 };
 
+/*
+FIX THIS!!!!
 
+const getRelatedProductIdsAndDataRequest = (productId, setStateCb1, setStateCb2){
+  axios.get(`http://3.21.164.220/products/${productId}/related`)
+    .then((response) => {
+      console.log('here are the id_s of related products: ', response.data);
+      callback(null, response.data);
+      return response.data;
+    })
+    .then((relatedProductsIdArr)=>{
+
+
+    })
+    .catch((err) => {
+      console.log(err);
+      callback(err, null);
+    });
+
+}
+*/
 
 //RATINGS AND REVIEWS
 

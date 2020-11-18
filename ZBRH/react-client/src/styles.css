@@ -6,10 +6,10 @@ h1 {
 /*BELOW IS FOR RELATE PRODUCTS CAROUSEL*/
 @media (max-width: 768px) {
   .carousel-inner .carousel-item > div {
-      display: none;
+    display: none;
   }
   .carousel-inner .carousel-item > div:first-child {
-      display: block;
+    display: block;
   }
 }
 
@@ -21,7 +21,6 @@ h1 {
 
 /* display 3 */
 @media (min-width: 768px) {
-
   .carousel-inner .carousel-item-right.active,
   .carousel-inner .carousel-item-next {
     transform: translateX(33.333%);
@@ -34,12 +33,11 @@ h1 {
 }
 
 .carousel-inner .carousel-item-right,
-.carousel-inner .carousel-item-left{
-transform: translateX(0);
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
 }
 
 /*ABOVE IS FOR RELATE PRODUCTS CAROUSEL*/
-
 
 /*adding action button*/
 .card {
@@ -60,7 +58,7 @@ transform: translateX(0);
   background-color: transparent;
 }
 body {
-  color:purple
+  color: black;
 }
 
 .dark-mode {

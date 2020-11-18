@@ -46,7 +46,7 @@ class App extends React.Component {
         <h1>
           WELCOME TO ZBRH  {name}
         </h1>
-        <button type="button" class="btn btn-primary" onClick={this.toggleDarkLight}>
+        <button type="button" className="btn btn-primary" onClick={this.toggleDarkLight}>
           Dark/Light Toggle
         </button>
         <Overview />
