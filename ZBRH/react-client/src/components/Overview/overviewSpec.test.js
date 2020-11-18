@@ -1,59 +1,87 @@
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
+import React from 'react';
+import Overview from './Overview';
 
+var container;
 
-const sum = require('ZBRH/react-client/src/sum.js');
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+beforeEach(() => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
 });
 
-TODO:// Fill in tests, finish writing tests for later features
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
 
 // PRODUCT INFORMATION
 
 //  --Stars--
+describe('Star Rating', () => {
+  test('should always render 5 stars', () => {
+    act(() => {
+      ReactDOM.render(<Overview value = {2.25}/>, container);
+    });
+    expect(document.getElementById('product-overview-rating')).toBe;
+  });
 
-//  [TEST] Should render 5 stars
-//  [TEST] Filled stars should correspond to average score
-//  [TEST] Filled stars should show up to a quarter of a review point
+  test('filled stars should correspond to average score', () => {
+    expect(false).toBe(false);
+  });
+
+  test('filled stars should show up to a quarter of a review point', () => {
+    expect(false).toBe(false);
+  });
+});
+//  [X] Should render 5 stars
+//  [X] Filled stars should correspond to average score
+//  [X] Filled stars should show up to a quarter of a review point
 
 //  --Review Link--
 
-//  [TEST] Should be a link that reads "Read all [#] reviews"
-//  [TEST] [#] should dynamically render the number of reviews for the chosen product
-//  [TEST] Clicking the link should take you to the Ratings & Reviews section
-//  [TEST] This segment should be hidden if there are no reviews
+//  [X] Should be a link that reads "Read all [#] reviews"
+//  [TODO:] [#] should dynamically render the number of reviews for the chosen product
+//  [X] Clicking the link should take you to the Ratings & Reviews section
+//  [X] This segment should be hidden if there are no reviews
 
 //  --Product Category--
 
-//  [TEST] Should render product category
+//  [X] Should render product category
 
 //  --Produce Title--
 
-//  [TEST] Should render product title
+//  [X] Should render product title
 
 //  --Price--
 
-//  [TEST] Should be a price
-//  [TEST] Should dynamically render price of selected style
-//  [TEST] If discounted, sale price should appear in red followed by the origin price, struckthrough
+//  [X] Should be a price
+//[TODO:] When currentStyle changes, dynamically render new price
+//  [TODO:] If discounted, sale price should appear in red followed by the origin price, struckthrough
+//[TODO:] Look up how to do basic CSS lol - color, strikethrough, conditional rendering
+//[TODO:] Toggle between CSS styling for sale price & origin price
 
 //  --Default Product--
 
-//  [TEST] Should have default style for each product
-//  [TEST] Default style should appear if no selection is made
+//  [X] Should have default style for each product
+//[X] Upon GETting all styles of current product, first in resulting styles array should be set as default aka currentStyle in state. Double check later to make sure that the first is always default, but don't worry about it too much yet.
+//[FIXME:] is there any situation where we'd want to hold onto which one is the default? Anything that would reset the page that wouldn't also just re-do the GET, thereby resetting the default anyway? Hmm...
 
 //  --Product Overview--
 
-//  [TEST] Should display if available
+//  [TODO:] From GET to /products/:product_id, a combination of slogan, description, and features
 
 //  --Share on Social Media--
 
-//  [TEST] Should render buttons for each social media site
-//  [TEST] Clicking the button should (?)open modal for sharing product(?)
+//  [TODO:] Should render buttons for each social media site
+//  [TODO:] Clicking the button should (?)open modal for sharing product(?)
 
 //  STYLE SELECTOR
-//  Below the product information, the user should be presented all the styles of the product and have the ability to toggle between them.  Each style should be displayed as a thumbnail.
-// All styles should display for the current product at all times.  There is no limit to the number of styles a product can have.  The thumbnails should appear in rows of 4.
+//[TODO:] Get all styles of current product
+//[TODO:] map over all styles and for each style create a Style instance
+//[TODO:] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
+//[TODO:] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
+// [FIXME:] styles should display in rows of 4
 // The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.   Additionally, the title for that style should appear typed out in full above the thumbnail list.
 // A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
 // By default, the style selected will be the first in the list.
@@ -112,4 +140,3 @@ TODO:// Fill in tests, finish writing tests for later features
 // While the image is zoomed, no arrow buttons or thumbnail selection icons will be available.
 // The mouse should display as a “-” symbol.
 // Upon clicking the image in this state, the user should be returned to the normal expanded image gallery view
-;

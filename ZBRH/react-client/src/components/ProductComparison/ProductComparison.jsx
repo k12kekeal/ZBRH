@@ -9,6 +9,10 @@ import Outfit from './Outfit.jsx';
 //Import methods with axios GET requests
 import { getRelatedProductIdsRequest, getRelatedProductDataRequest } from '../../Requests.jsx';
 
+import { Card, Carousel } from 'react-bootstrap';
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class ProductComparison extends React.Component {
   constructor(props) {
@@ -68,8 +72,8 @@ class ProductComparison extends React.Component {
     return (
       <div>
         <br></br>
-        <RelatedProductList />
 
+        <RelatedProductList relatedProductData={this.state.relatedProductData} />
 
         {/* <p>{console.log("inside render: ", this.state.currentProduct)}</p>
        */}
@@ -77,7 +81,7 @@ class ProductComparison extends React.Component {
 
 
         <br></br>
-        <OutfitList />
+        {/*   <OutfitList />    */}
       </div>
     );
   }
