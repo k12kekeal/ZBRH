@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap';
 
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
@@ -21,6 +22,7 @@ class App extends React.Component {
     };
     this.getProducts = this.getProducts.bind(this);
     this.getProduct = this.getProduct.bind(this);
+    this.toggleDarkLight = this.toggleDarkLight.bind(this);
   }
 
   componentDidMount() {
@@ -51,25 +53,35 @@ class App extends React.Component {
       )
       .catch((err) => console.log(err));
   }
+  toggleDarkLight() {
+    var element = document.body;
+    element.classList.toggle('dark-mode');
+  }
 
   render() {
     return (
       <>
-        <h1>WELCOME TO ZBRH {name}</h1>
-        {/* <button type="button" class="btn btn-primary">
-          This is a  bootstrap button
-        </button> */}
+        <h1>
+          WELCOME TO ZBRH  {name}
+        </h1>
+        <button type="button" className="btn btn-primary" onClick={this.toggleDarkLight}>
+          Dark/Light Toggle
+        </button>
         <Overview
           currentProduct={this.state.currentProduct}
           value={4}
           getProduct={this.getProduct}
           reviews = {[1, 2, 3]}
         />
-        {/* <ProductComparison currentProduct={this.state.currentProduct} /> */}
+        <ProductComparison currentProduct={this.state.currentProduct} />
         {/*
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
         {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+
+
+
+
       </>
     );
   }
