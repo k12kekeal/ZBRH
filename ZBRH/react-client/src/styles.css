@@ -3,8 +3,7 @@ h1 {
   background-color: black;
 }
 
-
-
+/*BELOW IS FOR RELATE PRODUCTS CAROUSEL*/
 @media (max-width: 768px) {
   .carousel-inner .carousel-item > div {
       display: none;
@@ -37,4 +36,34 @@ h1 {
 .carousel-inner .carousel-item-right,
 .carousel-inner .carousel-item-left{
 transform: translateX(0);
+}
+
+/*ABOVE IS FOR RELATE PRODUCTS CAROUSEL*/
+
+
+/*adding action button*/
+.card {
+  background-color: rgb(122, 174, 111);
+}
+.overlay {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-top: 50px solid #23522f;
+  border-left: 50px solid transparent;
+}
+
+.overlayImage {
+  position: absolute;
+  top: -45px;
+  left: -22px;
+  background-color: transparent;
+}
+body {
+  color:purple
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
 }

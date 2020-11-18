@@ -7,33 +7,6 @@ import 'bootstrap';
 
 
 const RelatedProductList = (props) => {
-  // (() => {
-  //   console.log("YO IFFFFFF");
-
-
-  //   $('#recipeCarousel').carousel({
-  //     interval: 10000
-  //   })
-
-  //   $('.carousel .carousel-item').each(function () {
-  //     var minPerSlide = 3;
-  //     var next = $(this).next();
-  //     if (!next.length) {
-  //       next = $(this).siblings(':first');
-  //     }
-  //     next.children(':first-child').clone().appendTo($(this));
-
-  //     for (var i = 0; i < minPerSlide; i++) {
-  //       next = next.next();
-  //       if (!next.length) {
-  //         next = $(this).siblings(':first');
-  //       }
-
-  //       next.children(':first-child').clone().appendTo($(this));
-  //     }
-  //   });
-  // })()
-
 
 
   return (<div>
@@ -41,7 +14,7 @@ const RelatedProductList = (props) => {
 
     <div className="container text-center my-3">
 
-      <div id="recipeCarousel" className="carousel slide w-100" data-ride="carousel">
+      <div id="recipeCarousel" className="carousel slide w-100" data-ride="false" data-interval="false" data-pause="hover">
         <div className="carousel-inner w-100" role="listbox">
 
 

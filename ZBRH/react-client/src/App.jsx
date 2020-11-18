@@ -23,6 +23,8 @@ class App extends React.Component {
     this.state = {
       currentProduct: exampleData[0],
     };
+
+    this.toggleDarkLight = this.toggleDarkLight.bind(this)
   }
 
   componentDidMount() {
@@ -32,6 +34,11 @@ class App extends React.Component {
 
   }
 
+  toggleDarkLight() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+  }
+
   render() {
     const { name } = this.props;
     return (
@@ -39,15 +46,19 @@ class App extends React.Component {
         <h1>
           WELCOME TO ZBRH  {name}
         </h1>
-        {/* <button type="button" class="btn btn-primary">
-          This is a  bootstrap button
-        </button> */}
+        <button type="button" class="btn btn-primary" onClick={this.toggleDarkLight}>
+          Dark/Light Toggle
+        </button>
         <Overview />
         <ProductComparison currentProduct={this.state.currentProduct} />
         {/*
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
         {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+
+
+
+
       </>
     );
   }
