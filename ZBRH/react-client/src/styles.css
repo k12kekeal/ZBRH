@@ -1,4 +1,67 @@
-/* h1 {
+h1 {
   color: white;
   background-color: black;
-} */
+}
+
+/*BELOW IS FOR RELATE PRODUCTS CAROUSEL*/
+@media (max-width: 768px) {
+  .carousel-inner .carousel-item > div {
+    display: none;
+  }
+  .carousel-inner .carousel-item > div:first-child {
+    display: block;
+  }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+/* display 3 */
+@media (min-width: 768px) {
+  .carousel-inner .carousel-item-right.active,
+  .carousel-inner .carousel-item-next {
+    transform: translateX(33.333%);
+  }
+
+  .carousel-inner .carousel-item-left.active,
+  .carousel-inner .carousel-item-prev {
+    transform: translateX(-33.333%);
+  }
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+}
+
+/*ABOVE IS FOR RELATE PRODUCTS CAROUSEL*/
+
+/*adding action button*/
+.card {
+  background-color: rgb(122, 174, 111);
+}
+.overlay {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-top: 50px solid #23522f;
+  border-left: 50px solid transparent;
+}
+
+.overlayImage {
+  position: absolute;
+  top: -45px;
+  left: -22px;
+  background-color: transparent;
+}
+body {
+  color: black;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
