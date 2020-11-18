@@ -23,7 +23,9 @@ class App extends React.Component {
     this.getProduct = this.getProduct.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getProduct(2);
+  }
 
   getProducts() {
     axios
@@ -36,8 +38,11 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  //TODO: when getting new product, should also get new styles - promise.all then set state?
   getProduct(productId, e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     axios.get(`http://3.21.164.220/products/${productId}`)
       .then((response) =>
         this.setState({

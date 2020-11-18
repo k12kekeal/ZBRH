@@ -5,7 +5,7 @@ const ProductOverview = ({ currentProduct }) => {
     <div>
       <h3>{currentProduct.slogan}</h3>
       <p>{currentProduct.description}</p>
-      <div>{currentProduct.features}</div>
+      {/* <div>{currentProduct.features}</div> */}
     </div>
   );
 };

@@ -1,11 +1,13 @@
-import React from 'react';
-import Rating from '@material-ui/lab/Rating';
-import StyleSelector from './StyleSelector.jsx';
-import Select from '@material-ui/core/Select';
-import ImageGallery from './ImageGallery.jsx';
-import Cart from './Cart.jsx';
-import styleData from '../../exampleStyleData.js';
-import ProductOverview from './ProductOverview.jsx';
+import React from "react";
+import axios from "axios";
+
+import Rating from "@material-ui/lab/Rating";
+import Select from "@material-ui/core/Select";
+
+import Cart from "./Cart.jsx";
+import StyleSelector from "./StyleSelector.jsx";
+import ImageGallery from "./ImageGallery.jsx";
+import ProductOverview from "./ProductOverview.jsx";
 
 class Overview extends React.Component {
   constructor(props) {
@@ -18,28 +20,24 @@ class Overview extends React.Component {
     this.changeStyle = this.changeStyle.bind(this);
   }
 
-  getStyles(productId, e) {
-    e.preventDefault();
-    axios
-      .get(`http://3.21.164.220/${productId}/styles`)
-      .then(
-        (response) =>
-          this.setState({
-            styles: response.data.results,
-            currentStyle: response.data.results[1],
-          }),
-        console.log(response.data.results)
-      )
-      .catch((err) => console.log(err));
+  getStyles(productId) {
+    axios.get(`http://3.21.164.220/products/${productId}/styles`)
+      .then(response => {
+        this.setState({
+          styles: response.data.results,
+          currentStyle: response.data.results[0]
+        });
+      });
   }
 
+  componentDidMount() {
+    this.getStyles(this.props.currentProduct.id);
+  }
   changeStyle(productId, e) {
     e.preventDefault();
-    this.setState(
-      {
-        currentStyle: this.state.styles[productId],
-      }
-    );
+    this.setState({
+      currentStyle: this.state.styles[productId],
+    });
   }
 
   render() {
@@ -64,18 +62,6 @@ class Overview extends React.Component {
           styles={this.state.styles}
         />
         <div>
-          <select name="size">
-            <option defaultValue="">SELECT SIZE</option>
-            <option value="xs">XS</option>
-            <option value="s">S</option>
-            <option value="m">M</option>
-          </select>
-          <select name="quantity">
-            {/* TODO: for loop to create an option for each quantity? */}
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
           <Cart />
           {/* TODO: fave button */}
           <ProductOverview currentProduct={this.props.currentProduct} />
