@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const ProductOverview = ({ currentProduct }) => {
   return (
     <div>
-      <h3>{currentProduct.slogan}</h3>
-      <p>{currentProduct.description}</p>
+      {currentProduct.slogan ? <h3>{currentProduct.slogan}</h3> : null}
+      {currentProduct.description ? <p>{currentProduct.description}</p> : null}
       {/* <div>{currentProduct.features}</div> */}
     </div>
   );

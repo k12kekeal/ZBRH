@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getProduct(2);
+    this.getProduct(1);
   }
 
   getProducts() {
