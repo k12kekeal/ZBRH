@@ -56,8 +56,6 @@ describe('Star Rating', () => {
 //  --Price--
 
 //  [X] Should be a price
-//  [TODO:] Should dynamically render price of selected style
-//[TODO:] Display price of default style
 //[TODO:] When currentStyle changes, dynamically render new price
 //  [TODO:] If discounted, sale price should appear in red followed by the origin price, struckthrough
 //[TODO:] Look up how to do basic CSS lol - color, strikethrough, conditional rendering
@@ -65,8 +63,8 @@ describe('Star Rating', () => {
 
 //  --Default Product--
 
-//  [TODO:] Should have default style for each product
-//[TODO:] Upon GETting all styles of current product, first in resulting styles array should be set as default aka currentStyle in state. Double check later to make sure that the first is always default, but don't worry about it too much yet.
+//  [X] Should have default style for each product
+//[X] Upon GETting all styles of current product, first in resulting styles array should be set as default aka currentStyle in state. Double check later to make sure that the first is always default, but don't worry about it too much yet.
 //[FIXME:] is there any situation where we'd want to hold onto which one is the default? Anything that would reset the page that wouldn't also just re-do the GET, thereby resetting the default anyway? Hmm...
 
 //  --Product Overview--

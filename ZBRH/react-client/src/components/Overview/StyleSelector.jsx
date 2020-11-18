@@ -1,11 +1,14 @@
-import React from 'react';
-import Style from './Style.jsx';
+import React from "react";
+import Style from "./Style.jsx";
 
-const StyleSelector = ({ value, getProduct, currentProduct }) => {
+const StyleSelector = ({ value, changeStyle, currentProduct, styles }) => {
   return (
     <div>
-      {/* map over styles of currentProduct, create Style instance for each available style and pass props  */}
-      <Style getProduct={getProduct} />
+      {styles.map(style => (
+        <ul>
+          <Style changeStyle={changeStyle} style={style.results} />
+        </ul>
+      ))}
       <h4>{currentProduct.category}</h4>
       <h3>{currentProduct.name}</h3>
       <p>${currentProduct.default_price}</p>

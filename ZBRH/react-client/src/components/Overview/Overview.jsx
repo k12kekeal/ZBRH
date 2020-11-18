@@ -12,19 +12,34 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       styles: [],
-      currentStyle: {}
+      currentStyle: {},
     };
-    this.getStyle = this.getStyle.bind(this);
+    this.getStyles = this.getStyles.bind(this);
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
-  getStyle(productId, e) {
+  getStyles(productId, e) {
     e.preventDefault();
-    axios.get('http://3.21.164.220/{}/styles')
-      .then(response => this.setState({
-        styles: response.data.results,
-        currentStyle: response.data.results[0]
-      }))
-      .catch(err => console.log(err));
+    axios
+      .get(`http://3.21.164.220/${productId}/styles`)
+      .then(
+        (response) =>
+          this.setState({
+            styles: response.data.results,
+            currentStyle: response.data.results[1],
+          }),
+        console.log(response.data.results)
+      )
+      .catch((err) => console.log(err));
+  }
+
+  changeStyle(productId, e) {
+    e.preventDefault();
+    this.setState(
+      {
+        currentStyle: this.state.styles[productId],
+      }
+    );
   }
 
   render() {
@@ -42,7 +57,12 @@ class Overview extends React.Component {
           <a href="#ratings-and-reviews">Read all [#] reviews</a>
         )}
         {/* TODO: render review number dynamically*/}
-        <StyleSelector getProduct={this.props.getProduct} currentProduct={this.props.currentProduct} />
+        <StyleSelector
+          changeStyle={this.changeStyle}
+          currentProduct={this.props.currentProduct}
+          currentStyle={this.state.currentStyle}
+          styles={this.state.styles}
+        />
         <div>
           <select name="size">
             <option defaultValue="">SELECT SIZE</option>
@@ -51,14 +71,14 @@ class Overview extends React.Component {
             <option value="m">M</option>
           </select>
           <select name="quantity">
-            {/* for loop to create an option for each quantity? */}
+            {/* TODO: for loop to create an option for each quantity? */}
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
           </select>
           <Cart />
           {/* TODO: fave button */}
-          <ProductOverview currentProduct={this.props.currentProduct}/>
+          <ProductOverview currentProduct={this.props.currentProduct} />
         </div>
       </div>
     );

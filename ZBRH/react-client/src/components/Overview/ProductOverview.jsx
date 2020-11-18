@@ -1,13 +1,13 @@
 import React from 'react';
 
-const ProductOverview = ({currentProduct}) => (
-  <div>
-    {currentProduct.slogal}
-    {currentProduct.description}
-    {(currentProduct.features) ? currentProduct.features.map(feature => (
-      <li>{feature.feature}{feature.value && `: ${feature.value}`}</li>
-    )) : null}
-  </div>
-);
+const ProductOverview = ({ currentProduct }) => {
+  return (
+    <div>
+      <h3>{currentProduct.slogan}</h3>
+      <p>{currentProduct.description}</p>
+      <div>{currentProduct.features}</div>
+    </div>
+  );
+};
 
 export default ProductOverview;
