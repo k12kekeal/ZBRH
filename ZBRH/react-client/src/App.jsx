@@ -1,7 +1,8 @@
 import React from 'react';
 import 'bootstrap';
 
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from "jquery";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
@@ -22,10 +23,20 @@ class App extends React.Component {
     this.state = {
       currentProduct: exampleData[0],
     };
+
+    this.toggleDarkLight = this.toggleDarkLight.bind(this)
   }
 
   componentDidMount() {
     getProducts();
+
+
+
+  }
+
+  toggleDarkLight() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
   }
 
   render() {
@@ -35,15 +46,19 @@ class App extends React.Component {
         <h1>
           WELCOME TO ZBRH  {name}
         </h1>
-        {/* <button type="button" class="btn btn-primary">
-          This is a  bootstrap button
-        </button> */}
+        <button type="button" className="btn btn-primary" onClick={this.toggleDarkLight}>
+          Dark/Light Toggle
+        </button>
         <Overview />
         <ProductComparison currentProduct={this.state.currentProduct} />
         {/*
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
         {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+
+
+
+
       </>
     );
   }

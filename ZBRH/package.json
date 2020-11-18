@@ -2,11 +2,11 @@
   "name": "ZBRH",
   "version": "1.0.0",
   "description": "",
-  "main": "index.jsx",
+  "main": "index.js",
   "scripts": {
     "build:dev": "webpack -d --watch",
     "start": "node server/index.js",
-    "start:dev": "nodemon bundle.js -w",
+    "start:dev": "nodemon server/index.js -w",
     "test": "jest --watchAll"
   },
   "author": "Team Zebra",

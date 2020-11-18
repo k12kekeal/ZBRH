@@ -1,4 +1,6 @@
 import React from 'react';
+import 'bootstrap';
+import axios from 'axios';
 
 //Import Components
 import RelatedProductList from './RelatedProductList.jsx';
@@ -9,9 +11,10 @@ import Outfit from './Outfit.jsx';
 //Import methods with axios GET requests
 import { getRelatedProductIdsRequest, getRelatedProductDataRequest } from '../../Requests.jsx';
 
+//delete below after testing purposes
 import { Card, Carousel } from 'react-bootstrap';
+import $ from "jquery";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class ProductComparison extends React.Component {
@@ -30,31 +33,90 @@ class ProductComparison extends React.Component {
 
   }
 
-  componentDidMount() {
+  // possibly improved version...WIP
+  componentDidMount(){
     console.log('componentDidMount starting...');
     console.log('This is state in ProductComparison: ', this.state);
     console.log('This is props in ProductComparison: ', this.props);
 
-    this.getRelatedProductIds(this.state.currentProduct.id, (err, data) => {
-      if (err) { console.log(err); } else {
-        console.log('setting state soon');
-        this.setState({ relatedProductIds: data });
+    let currProductId = this.state.currentProduct.id;
 
-        this.getRelatedProductData(this.state.relatedProductIds, (err2, data2) => {
-          if (err2) { console.log('we have err2', err2); } else {
-            console.log('setting state again');
-            this.setState({ relatedProductData: data2 });
-          }
-        });
+    axios.get(`http://3.21.164.220/products/${currProductId}/related`)
+    .then((response) => {
+      console.log('here are the id_s of related products: ', response.data);
+      console.log('setting state of relatedProductIds');
+      this.setState({ relatedProductIds: response.data });
 
-
+      let arrGetRelatedProductDataPromises = [];
+      for (var i = 0; i < this.state.relatedProductIds.length; i++){
+        arrGetRelatedProductDataPromises.push(axios.get(`http://3.21.164.220/products/${response.data[i]}`))
       }
+      return  Promise.all(arrGetRelatedProductDataPromises)
+    })
+    .then((arrRelatedProductDataPromise)=>{
+      console.log("This is result of Promise.all", arrRelatedProductDataPromise)
+
+      let newRelatedProductDataState = arrRelatedProductDataPromise.map(function(currProduct){
+        return currProduct.data
+      })
+
+      this.setState({relatedProductData: newRelatedProductDataState})
+    })
+    .then(()=>{
+      console.log("So...this is state now: ", this.state)
+    })
+    .catch((err) => {
+      console.log(err);
+
     });
+
+
+  //   axios
+  // .get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p1)
+  // .then(response => {
+  //   this.setState({ p1Location: response.data });
+  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p2);
+  // })
+  // .then(response => {
+  //   this.setState({ p2Location: response.data });
+  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p3);
+  // })
+  // .then(response => {
+  //   this.setState({ p3Location: response.data });
+  // }).catch(error => console.log(error.response));
+
 
 
 
     console.log('componentDidMount has ended...');
   }
+
+
+
+
+  //IMPROVE - RACING POSSIBILITY? ...rename variables to something other than "data"
+  // componentDidMount() {
+  //   console.log('componentDidMount starting...');
+  //   console.log('This is state in ProductComparison: ', this.state);
+  //   console.log('This is props in ProductComparison: ', this.props);
+
+  //   this.getRelatedProductIds(this.state.currentProduct.id, (err, data) => {
+  //     if (err) { console.log(err); } else {
+  //       console.log('setting state soon');
+  //       this.setState({ relatedProductIds: data });
+
+  //       this.getRelatedProductData(this.state.relatedProductIds, (err2, data2) => {
+  //         if (err2) { console.log('we have err2', err2); } else {
+  //           console.log('setting state again');
+  //           this.setState({ relatedProductData: data2 });
+  //         }
+  //       });
+
+
+  //     }
+  //   });
+  //   console.log('componentDidMount has ended...');
+  // }
 
   // componentDidUpdate() {
   //   document.title = `You clicked ${this.state.count} times`;
@@ -73,12 +135,11 @@ class ProductComparison extends React.Component {
       <div>
         <br></br>
 
-        <RelatedProductList relatedProductData={this.state.relatedProductData} />
+    {    <RelatedProductList relatedProductData={this.state.relatedProductData} />  }
+
 
         {/* <p>{console.log("inside render: ", this.state.currentProduct)}</p>
        */}
-
-
 
         <br></br>
         {/*   <OutfitList />    */}
@@ -86,16 +147,14 @@ class ProductComparison extends React.Component {
     );
   }
 
-  render() {
-    <div>Hii....</div>;
-  }
+
 }
 
 
 // class ProductComparison extends React.Component {
 //   constructor(props) {
 //     super(props);
-//     this.state = { count: 0 };
+//     this.state = {count: 0 };
 //     this.handleClick = this.handleClick.bind(this);
 //   }
 //   componentDidMount() {
