@@ -71,7 +71,7 @@ describe('Star Rating', () => {
 //  --Product Overview--
 
 //  [X] From GET to /products/:product_id, a combination of slogan, description, and features
-// [TODO:] Should render only if available
+// [X] Should render only if available
 
 //  --Share on Social Media--
 
@@ -79,10 +79,10 @@ describe('Star Rating', () => {
 //  [TODO:] Clicking the button should (?)open modal for sharing product(?)
 
 //  STYLE SELECTOR
-//[TODO:] Get all styles of current product
-//[TODO:] map over all styles and for each style create a Style instance
+//[X] Get all styles of current product
+//[X] map over all styles and for each style create a Style instance
 //[TODO:] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
-//[TODO:] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
+//[X] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
 // [FIXME:] styles should display in rows of 4
 // The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.   Additionally, the title for that style should appear typed out in full above the thumbnail list.
 // A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
@@ -91,26 +91,25 @@ describe('Star Rating', () => {
 // Only one style can be selected at a time.  A style must be selected at all times.
 
 //  ADD TO CART
-//  Below the style selector, two dropdowns should allow the user to select the size and quantity of the item to add to their cart.   The options available within these dropdowns will vary based on the selected product style9.
 
-//  >>>Size Selector<<<
-//  The first dropdown will list all of the available sizes for the currently selected style.
-// Only sizes that are currently in stock for the style selected should be listed.  Sizes not available should not appear within the list.  If there is no remaining stock for the current style, the dropdown should become inactive and read “OUT OF STOCK”.
-// When collapsed, the dropdown should show the currently selected size.
-// By default, the dropdown should show “Select Size”.
+//>>>SIZE SELECTOR<<<
+// [TODO:] Dropdown menu for size that dynamically renders available sizes for selected style
+// [TODO:] If size is not available, the size should not appear in the list
+// [TODO:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
+// [X] When collapsed, the dropdown should show the currently selected size
+// [X] By default, the dropdown should show "Select Size"
 
 //  >>>Quantity Selector<<<
-//  The second dropdown will allow the user to select a quantity of the current style and size to add to their cart.
-// The options in this dropdown will be a sequence of integers ranging from 1 to the maximum.  The maximum selection will be capped by either the quantity of this style and size in stock, or a hard limit of 15.   For example, if the SKU for the selected product style and size has 4 units left in stock, the dropdown will allow choice of 1, 2, 3 or 4.  However if there are 30 units in stock, the dropdown will only present from 1 to 15.
-// If the size has not been selected, then the quantity dropdown will display ‘-’ and the dropdown will be disabled.
-// Once a size has been selected, the dropdown should default to 1.
+// [TODO:] Dropdown menu for quantity that dynamically renders numbers
+// [TODO:] Options will be a sequence of integers ranging from 1 to the maximum, either the quantity of size and style in stock or a hard limit of 15
+// [TODO:] If size has not been selected, quantity dropdown will display '-' and dropdown will be disabled
+// [TODO:] Once a size has been selected, the dropdown should default to 1
 
 //  >>>Add to Cart<<<
-//  A button labeled “Add to Cart” will appear below the size and quantity dropdowns.  This button will be used to place the style, size and quantity of the product selected into the user’s cart.
-// Dependent on the current selection in the size and quantity dropdowns, this button will have differing functionality.
-// If the default ‘Select Size’ is currently selected: Clicking this button should open the size dropdown, and a message should appear above the dropdown stating “Please select size”.
-// If there is no stock: This button should be hidden
-// If both a valid size and valid quantity are selected: Clicking this button will add the product to the user’s cart.
+// [TODO:] A button labeled "Add to Cart" will appear below the two selectors
+// [TODO:] If a size has not been selected, clicking the button will open the size menu, and a dropdown should appear saying "Please select size"
+// [TODO:] If there is no stock, this button should be hidden
+// [TODO:] If valid size and quantity are selected, clicking will add the right style, size, and quantity of product to user's cart
 
 //  IMAGE GALLERY
 //  The largest piece of the Overview module will be a photo gallery showing images of the product.  The photos presented in this gallery will be specific to the currently selected product style.  Each time a new style is chosen, the gallery will update to show photos corresponding to the new style.   Each style will have a set of images associated with it.  The gallery will allow customers to browse between and zoom in on these photos.

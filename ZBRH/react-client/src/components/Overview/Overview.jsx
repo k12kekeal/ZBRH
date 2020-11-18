@@ -1,13 +1,14 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
-import Rating from "@material-ui/lab/Rating";
-import Select from "@material-ui/core/Select";
+import Rating from '@material-ui/lab/Rating';
+import Select from '@material-ui/core/Select';
 
-import Cart from "./Cart.jsx";
-import StyleSelector from "./StyleSelector.jsx";
-import ImageGallery from "./ImageGallery.jsx";
-import ProductOverview from "./ProductOverview.jsx";
+import Cart from './Cart.jsx';
+import StyleSelector from './StyleSelector.jsx';
+import ImageGallery from './ImageGallery.jsx';
+import ProductOverview from './ProductOverview.jsx';
+import SocialMedia from './SocialMedia.jsx';
 
 class Overview extends React.Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class Overview extends React.Component {
           currentStyle={this.state.currentStyle}
           styles={this.state.styles}
         />
+        <SocialMedia />
         <div>
           <Cart />
           {/* TODO: fave button */}
