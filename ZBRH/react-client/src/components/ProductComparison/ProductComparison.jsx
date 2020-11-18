@@ -9,13 +9,14 @@ import OutfitList from './OutfitList.jsx';
 import Outfit from './Outfit.jsx';
 
 //Import methods with axios GET requests
-import { getRelatedProductIdsRequest, getRelatedProductDataRequest } from '../../Requests.jsx';
+import {
+  getRelatedProductIdsRequest,
+  getRelatedProductDataRequest,
+} from '../../Requests.jsx';
 
 //delete below after testing purposes
 import { Card, Carousel } from 'react-bootstrap';
-import $ from "jquery";
-
-
+import $ from 'jquery';
 
 class ProductComparison extends React.Component {
   constructor(props) {
@@ -24,75 +25,73 @@ class ProductComparison extends React.Component {
       currentProduct: props.currentProduct,
       relatedProductIds: [],
       relatedProductData: [],
-      outFit: []
-
+      outFit: [],
     };
     //this.handleClick = this.handleClick.bind(this);
     this.getRelatedProductIds = this.getRelatedProductIds.bind(this);
     this.getRelatedProductData = this.getRelatedProductData.bind(this);
-
   }
 
   // possibly improved version...WIP
-  componentDidMount(){
+  componentDidMount() {
     console.log('componentDidMount starting...');
     console.log('This is state in ProductComparison: ', this.state);
     console.log('This is props in ProductComparison: ', this.props);
 
     let currProductId = this.state.currentProduct.id;
 
-    axios.get(`http://3.21.164.220/products/${currProductId}/related`)
-    .then((response) => {
-      console.log('here are the id_s of related products: ', response.data);
-      console.log('setting state of relatedProductIds');
-      this.setState({ relatedProductIds: response.data });
+    axios
+      .get(`http://3.21.164.220/products/${currProductId}/related`)
+      .then((response) => {
+        console.log('here are the id_s of related products: ', response.data);
+        console.log('setting state of relatedProductIds');
+        this.setState({ relatedProductIds: response.data });
 
-      let arrGetRelatedProductDataPromises = [];
-      for (var i = 0; i < this.state.relatedProductIds.length; i++){
-        arrGetRelatedProductDataPromises.push(axios.get(`http://3.21.164.220/products/${response.data[i]}`))
-      }
-      return  Promise.all(arrGetRelatedProductDataPromises)
-    })
-    .then((arrRelatedProductDataPromise)=>{
-      console.log("This is result of Promise.all", arrRelatedProductDataPromise)
-
-      let newRelatedProductDataState = arrRelatedProductDataPromise.map(function(currProduct){
-        return currProduct.data
+        let arrGetRelatedProductDataPromises = [];
+        for (var i = 0; i < this.state.relatedProductIds.length; i++) {
+          arrGetRelatedProductDataPromises.push(
+            axios.get(`http://3.21.164.220/products/${response.data[i]}`)
+          );
+        }
+        return Promise.all(arrGetRelatedProductDataPromises);
       })
+      .then((arrRelatedProductDataPromise) => {
+        console.log(
+          'This is result of Promise.all',
+          arrRelatedProductDataPromise
+        );
 
-      this.setState({relatedProductData: newRelatedProductDataState})
-    })
-    .then(()=>{
-      console.log("So...this is state now: ", this.state)
-    })
-    .catch((err) => {
-      console.log(err);
+        let newRelatedProductDataState = arrRelatedProductDataPromise.map(
+          function (currProduct) {
+            return currProduct.data;
+          }
+        );
 
-    });
+        this.setState({ relatedProductData: newRelatedProductDataState });
+      })
+      .then(() => {
+        console.log('So...this is state now: ', this.state);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-
-  //   axios
-  // .get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p1)
-  // .then(response => {
-  //   this.setState({ p1Location: response.data });
-  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p2);
-  // })
-  // .then(response => {
-  //   this.setState({ p2Location: response.data });
-  //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p3);
-  // })
-  // .then(response => {
-  //   this.setState({ p3Location: response.data });
-  // }).catch(error => console.log(error.response));
-
-
-
+    //   axios
+    // .get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p1)
+    // .then(response => {
+    //   this.setState({ p1Location: response.data });
+    //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p2);
+    // })
+    // .then(response => {
+    //   this.setState({ p2Location: response.data });
+    //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p3);
+    // })
+    // .then(response => {
+    //   this.setState({ p3Location: response.data });
+    // }).catch(error => console.log(error.response));
 
     console.log('componentDidMount has ended...');
   }
-
-
-
 
   //IMPROVE - RACING POSSIBILITY? ...rename variables to something other than "data"
   // componentDidMount() {
@@ -111,7 +110,6 @@ class ProductComparison extends React.Component {
   //           this.setState({ relatedProductData: data2 });
   //         }
   //       });
-
 
   //     }
   //   });
@@ -135,21 +133,21 @@ class ProductComparison extends React.Component {
       <div>
         <br></br>
 
-    {    <RelatedProductList relatedProductData={this.state.relatedProductData} />  }
-
+        {
+          <RelatedProductList
+            relatedProductData={this.state.relatedProductData}
+          />
+        }
 
         {/* <p>{console.log("inside render: ", this.state.currentProduct)}</p>
-       */}
+         */}
 
         <br></br>
         {/*   <OutfitList />    */}
       </div>
     );
   }
-
-
 }
-
 
 // class ProductComparison extends React.Component {
 //   constructor(props) {

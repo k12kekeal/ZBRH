@@ -19,31 +19,29 @@ const RelatedProductList = (props) => {
 
 
 
-          {console.log("this is props in relatedproductlist", props)}
+          {console.log('this is props in relatedproductlist', props)}
 
           {
             props.relatedProductData.map(function (singleRelatedProduct, index) {
 
               if (index === 0) {
-                console.log("index is: ", index)
+                console.log('index is: ', index);
 
                 return (
                   < div className="carousel-item active" key={index}>
-                    { console.log("single item", singleRelatedProduct.name)}
+                    { console.log('single item', singleRelatedProduct.name)}
                     <RelatedProduct singleRelatedProduct={singleRelatedProduct} />
                   </div>
-                )
-              }
-
-              else {
-                console.log("index is: ", index)
+                );
+              } else {
+                console.log('index is: ', index);
 
                 return (
                   <div className="carousel-item" key={index} >
-                    { console.log("single item", singleRelatedProduct.name)}
+                    { console.log('single item', singleRelatedProduct.name)}
                     < RelatedProduct singleRelatedProduct={singleRelatedProduct} />
                   </div>
-                )
+                );
               }
 
 
@@ -66,7 +64,7 @@ const RelatedProductList = (props) => {
 
 
 
-  </div >)
+  </div >);
 };
 
 /*

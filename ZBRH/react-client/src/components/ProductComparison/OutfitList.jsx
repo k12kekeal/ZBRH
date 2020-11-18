@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Outfit from './Outfit.jsx';
 import { Card, Carousel } from 'react-bootstrap';
 
