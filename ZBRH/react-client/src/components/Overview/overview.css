@@ -1,10 +1,19 @@
 /* social media button styling */
 .share-button {
-  width: 5%;
+  width: 50px;
   padding: 10px;
+  transition: all .2s ease-in-out;
 }
 
 .share-button:hover {
-  background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 5px 15px rgb(255, 255, 255);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.styles {
+  transition: all .2s ease-in-out;
+}
+.styles:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
