@@ -34,9 +34,9 @@ button {
 }
 
 button:hover {
-  background: #4b4b4b;
+  background: #0e0e0e;
   color: rgb(223, 223, 223);
-  border: 2px solid #383838;
+  border: 2px solid #111111;
 }
 
 /*BELOW IS FOR RELATE PRODUCTS CAROUSEL*/

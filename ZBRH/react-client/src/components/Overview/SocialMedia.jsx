@@ -1,5 +1,6 @@
 import React from 'react';
 import './overview.css';
+import Modal from '@material-ui/core/Modal';
 
 const SocialMedia = () => (
   <div>
