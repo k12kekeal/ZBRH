@@ -123,29 +123,6 @@ class RelatedProduct extends React.Component {
         </Card>
 
       </Carousel.Item>
-<<<<<<< HEAD
-    );
-  }
-}
-
-
-/*
-         <Card style={{ width: '18rem' }} id="card" className="acard">
-            <Card.Img variant='top' src='./placeHolderImage.jpg' />
-            <Card.Body id="cardbody">
-              <Card.Title id="cardtitle">{this.state.singleRelatedProduct.category}</Card.Title>
-              <Card.Text id="cardtext">
-                {this.state.singleRelatedProduct.name} <br></br>
-              ${this.state.singleRelatedProduct.default_price}
-                <br></br>
-              star rating here....
-            </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-
-=======
->>>>>>> 0c9525d082929671d992007f898916b4590be686
 
 */
 
