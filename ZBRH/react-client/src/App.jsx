@@ -73,7 +73,7 @@ class App extends React.Component {
           getProduct={this.getProduct}
           reviews = {[1, 2, 3]}
         />
-        <ProductComparison currentProduct={this.state.currentProduct} />
+        {/* <ProductComparison currentProduct={this.state.currentProduct} /> */}
         {/*
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
