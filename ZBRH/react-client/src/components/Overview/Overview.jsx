@@ -34,10 +34,10 @@ class Overview extends React.Component {
   componentDidMount() {
     this.getStyles(this.props.currentProduct.id);
   }
-  changeStyle(productId, e) {
+  changeStyle(styleId, e) {
     e.preventDefault();
     this.setState({
-      currentStyle: this.state.styles[productId],
+      currentStyle: this.state.styles[styleId],
     });
   }
 

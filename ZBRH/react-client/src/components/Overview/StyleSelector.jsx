@@ -11,21 +11,24 @@ const StyleSelector = ({
 }) => {
   return (
     <div>
-      <div>
-        {styles.map((style) => (
-          <Style key={style.name} changeStyle={changeStyle} style={style} />
-        ))}
-      </div>
       <h4>{currentProduct.category}</h4>
       <h3>{currentProduct.name}</h3>
       {currentStyle.sale_price != 0 ? (
-        <>
-          <p style={{color: 'red'}}>${currentStyle.sale_price} </p> <p style={{textDecoration: 'line-through'}}>${currentStyle.original_price}</p>
-        </>
+        <p>
+          <em style={{color: 'red'}}>${currentStyle.sale_price} </em> <small style={{textDecoration: 'line-through'}}>${currentStyle.original_price}</small>
+        </p>
       ) : (
         <p>${currentStyle.original_price}</p>
-
       )}
+      <div>
+        {styles.map((style) => (
+          <Style
+            key={style.name}
+            changeStyle={changeStyle}
+            style={style}
+            currentStyle={currentStyle}/>
+        ))}
+      </div>
     </div>
   );
 };
