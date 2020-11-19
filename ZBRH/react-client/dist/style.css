@@ -42,35 +42,35 @@ button:hover {
 /*BELOW IS FOR RELATE PRODUCTS CAROUSEL*/
 @media (max-width: 768px) {
   .carousel-inner .carousel-item > div {
-    display: none;
+    display: none !important;
   }
   .carousel-inner .carousel-item > div:first-child {
-    display: block;
+    display: block !important;
   }
 }
 
 .carousel-inner .carousel-item.active,
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
-  display: flex;
+  display: flex !important;
 }
 
 /* display 3 */
 @media (min-width: 768px) {
   .carousel-inner .carousel-item-right.active,
   .carousel-inner .carousel-item-next {
-    transform: translateX(33.333%);
+    transform: translateX(33.333%) !important;
   }
 
   .carousel-inner .carousel-item-left.active,
   .carousel-inner .carousel-item-prev {
-    transform: translateX(-33.333%);
+    transform: translateX(-33.333%) !important;
   }
 }
 
 .carousel-inner .carousel-item-right,
 .carousel-inner .carousel-item-left {
-  transform: translateX(0);
+  transform: translateX(0) !important;
 }
 
 /*ABOVE IS FOR RELATE PRODUCTS CAROUSEL*/
