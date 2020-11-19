@@ -1,7 +1,6 @@
 import React from 'react';
-// import fbIcon from './icons/icon-facebook.png';
-// import pinIcon from './icons/icon-pinterest.png';
-// import twitIcon from './icon-twitter.png';
+import './overview.css';
+
 const SocialMedia = () => (
   <div>
     <img className="share-button" src='./icon-facebook.png'></img>
