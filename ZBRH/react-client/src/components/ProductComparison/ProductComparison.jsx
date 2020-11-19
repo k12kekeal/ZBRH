@@ -14,10 +14,6 @@ import {
   getRelatedProductDataRequest,
 } from '../../Requests.jsx';
 
-//delete below after testing purposes
-import { Card, Carousel } from 'react-bootstrap';
-import $ from 'jquery';
-
 class ProductComparison extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +23,7 @@ class ProductComparison extends React.Component {
       relatedProductData: [],
       outFit: [],
     };
-    //this.handleClick = this.handleClick.bind(this);
+
     this.getRelatedProductIds = this.getRelatedProductIds.bind(this);
     this.getRelatedProductData = this.getRelatedProductData.bind(this);
   }
@@ -40,6 +36,7 @@ class ProductComparison extends React.Component {
 
     let currProductId = this.state.currentProduct.id;
 
+    //GETs an array of id numbers for products related to the current product in state
     axios
       .get(`http://3.21.164.220/products/${currProductId}/related`)
       .then((response) => {
@@ -47,6 +44,7 @@ class ProductComparison extends React.Component {
         console.log('setting state of relatedProductIds');
         this.setState({ relatedProductIds: response.data });
 
+        //creates an array of promises (GET requests for individual product data for each related product id)
         let arrGetRelatedProductDataPromises = [];
         for (var i = 0; i < this.state.relatedProductIds.length; i++) {
           arrGetRelatedProductDataPromises.push(
@@ -55,6 +53,7 @@ class ProductComparison extends React.Component {
         }
         return Promise.all(arrGetRelatedProductDataPromises);
       })
+      //uses the promisified array of related product data, set state
       .then((arrRelatedProductDataPromise) => {
         console.log(
           'This is result of Promise.all',
@@ -66,11 +65,44 @@ class ProductComparison extends React.Component {
             return currProduct.data;
           }
         );
-
         this.setState({ relatedProductData: newRelatedProductDataState });
+
+        //creates an array of promises (GET requests for individual product styles for each related product id)
+        let arrGetRelatedProductStylesPromises = [];
+        for (var i = 0; i < this.state.relatedProductIds.length; i++) {
+          arrGetRelatedProductStylesPromises.push(
+            axios.get(`http://3.21.164.220/products/${this.state.relatedProductIds[i]}/styles`)
+          );
+        }
+        return Promise.all(arrGetRelatedProductStylesPromises);
       })
-      .then(() => {
+      .then((arrRelatedProductStyles) => {
         console.log('So...this is state now: ', this.state);
+        console.log('And this is related product styles:', arrRelatedProductStyles);
+
+
+        let newArrRelatedProductStyles = arrRelatedProductStyles.map(
+          function (currProduct) {
+            return currProduct.data;
+          }
+        );
+        console.log('Individual styles: ', newArrRelatedProductStyles);
+
+        let newRelatedProductDataWithStyles = this.state.relatedProductData.map(function(currProduct) {
+
+          for (var i = 0; i < newArrRelatedProductStyles.length; i++) {
+
+            if (currProduct.id.toString() === newArrRelatedProductStyles[i].product_id) {
+
+              currProduct.styles = newArrRelatedProductStyles[i].results;
+              return currProduct;
+            }
+          }
+        });
+
+
+        this.setState({ relatedProductData: newRelatedProductDataWithStyles });
+
       })
       .catch((err) => {
         console.log(err);
@@ -139,9 +171,6 @@ class ProductComparison extends React.Component {
           />
         }
 
-        {/* <p>{console.log("inside render: ", this.state.currentProduct)}</p>
-         */}
-
         <br></br>
         {/*   <OutfitList />    */}
       </div>
@@ -149,35 +178,5 @@ class ProductComparison extends React.Component {
   }
 }
 
-// class ProductComparison extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {count: 0 };
-//     this.handleClick = this.handleClick.bind(this);
-//   }
-//   componentDidMount() {
-//     document.title = `You clicked ${this.state.count} times`;
-//   }
-//   componentDidUpdate() {
-//     document.title = `You clicked ${this.state.count} times`;
-//   }
-//   handleClick() {
-//     this.setState(state => ({
-//       count: state.count + 1,
-//     }));
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <p>You clicked {this.state.count} times</p>
-//         <button onClick={this.handleClick}>
-//           Click me
-//         </button>
-//       </div>
-//     );
-//   }
-
-// }
 
 export default ProductComparison;
