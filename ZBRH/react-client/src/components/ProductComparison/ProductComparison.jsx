@@ -108,19 +108,6 @@ class ProductComparison extends React.Component {
         console.log(err);
       });
 
-    //   axios
-    // .get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p1)
-    // .then(response => {
-    //   this.setState({ p1Location: response.data });
-    //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p2);
-    // })
-    // .then(response => {
-    //   this.setState({ p2Location: response.data });
-    //   return axios.get('https://maps.googleapis.com/maps/api/geocode/json?&address=' + this.props.p3);
-    // })
-    // .then(response => {
-    //   this.setState({ p3Location: response.data });
-    // }).catch(error => console.log(error.response));
 
     console.log('componentDidMount has ended...');
   }

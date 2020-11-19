@@ -5,7 +5,10 @@ import 'bootstrap';
 class RelatedProduct extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { singleRelatedProduct: this.props.singleRelatedProduct };
+    this.state = {
+      singleRelatedProduct: this.props.singleRelatedProduct,
+      imageLink: './placeHolderImage.jpg'
+    };
 
     this.handleStarClick = this.handleStarClick.bind(this);
   }
@@ -34,6 +37,15 @@ class RelatedProduct extends React.Component {
       }
     });
 
+    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
+
+    if (this.state.singleRelatedProduct.styles) {
+      dynamicImageLink = this.state.singleRelatedProduct.styles[0].photos.thumbnail_url;
+
+      this.setState({imageLink: dynamicImageLink});
+      console.log('It should have changed....');
+    }
+
 
 
   }
@@ -43,15 +55,16 @@ class RelatedProduct extends React.Component {
   }
 
   render() {
+
+    console.log('MONICA LOOK AT STATE', this.state.singleRelatedProduct.styles);
+
     return (
-
-
       <div className="col-md-4">
         <div className="card card-body">
           <div className="overlay">
             <img className="btn btn-primary" className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal"></img>
           </div>
-          <img className="img-fluid" src='./placeHolderImage.jpg'></img>
+          <img className="img-fluid" src={this.state.imageLink}></img>
           <h3>{this.state.singleRelatedProduct.category}</h3>
           <p>{this.state.singleRelatedProduct.name}</p>
           <p>  ${this.state.singleRelatedProduct.default_price}</p>
