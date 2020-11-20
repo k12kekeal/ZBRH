@@ -1,0 +1,19 @@
+/* social media button styling */
+.share-button {
+  width: 50px;
+  padding: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.share-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.styles {
+  transition: all .2s ease-in-out;
+}
+.styles:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}

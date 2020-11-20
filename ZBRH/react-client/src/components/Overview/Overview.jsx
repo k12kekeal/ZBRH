@@ -34,10 +34,10 @@ class Overview extends React.Component {
   componentDidMount() {
     this.getStyles(this.props.currentProduct.id);
   }
-  changeStyle(productId, e) {
+  changeStyle(styleId, e) {
     e.preventDefault();
     this.setState({
-      currentStyle: this.state.styles[productId],
+      currentStyle: this.state.styles[styleId],
     });
   }
 
@@ -64,8 +64,7 @@ class Overview extends React.Component {
         />
         <SocialMedia />
         <div>
-          <Cart />
-          {/* TODO: fave button */}
+          <Cart currentStyle={this.state.currentStyle}/>
           <ProductOverview currentProduct={this.props.currentProduct} />
         </div>
       </div>

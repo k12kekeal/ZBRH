@@ -41,7 +41,7 @@ describe('Star Rating', () => {
 //  --Review Link--
 
 //  [X] Should be a link that reads "Read all [#] reviews"
-//  [TODO:] [#] should dynamically render the number of reviews for the chosen product
+//  [FIXME:] [#] should dynamically render the number of reviews for the chosen product
 //  [X] Clicking the link should take you to the Ratings & Reviews section
 //  [X] This segment should be hidden if there are no reviews
 
@@ -64,36 +64,36 @@ describe('Star Rating', () => {
 //  --Default Product--
 
 //[X] Should have default style for each product
-//[FIXME:] currently just setting the first style in the returned style array as the default. maybe look into actually checking the "default" key
 //[X] Upon GETting all styles of current product, first in resulting styles array should be set as default aka currentStyle in state.
-//[FIXME:] is there any situation where we'd want to hold onto which one is the default? Anything that would reset the page that wouldn't also just re-do the GET, thereby resetting the default anyway? Hmm...
+
 
 //  --Product Overview--
 
 //  [X] From GET to /products/:product_id, a combination of slogan, description, and features
-// [X] Should render only if available
+//  [X] Should render only if available
 
 //  --Share on Social Media--
 
-//  [TODO:] Should render buttons for each social media site
-//  [TODO:] Clicking the button should (?)open modal for sharing product(?)
+//  [X] Should render buttons for each social media site
+//  [TODO:] Clicking the button should open modal for sharing product
 
 //  STYLE SELECTOR
 //[X] Get all styles of current product
 //[X] map over all styles and for each style create a Style instance
-//[TODO:] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
+//[X] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
 //[X] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
 // [FIXME:] styles should display in rows of 4
-// The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.   Additionally, the title for that style should appear typed out in full above the thumbnail list.
-// A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
-// By default, the style selected will be the first in the list.
-// A product will always have at least one style.
-// Only one style can be selected at a time.  A style must be selected at all times.
+// [TODO:]The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.
+// [X] The title for that style should appear typed out in full above the thumbnail list.
+// [X] A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
+// [X] By default, the style selected will be the first in the list.
+// [TODO:] A product will always have at least one style.
+// [X] Only one style can be selected at a time.  A style must be selected at all times.
 
 //  ADD TO CART
 
 //>>>SIZE SELECTOR<<<
-// [TODO:] Dropdown menu for size that dynamically renders available sizes for selected style
+// [X] Dropdown menu for size that dynamically renders available sizes for selected style
 // [TODO:] If size is not available, the size should not appear in the list
 // [TODO:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
 // [X] When collapsed, the dropdown should show the currently selected size
@@ -112,22 +112,30 @@ describe('Star Rating', () => {
 // [TODO:] If valid size and quantity are selected, clicking will add the right style, size, and quantity of product to user's cart
 
 //  IMAGE GALLERY
+// [TODO:] Render gallery photos based on currentStyle
+// [TODO:]
 //  The largest piece of the Overview module will be a photo gallery showing images of the product.  The photos presented in this gallery will be specific to the currently selected product style.  Each time a new style is chosen, the gallery will update to show photos corresponding to the new style.   Each style will have a set of images associated with it.  The gallery will allow customers to browse between and zoom in on these photos.
 // The gallery will be viewable in two states.  A default collapsed view, and an expanded view.
 
 //  >>>Default View<<<
-//  The default view of the image gallery will be a single main image, overlaid by the list of thumbnail images.
-// By default, the first image in the set will be displayed as the main image.  This image will match the smaller thumbnail image shown first.
-// When switching between styles, the index of the image currently selected should be maintained when the gallery updates for the new style.
-// Clicking on any thumbnail should update the main image to match that shown in the thumbnail clicked.
-// The thumbnail corresponding to the image currently selected as the main image should be highlighted to indicate the current selection.
-// Clicking on the currently selected thumbnail will have no further effect.
-// Up to 7  thumbnail images will be displayed at a given time in the list.
-// If more than 7 images are in the set for the style selected, the user should be able to scroll forward and backwards through the thumbnails.   An arrow button pointing either direction should allow the customer to scroll through the remaining thumbnails in either direction.
-// Customers should also be able to change to the next or previous image in the set using forward and backwards arrow buttons appearing near the right and left edges of the image, respectively.  Upon clicking the right or left arrow, the main image and the thumbnail highlighted should update.
-// If upon navigating to the previous or next image using the arrows, the thumbnail corresponding to the now selected image is no longer visible, then the thumbnail list should scroll similarly such that the newly selected thumbnail is visible.
-// If the user hovers over the main image anywhere other than the thumbnails, the left arrow, or the right arrow, the mouse icon should change to show a magnifying glass.  If the user clicks on the image, the image gallery should change to the expanded view.
-// If the first image is selected, the left arrow should not appear.  Similarly, if the last image is selected, the right arrow should not appear.
+// [TODO:] Create ImageGallery, a class component that holds currentImage in state
+// [TODO:] Should display a single main image
+// [TODO:] Should have an overlay
+// [TODO:] Overlay should dynamically render list of thumbnail images
+// [TODO:] Should show first image in set as main image
+// [TODO:] Main image should match first thumbnail
+// [FIXME:] Index of current image should be maintained after update to new style <= what does this mean
+// [TODO:] When thumbnail is clicked, should update main image to thumbnail image
+// [TODO:] Thumbnail corresponding to main image should be highlighted to indicate current selection
+// [TODO:] Clicking on currently selected thumbnail should have no further effect
+// [TODO:] Up to 7 thumbnail images will be displayed at a given time in the list
+// [TODO:] The user should be able to scroll forward and backwards through the thumbnails if +7 styles
+// [TODO:] Two arrow buttons in either direction for scrolling
+// [TODO:] Arrow buttons on main image will change main image to next image in list
+// [TODO:] Thumbnail list should scroll with main image such that selected thumbnail is always visible
+// [TODO:] Mouse on hover over main image becomes magnifying glass
+// [TODO:] If user clicks on image, gallery should change to expanded view
+// [TODO:] If first image is selected, left arrow should disappear. Same for last image and right arrow
 
 //  >>>Expanded View<<<
 //  The expanded view of the image gallery will overlay the rest of the item detail page.   Much of the same functionality on the default view will also be available on the expanded view.
