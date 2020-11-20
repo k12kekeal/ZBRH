@@ -1,15 +1,17 @@
 import React from 'react';
 import 'bootstrap';
-
-import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import { AppBar, Toolbar, } from '@material-ui/core'; <= if we wanna add a search bar
+import $ from 'jquery';
+import axios from 'axios';
 
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
 import QuestionsAndAnswers from './components/Q&A/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './components/RatingsAndReviews/RatingsAndReviews.jsx';
-import axios from 'axios';
 import exampleData from './exampleData';
+
 
 // TODO: calculate average rating of current product and add it to state to pass down to overview
 // TODO: get # of reviews to pass to overview
@@ -20,7 +22,6 @@ class App extends React.Component {
     this.state = {
       currentProduct: exampleData[0],
     };
-    this.getProducts = this.getProducts.bind(this);
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
   }
@@ -29,18 +30,6 @@ class App extends React.Component {
     this.getProduct(1);
   }
 
-  getProducts() {
-    axios
-      .get('http://3.21.164.220/products')
-      .then((response) => {
-        this.setState({
-          products: response.data,
-        });
-      })
-      .catch((err) => console.log(err));
-  }
-
-  //TODO: when getting new product, should also get new styles - promise.all then set state?
   getProduct(productId, e) {
     if (e) {
       e.preventDefault();
@@ -69,11 +58,11 @@ class App extends React.Component {
         </button>
         <Overview
           currentProduct={this.state.currentProduct}
-          value={4}
+          value={3.75}
           getProduct={this.getProduct}
           reviews = {[1, 2, 3]}
         />
-        {/* <ProductComparison currentProduct={this.state.currentProduct} /> */}
+        <ProductComparison currentProduct={this.state.currentProduct} />
         {/*
         <QuestionsAndAnswers />
         <RatingsAndReviews /> */}
