@@ -64,8 +64,7 @@ class Overview extends React.Component {
         />
         <SocialMedia />
         <div>
-          <Cart />
-          {/* TODO: fave button */}
+          <Cart currentStyle={this.state.currentStyle}/>
           <ProductOverview currentProduct={this.props.currentProduct} />
         </div>
       </div>
