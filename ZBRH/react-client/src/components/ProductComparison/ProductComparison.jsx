@@ -14,6 +14,10 @@ import {
   getRelatedProductDataRequest,
 } from '../../Requests.jsx';
 
+
+
+
+
 class ProductComparison extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +26,7 @@ class ProductComparison extends React.Component {
       relatedProductIds: [],
       relatedProductData: [],
       outFit: [],
+      isLoading: true,
     };
 
     this.getRelatedProductIds = this.getRelatedProductIds.bind(this);
@@ -55,16 +60,14 @@ class ProductComparison extends React.Component {
       })
       //uses the promisified array of related product data, set state
       .then((arrRelatedProductDataPromise) => {
-        console.log(
-          'This is result of Promise.all',
-          arrRelatedProductDataPromise
-        );
+        console.log('This is result of Promise.all', arrRelatedProductDataPromise);
 
         let newRelatedProductDataState = arrRelatedProductDataPromise.map(
           function (currProduct) {
             return currProduct.data;
           }
         );
+
         this.setState({ relatedProductData: newRelatedProductDataState });
 
         //creates an array of promises (GET requests for individual product styles for each related product id)
@@ -94,7 +97,9 @@ class ProductComparison extends React.Component {
 
             if (currProduct.id.toString() === newArrRelatedProductStyles[i].product_id) {
 
-              currProduct.styles = newArrRelatedProductStyles[i].results;
+              //currProduct.styles = newArrRelatedProductStyles[i].results;
+              console.log('OMG CHANGE THIS NOW!!!: ', newArrRelatedProductStyles[i].results[0].photos[0].url);
+              currProduct.styles = newArrRelatedProductStyles[i].results[0].photos[0].url;
               return currProduct;
             }
           }
@@ -102,8 +107,10 @@ class ProductComparison extends React.Component {
 
 
         this.setState({ relatedProductData: newRelatedProductDataWithStyles });
+        this.setState({ isLoading: false });
 
       })
+
       .catch((err) => {
         console.log(err);
       });
@@ -148,20 +155,27 @@ class ProductComparison extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <br></br>
+    if (this.state.isLoading) {
+      return <div>We are still loading....</div>;
+    } else {
+      return (
+        <div>
+          <br></br>
 
-        {
-          <RelatedProductList
-            relatedProductData={this.state.relatedProductData}
-          />
-        }
+          {
+            <RelatedProductList
+              relatedProductData={this.state.relatedProductData}
+            />
+          }
 
-        <br></br>
-        {/*   <OutfitList />    */}
-      </div>
-    );
+          <br></br>
+          {/*   <OutfitList />    */}
+        </div>
+      );
+    }
+
+
+
   }
 }
 
