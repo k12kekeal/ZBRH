@@ -9,6 +9,7 @@ import 'bootstrap';
 const RelatedProductList = (props) => {
 
 
+
   return (<div>
     <header id="RelatedProductListHeader">RELATED PRODUCTS</header>
 

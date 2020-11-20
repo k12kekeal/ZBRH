@@ -1,19 +1,27 @@
 import React from 'react';
 import { Card, Carousel, Button } from 'react-bootstrap';
 import 'bootstrap';
+import axios from 'axios';
 
 class RelatedProduct extends React.Component {
   constructor(props) {
     super(props);
+    console.log('THIS IS PROPS HERE          ', this.props.singleRelatedProduct.styles);
+
     this.state = {
       singleRelatedProduct: this.props.singleRelatedProduct,
-      imageLink: './placeHolderImage.jpg'
+      //imageLink: './imageNotFound.png',
+      imageLink: this.props.singleRelatedProduct.styles
+
     };
 
     this.handleStarClick = this.handleStarClick.bind(this);
   }
 
   componentDidMount() {
+    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
+
+
     $('#recipeCarousel').carousel({
       pause: true,
       interval: false
@@ -37,14 +45,6 @@ class RelatedProduct extends React.Component {
       }
     });
 
-    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
-
-    if (this.state.singleRelatedProduct.styles) {
-      dynamicImageLink = this.state.singleRelatedProduct.styles[0].photos.thumbnail_url;
-
-      this.setState({imageLink: dynamicImageLink});
-      console.log('It should have changed....');
-    }
 
 
 
@@ -64,6 +64,7 @@ class RelatedProduct extends React.Component {
           <div className="overlay">
             <img className="btn btn-primary" className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal"></img>
           </div>
+          {/* EDIT IMAGE SRC BELOW */}
           <img className="img-fluid" src={this.state.imageLink}></img>
           <h3>{this.state.singleRelatedProduct.category}</h3>
           <p>{this.state.singleRelatedProduct.name}</p>
