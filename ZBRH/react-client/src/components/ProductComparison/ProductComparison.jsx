@@ -25,7 +25,7 @@ class ProductComparison extends React.Component {
       currentProduct: props.currentProduct,
       relatedProductIds: [],
       relatedProductData: [],
-      outFit: [],
+      outfit: [],
       isLoading: true,
     };
 
@@ -168,7 +168,7 @@ class ProductComparison extends React.Component {
           }
 
           <br></br>
-          {/*   <OutfitList />    */}
+          {<OutfitList outfitData={this.state.outfit}/>}
         </div>
       );
     }
