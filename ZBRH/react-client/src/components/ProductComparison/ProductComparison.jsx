@@ -105,7 +105,6 @@ class ProductComparison extends React.Component {
           }
         });
 
-
         this.setState({ relatedProductData: newRelatedProductDataWithStyles });
         this.setState({ isLoading: false });
 
