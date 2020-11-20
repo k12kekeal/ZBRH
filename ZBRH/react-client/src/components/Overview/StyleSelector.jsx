@@ -20,6 +20,7 @@ const StyleSelector = ({
       ) : (
         <p>${currentStyle.original_price}</p>
       )}
+      <p><b>Style {'>'} </b>{currentStyle.name}</p>
       <div>
         {styles.map((style) => (
           <Style
