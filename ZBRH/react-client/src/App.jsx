@@ -51,7 +51,7 @@ class App extends React.Component {
     return (
       <>
         <h1>
-          WELCOME TO ZBRH  {name}
+          WELCOME TO ZBRH, HRATX52!  {name}
         </h1>
         <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
           Dark/Light Toggle
