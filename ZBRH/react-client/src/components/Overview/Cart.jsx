@@ -5,12 +5,10 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSku: 1,
-      dropdownDisabled: true
+      currentSku: 0
 
     };
     this.skuSelect = this.skuSelect.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
   skuSelect(sku, e) {
@@ -18,10 +16,6 @@ class Cart extends React.Component {
     this.setState({
       currentSku: this.props.currentStyle.skus[sku]
     }, console.log(this.state));
-  }
-
-  toggleDropdown() {
-
   }
 
   render() {
@@ -50,7 +44,10 @@ class Cart extends React.Component {
           )) : console.log('no skus yet')
           }
         </select>
-        <select className="select" name="quantity">
+        <select
+          className="select"
+          name="quantity"
+          disabled={this.state.currentSku === 0}>
           <option defaultValue="">-</option>
           {this.state.currentSku ? quantity : null}
         </select>

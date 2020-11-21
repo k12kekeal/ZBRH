@@ -12,10 +12,6 @@ import QuestionsAndAnswers from './components/Q&A/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './components/RatingsAndReviews/RatingsAndReviews.jsx';
 import exampleData from './exampleData';
 
-
-// TODO: calculate average rating of current product and add it to state to pass down to overview
-// TODO: get # of reviews to pass to overview
-
 class App extends React.Component {
   constructor(props) {
     super(props);
