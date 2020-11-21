@@ -16,6 +16,7 @@ class RelatedProduct extends React.Component {
     };
 
     this.handleStarClick = this.handleStarClick.bind(this);
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +55,13 @@ class RelatedProduct extends React.Component {
     console.log('Star was clicked');
   }
 
+  handleCardClick() {
+    console.log('card clicked...');
+    console.log(this.props.handleSelectProduct(this.state.singleRelatedProduct.id, event));
+    console.log(this.state.singleRelatedProduct.id);
+
+  }
+
   render() {
 
     console.log('MONICA LOOK AT STATE', this.state.singleRelatedProduct.styles);
@@ -65,7 +73,7 @@ class RelatedProduct extends React.Component {
             <img className="btn btn-primary" className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal"></img>
           </div>
           {/* EDIT IMAGE SRC BELOW */}
-          <img className="img-fluid" src={this.state.imageLink}></img>
+          <img className="img-fluid" src={this.state.imageLink} role="button" onClick={this.handleCardClick}></img>
           <h3>{this.state.singleRelatedProduct.category}</h3>
           <p>{this.state.singleRelatedProduct.name}</p>
           <p>  ${this.state.singleRelatedProduct.default_price}</p>

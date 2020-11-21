@@ -31,7 +31,7 @@ const RelatedProductList = (props) => {
                 return (
                   < div className="carousel-item active" key={index}>
                     { console.log('single item', singleRelatedProduct.name)}
-                    <RelatedProduct singleRelatedProduct={singleRelatedProduct} />
+                    <RelatedProduct singleRelatedProduct={singleRelatedProduct} handleSelectProduct={props.handleSelectProduct}/>
                   </div>
                 );
               } else {
@@ -40,7 +40,7 @@ const RelatedProductList = (props) => {
                 return (
                   <div className="carousel-item" key={index} >
                     { console.log('single item', singleRelatedProduct.name)}
-                    < RelatedProduct singleRelatedProduct={singleRelatedProduct} />
+                    < RelatedProduct singleRelatedProduct={singleRelatedProduct} handleSelectProduct={props.handleSelectProduct}/>
                   </div>
                 );
               }

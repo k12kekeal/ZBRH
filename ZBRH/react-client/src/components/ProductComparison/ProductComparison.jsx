@@ -17,7 +17,6 @@ import {
 
 
 
-
 class ProductComparison extends React.Component {
   constructor(props) {
     super(props);
@@ -157,13 +156,15 @@ class ProductComparison extends React.Component {
     if (this.state.isLoading) {
       return <div>We are still loading....</div>;
     } else {
+
       return (
         <div>
           <br></br>
 
+          <br></br>
           {
             <RelatedProductList
-              relatedProductData={this.state.relatedProductData}
+              relatedProductData={this.state.relatedProductData} handleSelectProduct={this.props.handleSelectProduct}
             />
           }
 
