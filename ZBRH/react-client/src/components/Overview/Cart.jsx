@@ -5,30 +5,54 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSku: 1,
+      dropdownDisabled: true
 
     };
-    // this.styleClick = this.styleClick.bind(this);
+    this.skuSelect = this.skuSelect.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
-  // styleClick() {
-  //   this.setState({
-  //     currentSku: 0
-  //   });
-  // }
+  skuSelect(sku, e) {
+    console.log(sku);
+    this.setState({
+      currentSku: this.props.currentStyle.skus[sku]
+    }, console.log(this.state));
+  }
+
+  toggleDropdown() {
+
+  }
 
   render() {
+    var quantity = [];
+    for (var i = 0; i < Math.min(this.state.currentSku.quantity, 15); i++) {
+      quantity.push(<option key={i} value={i}>{i}</option>);
+    }
     return (
       <div>
         <button>Add to Cart</button>
-        <select className="select" name="size">
+        <select
+          className="select"
+          name="size"
+          onChange={e => {
+            e.preventDefault();
+            this.skuSelect(e.target.value, e);
+          }}
+        >
           <option defaultValue="">SELECT SIZE</option>
-          {this.props.currentStyle.skus ? Object.values(this.props.currentStyle.skus).map(sku => (
-            <option>{sku.size}</option>
+          {this.props.currentStyle.skus ? Object.keys(this.props.currentStyle.skus).map((skuNum, index) => (
+            <option
+              key={index}
+              value={skuNum}>
+              {this.props.currentStyle.skus[skuNum].size}
+            </option>
           )) : console.log('no skus yet')
           }
         </select>
         <select className="select" name="quantity">
-          {/* TODO: render quantity dropdown up to either 15 or available stock of selected sku quantity */}
+          <option defaultValue="">-</option>
+          {this.state.currentSku ? quantity : null}
         </select>
 
       </div>
