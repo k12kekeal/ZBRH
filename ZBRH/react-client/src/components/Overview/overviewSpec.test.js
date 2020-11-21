@@ -41,9 +41,9 @@ describe('Star Rating', () => {
 //  --Review Link--
 
 //  [X] Should be a link that reads "Read all [#] reviews"
-//  [FIXME:] [#] should dynamically render the number of reviews for the chosen product
+//  [X] [#] should dynamically render the number of reviews for the chosen product
 //  [X] Clicking the link should take you to the Ratings & Reviews section
-//  [X] This segment should be hidden if there are no reviews
+//  [TODO:] This segment should be hidden if there are no reviews
 
 //  --Product Category--
 
@@ -87,21 +87,21 @@ describe('Star Rating', () => {
 // [X] The title for that style should appear typed out in full above the thumbnail list.
 // [X] A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
 // [X] By default, the style selected will be the first in the list.
-// [TODO:] A product will always have at least one style.
+// [X] A product will always have at least one style.
 // [X] Only one style can be selected at a time.  A style must be selected at all times.
 
 //  ADD TO CART
 
 //>>>SIZE SELECTOR<<<
 // [X] Dropdown menu for size that dynamically renders available sizes for selected style
-// [TODO:] If size is not available, the size should not appear in the list
-// [TODO:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
+// [FIXME:] If size is not available, the size should not appear in the list
+// [FIXME:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
 // [X] When collapsed, the dropdown should show the currently selected size
 // [X] By default, the dropdown should show "Select Size"
 
 //  >>>Quantity Selector<<<
-// [TODO:] Dropdown menu for quantity that dynamically renders numbers
-// [TODO:] Options will be a sequence of integers ranging from 1 to the maximum, either the quantity of size and style in stock or a hard limit of 15
+// [X] Dropdown menu for quantity that dynamically renders numbers
+// [X] Options will be a sequence of integers ranging from 1 to the maximum, either the quantity of size and style in stock or a hard limit of 15
 // [TODO:] If size has not been selected, quantity dropdown will display '-' and dropdown will be disabled
 // [TODO:] Once a size has been selected, the dropdown should default to 1
 

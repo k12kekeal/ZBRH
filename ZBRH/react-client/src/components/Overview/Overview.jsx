@@ -47,15 +47,14 @@ class Overview extends React.Component {
         <Rating
           id="product-overview-rating"
           name="quarter-rating"
-          value={this.props.value}
+          value={this.props.avgRating}
           defaultValue={4}
           precision={0.25}
           readOnly
         />
-        {this.props.reviews.length && (
-          <a href="#ratings-and-reviews">Read all [#] reviews</a>
+        {this.props.reviewNum > 0 && (
+          <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
         )}
-        {/* TODO: render review number dynamically*/}
         <StyleSelector
           changeStyle={this.changeStyle}
           currentProduct={this.props.currentProduct}

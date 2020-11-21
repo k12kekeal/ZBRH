@@ -21,6 +21,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProduct: exampleData[0],
+      avgRating: 3.75,
+      reviewNum: 0
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
@@ -57,8 +59,9 @@ class App extends React.Component {
           Dark/Light Toggle
         </button>
         <Overview
+          reviewNum={this.state.reviewNum}
           currentProduct={this.state.currentProduct}
-          value={3.75}
+          avgRating={this.state.avgRating}
           getProduct={this.getProduct}
           reviews = {[1, 2, 3]}
         />
