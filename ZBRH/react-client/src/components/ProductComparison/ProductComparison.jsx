@@ -14,6 +14,8 @@ import {
   getRelatedProductDataRequest,
 } from '../../Requests.jsx';
 
+//testing dummy data
+import example from '../../exampleData.js';
 
 
 
@@ -25,7 +27,7 @@ class ProductComparison extends React.Component {
       currentProduct: props.currentProduct,
       relatedProductIds: [],
       relatedProductData: [],
-      outFit: [],
+      outfit: example,
       isLoading: true,
     };
 
@@ -95,11 +97,18 @@ class ProductComparison extends React.Component {
 
           for (var i = 0; i < newArrRelatedProductStyles.length; i++) {
 
+            //if the current product and the related product have the same id's then....
             if (currProduct.id.toString() === newArrRelatedProductStyles[i].product_id) {
-
-              //currProduct.styles = newArrRelatedProductStyles[i].results;
-              console.log('OMG CHANGE THIS NOW!!!: ', newArrRelatedProductStyles[i].results[0].photos[0].url);
+              //sets first image url found
               currProduct.styles = newArrRelatedProductStyles[i].results[0].photos[0].url;
+
+              //for loop to search for sale price (if any)
+              for (var j = 0; j < newArrRelatedProductStyles[i].results.length; j++) {
+                if (newArrRelatedProductStyles[i].results[j].sale_price !== '0') {
+                  currProduct.salePrice = newArrRelatedProductStyles[i].results[j].sale_price;
+                }
+              }
+
               return currProduct;
             }
           }
@@ -118,28 +127,6 @@ class ProductComparison extends React.Component {
     console.log('componentDidMount has ended...');
   }
 
-  //IMPROVE - RACING POSSIBILITY? ...rename variables to something other than "data"
-  // componentDidMount() {
-  //   console.log('componentDidMount starting...');
-  //   console.log('This is state in ProductComparison: ', this.state);
-  //   console.log('This is props in ProductComparison: ', this.props);
-
-  //   this.getRelatedProductIds(this.state.currentProduct.id, (err, data) => {
-  //     if (err) { console.log(err); } else {
-  //       console.log('setting state soon');
-  //       this.setState({ relatedProductIds: data });
-
-  //       this.getRelatedProductData(this.state.relatedProductIds, (err2, data2) => {
-  //         if (err2) { console.log('we have err2', err2); } else {
-  //           console.log('setting state again');
-  //           this.setState({ relatedProductData: data2 });
-  //         }
-  //       });
-
-  //     }
-  //   });
-  //   console.log('componentDidMount has ended...');
-  // }
 
   // componentDidUpdate() {
   //   document.title = `You clicked ${this.state.count} times`;
@@ -157,18 +144,23 @@ class ProductComparison extends React.Component {
     if (this.state.isLoading) {
       return <div>We are still loading....</div>;
     } else {
+
       return (
         <div>
           <br></br>
 
-          {
+          <br></br>
+          {/*
             <RelatedProductList
-              relatedProductData={this.state.relatedProductData}
+              relatedProductData={this.state.relatedProductData} handleSelectProduct={this.props.handleSelectProduct}
             />
-          }
+          */}
+          <br></br>
 
           <br></br>
-          {/*   <OutfitList />    */}
+          <br></br>
+          <br></br>
+          {<OutfitList outfitData={this.state.outfit} addCurrProduct={this.state.currentProduct}/>}
         </div>
       );
     }
