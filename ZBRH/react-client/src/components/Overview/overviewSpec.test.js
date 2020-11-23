@@ -43,7 +43,7 @@ describe('Star Rating', () => {
 //  [X] Should be a link that reads "Read all [#] reviews"
 //  [X] [#] should dynamically render the number of reviews for the chosen product
 //  [X] Clicking the link should take you to the Ratings & Reviews section
-//  [TODO:] This segment should be hidden if there are no reviews
+//  [X] This segment should be hidden if there are no reviews
 
 //  --Product Category--
 
@@ -83,7 +83,7 @@ describe('Star Rating', () => {
 //[X] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
 //[X] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
 // [FIXME:] styles should display in rows of 4
-// [TODO:]The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.
+// [X]The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.
 // [X] The title for that style should appear typed out in full above the thumbnail list.
 // [X] A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
 // [X] By default, the style selected will be the first in the list.
@@ -94,7 +94,7 @@ describe('Star Rating', () => {
 
 //>>>SIZE SELECTOR<<<
 // [X] Dropdown menu for size that dynamically renders available sizes for selected style
-// [FIXME:] If size is not available, the size should not appear in the list
+// [X] If size is not available, the size should not appear in the list
 // [FIXME:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
 // [X] When collapsed, the dropdown should show the currently selected size
 // [X] By default, the dropdown should show "Select Size"
@@ -102,13 +102,13 @@ describe('Star Rating', () => {
 //  >>>Quantity Selector<<<
 // [X] Dropdown menu for quantity that dynamically renders numbers
 // [X] Options will be a sequence of integers ranging from 1 to the maximum, either the quantity of size and style in stock or a hard limit of 15
-// [TODO:] If size has not been selected, quantity dropdown will display '-' and dropdown will be disabled
+// [X] If size has not been selected, quantity dropdown will display '-' and dropdown will be disabled
 // [TODO:] Once a size has been selected, the dropdown should default to 1
 
 //  >>>Add to Cart<<<
-// [TODO:] A button labeled "Add to Cart" will appear below the two selectors
+// [X] A button labeled "Add to Cart" will appear below the two selectors
 // [TODO:] If a size has not been selected, clicking the button will open the size menu, and a dropdown should appear saying "Please select size"
-// [TODO:] If there is no stock, this button should be hidden
+// [X] If there is no stock, this button should be hidden
 // [TODO:] If valid size and quantity are selected, clicking will add the right style, size, and quantity of product to user's cart
 
 //  IMAGE GALLERY
