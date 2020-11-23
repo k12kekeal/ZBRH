@@ -241,14 +241,16 @@ class RatingReviewApp extends Component {
           </Grid>
           <Grid item xs={2}>
           </Grid>
-          <Grid item xs={12} container direction="row">
-            <Grid item xs={6}>
-              {lengthTest ? <Button style={{ float: 'right' }} variant="outlined" onClick={() => this.getPaginatedReviews()}>MORE REVIEWS</Button> : null}
-            </Grid>
-            <Grid item xs={6}>
-              {metaData ? <AddAReview style={{ float: 'left' }} postAReview={this.postAReview} meta={metaData} /> : null}
-            </Grid>
-          </Grid>
+            <div style={{ minWidth: 450, maxHeight: 50, margin: 'auto', paddingBottom: 150  }}>
+              <Grid item xs={12} container direction="row">
+                <Grid item xs={6}>
+                  {lengthTest ? <Button style={{ float: 'right' }} variant="outlined" onClick={() => this.getPaginatedReviews()}>MORE REVIEWS</Button> : null}
+                </Grid>
+                <Grid item xs={6}>
+                  {metaData ? <AddAReview style={{ float: 'left' }} postAReview={this.postAReview} meta={metaData} /> : null}
+                </Grid>
+              </Grid>
+            </div>
         </Grid>
       </div>
     );

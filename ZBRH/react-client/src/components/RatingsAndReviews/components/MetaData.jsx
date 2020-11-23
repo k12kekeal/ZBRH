@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StarMaker from './StarMaker.jsx';
 import { Typography, Grid } from '@material-ui/core';
+import 'regenerator-runtime/runtime';
 import { Chart, BarSeries } from '@devexpress/dx-react-chart-material-ui';
 import { Stack } from '@devexpress/dx-react-chart';
 
