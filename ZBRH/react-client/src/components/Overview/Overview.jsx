@@ -68,15 +68,15 @@ class Overview extends React.Component {
         {this.props.reviewNum > 0 && (
           <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
         )}
-        <ImageGallery
+        {/* <ImageGallery
           currentStyle={this.state.currentStyle}
-        />
-        <StyleSelector
+        /> */}
+        {/* <StyleSelector
           changeStyle={this.changeStyle}
           currentProduct={this.props.currentProduct}
           currentStyle={this.state.currentStyle}
           styles={this.state.styles}
-        />
+        /> */}
         <SocialMedia />
         <div>
           <Cart
