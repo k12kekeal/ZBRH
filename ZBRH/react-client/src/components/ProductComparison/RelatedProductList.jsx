@@ -24,7 +24,11 @@ const RelatedProductList = (props) => {
 
           {
             props.relatedProductData.map(function (singleRelatedProduct, index) {
-
+              //below if statement sets a placeholder image if the API returned null for an image link
+              if (singleRelatedProduct.styles === null) {
+                singleRelatedProduct.styles = './imageNotFound.png';
+              }
+              //below if/ else statement creates active and inactive carousel items (necessary for bootstrap carousel)
               if (index === 0) {
                 console.log('index is: ', index);
 
@@ -60,7 +64,7 @@ const RelatedProductList = (props) => {
         </div>
       </div>
 
-      <h5 className="mt-2">END OF CAROUSEL</h5>
+      <h5 className="mt-2"></h5>
     </div>
 
 

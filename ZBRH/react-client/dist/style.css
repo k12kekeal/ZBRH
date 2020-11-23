@@ -83,7 +83,7 @@ button:hover {
   position: absolute;
   top: 0px;
   right: 0px;
-  border-top: 50px solid #35373f;
+  border-top: 50px solid #cdd0da;
   border-left: 50px solid transparent;
 }
 
@@ -98,3 +98,8 @@ button:hover {
 Zebra image is from: https://unsplash.com/photos/w85Oo3eOKRY
 
 */
+
+/*below sets height for related products carousel height*/
+#setHeight {
+  height: 300px;
+}
