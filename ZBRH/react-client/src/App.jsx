@@ -76,10 +76,6 @@ class App extends React.Component {
           <QuestionsAndAnswers />
           <RatingsAndReviews /> */}
           {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
-
-
-
-
         </>
       );
 
