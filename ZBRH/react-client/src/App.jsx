@@ -65,12 +65,12 @@ class App extends React.Component {
           <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
           </button>
-          { /*  <Overview
+          <Overview
             currentProduct={this.state.currentProduct}
             value={3.75}
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
-        /> */}
+          />
           <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/>
           {/*
           <QuestionsAndAnswers />
