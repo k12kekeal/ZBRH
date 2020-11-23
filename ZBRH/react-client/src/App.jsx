@@ -63,9 +63,9 @@ class App extends React.Component {
           reviews = {[1, 2, 3]}
         />
         <ProductComparison currentProduct={this.state.currentProduct} />
-        {/*
-        <QuestionsAndAnswers />
-        <RatingsAndReviews /> */}
+
+        {/* <QuestionsAndAnswers /> */}
+        <RatingsAndReviews id={this.state.currentProduct.id} />
         {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
 
 
