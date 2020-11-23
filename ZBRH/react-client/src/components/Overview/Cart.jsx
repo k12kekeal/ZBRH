@@ -6,26 +6,33 @@ class Cart extends React.Component {
     super(props);
     this.state = {
       currentSku: 0
-
     };
     this.skuSelect = this.skuSelect.bind(this);
   }
 
   skuSelect(sku, e) {
     console.log(sku);
-    this.setState({
-      currentSku: this.props.currentStyle.skus[sku]
-    }, console.log(this.state));
+    if (sku === 0) {
+      this.setState({currentSku: 0});
+    } else {
+      this.setState({
+        currentSku: this.props.currentStyle.skus[sku]
+      }, console.log(this.state));
+    }
   }
 
   render() {
     var quantity = [];
-    for (var i = 0; i < Math.min(this.state.currentSku.quantity, 15); i++) {
-      quantity.push(<option key={i} value={i}>{i}</option>);
+    if (this.state.currentSku) {
+      for (var i = 0; i <= Math.min(this.state.currentSku.quantity, 15); i++) {
+        quantity.push(<option key={i} value={i}>{i}</option>);
+      }
     }
     return (
       <div>
-        <button>Add to Cart</button>
+        {!this.state.currentSku ?
+          <button>Add to Cart</button> :
+          <button>Add to Cart</button>}
         <select
           className="select"
           name="size"
@@ -34,7 +41,7 @@ class Cart extends React.Component {
             this.skuSelect(e.target.value, e);
           }}
         >
-          <option defaultValue="">SELECT SIZE</option>
+          <option value={0}>SELECT SIZE</option>
           {this.props.currentStyle.skus ? Object.keys(this.props.currentStyle.skus).map((skuNum, index) => (
             <option
               key={index}
@@ -47,9 +54,9 @@ class Cart extends React.Component {
         <select
           className="select"
           name="quantity"
-          disabled={this.state.currentSku === 0}>
+          disabled={!this.state.currentSku}>
           <option defaultValue="">-</option>
-          {this.state.currentSku ? quantity : null}
+          {this.state.currentSku !== 0 ? quantity : null}
         </select>
 
       </div>
