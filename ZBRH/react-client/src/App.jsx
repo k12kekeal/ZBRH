@@ -12,17 +12,15 @@ import QuestionsAndAnswers from './components/Q&A/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './components/RatingsAndReviews/RatingsAndReviews.jsx';
 import exampleData from './exampleData';
 
-
-// TODO: calculate average rating of current product and add it to state to pass down to overview
-// TODO: get # of reviews to pass to overview
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentProduct: exampleData[0],
+      avgRating: 3.75,
+      reviewNum: 0,
       isLoading: true,
-      keyValue: 1,
+      keyValue: 1
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
