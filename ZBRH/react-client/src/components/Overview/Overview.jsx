@@ -16,9 +16,11 @@ class Overview extends React.Component {
     this.state = {
       styles: [],
       currentStyle: {},
+      currentSku: 0
     };
     this.getStyles = this.getStyles.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
+    this.skuSelect = this.skuSelect.bind(this);
   }
 
   getStyles(productId) {
@@ -29,6 +31,17 @@ class Overview extends React.Component {
           currentStyle: response.data.results[0]
         });
       });
+  }
+
+  skuSelect(sku, e) {
+    console.log(sku);
+    if (sku === 0) {
+      this.setState({currentSku: 0});
+    } else {
+      this.setState({
+        currentSku: this.state.currentStyle.skus[sku]
+      }, console.log(this.state));
+    }
   }
 
   componentDidMount() {
@@ -47,15 +60,17 @@ class Overview extends React.Component {
         <Rating
           id="product-overview-rating"
           name="quarter-rating"
-          value={this.props.value}
+          value={this.props.avgRating}
           defaultValue={4}
           precision={0.25}
           readOnly
         />
-        {this.props.reviews.length && (
-          <a href="#ratings-and-reviews">Read all [#] reviews</a>
+        {this.props.reviewNum > 0 && (
+          <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
         )}
-        {/* TODO: render review number dynamically*/}
+        <ImageGallery
+          currentStyle={this.state.currentStyle}
+        />
         <StyleSelector
           changeStyle={this.changeStyle}
           currentProduct={this.props.currentProduct}
@@ -64,7 +79,10 @@ class Overview extends React.Component {
         />
         <SocialMedia />
         <div>
-          <Cart currentStyle={this.state.currentStyle}/>
+          <Cart
+            currentStyle={this.state.currentStyle}
+            currentSku={this.state.currentSku}
+            skuSelect={this.skuSelect}/>
           <ProductOverview currentProduct={this.props.currentProduct} />
         </div>
       </div>
