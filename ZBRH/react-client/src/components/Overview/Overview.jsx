@@ -23,6 +23,16 @@ class Overview extends React.Component {
     this.skuSelect = this.skuSelect.bind(this);
   }
 
+  componentDidMount() {
+    this.getStyles(this.props.currentProduct.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProduct !== prevProps.currentProduct) {
+      this.getStyles(this.props.currentProduct.id);
+    }
+  }
+
   getStyles(productId) {
     axios.get(`http://3.21.164.220/products/${productId}/styles`)
       .then(response => {
@@ -34,19 +44,13 @@ class Overview extends React.Component {
   }
 
   skuSelect(sku, e) {
-    console.log(sku);
     if (sku === 0) {
       this.setState({currentSku: 0});
     } else {
       this.setState({
         currentSku: this.state.currentStyle.skus[sku]
-      }, console.log('state after skuSelect:', this.state));
+      });
     }
-  }
-
-  componentDidMount() {
-    console.log('currentProduct.id when Overview mounts: ', this.props.currentProduct.id);
-    this.getStyles(this.props.currentProduct.id);
   }
 
   changeStyle(styleId, e) {
@@ -57,7 +61,6 @@ class Overview extends React.Component {
   }
 
   render() {
-    console.log('state in Overview on render: ', this.state);
     return (
       <div>
         <Rating
@@ -71,9 +74,11 @@ class Overview extends React.Component {
         {this.props.reviewNum > 0 && (
           <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
         )}
-        {/* <ImageGallery
-          currentStyle={this.state.currentStyle}
-        /> */}
+        <div>
+          <ImageGallery
+            currentStyle={this.state.currentStyle}
+          />
+        </div>
         <StyleSelector
           changeStyle={this.changeStyle}
           currentProduct={this.props.currentProduct}

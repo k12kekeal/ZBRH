@@ -10,8 +10,8 @@ const StyleSelector = ({
   styles,
   currentStyle
 }) => {
-  if (currentStyle) {
-    return (
+  return (
+    currentStyle ?
       <div>
         <h4>{currentProduct.category}</h4>
         <h3>{currentProduct.name}</h3>
@@ -33,8 +33,8 @@ const StyleSelector = ({
           ))}
         </div>
       </div>
-    );
-  }
+      : null
+  );
 };
 
 export default StyleSelector;

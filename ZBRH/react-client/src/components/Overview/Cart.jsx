@@ -10,7 +10,7 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
   }
   return (
     <div>
-      {currentSku ?
+      {!currentSku ?
         <button>Add to Cart</button> :
         <button>Add to Cart</button>}
       <select
