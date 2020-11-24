@@ -10,14 +10,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // UNCOMMENT FOR REACT
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-// UNCOMMENT FOR ANGULAR
-// app.use(express.static(__dirname + '/../angular-client'));
-// app.use(express.static(__dirname + '/../node_modules'));
-
-// UNCOMMENT FOR BACKBONE
-// app.use(express.static(__dirname + '/../backbone-client'));
-// app.use(express.static(__dirname + '/../node_modules'));
-
 app.get('/api/transactions', (req, res) => {
   //TODO - your code here!
 });

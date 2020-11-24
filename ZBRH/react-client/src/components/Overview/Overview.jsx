@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import Rating from '@material-ui/lab/Rating';
 import Select from '@material-ui/core/Select';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import Cart from './Cart.jsx';
 import StyleSelector from './StyleSelector.jsx';
@@ -63,34 +66,39 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <Rating
-          id="product-overview-rating"
-          name="quarter-rating"
-          value={this.props.avgRating}
-          defaultValue={4}
-          precision={0.25}
-          readOnly
-        />
-        {this.props.reviewNum > 0 && (
-          <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
-        )}
+        <Container>
+          <Row>
+            <Col>
+              <ImageGallery currentStyle={this.state.currentStyle}/>
+            </Col>
+            <Col>
+              <Rating
+                id="product-overview-rating"
+                name="quarter-rating"
+                value={this.props.avgRating}
+                defaultValue={4}
+                precision={0.25}
+                readOnly
+              />
+              {this.props.reviewNum > 0 && (
+                <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
+              )}
+              <StyleSelector
+                changeStyle={this.changeStyle}
+                currentProduct={this.props.currentProduct}
+                currentStyle={this.state.currentStyle}
+                styles={this.state.styles}
+              />
+              <Cart
+                currentStyle={this.state.currentStyle}
+                currentSku={this.state.currentSku}
+                skuSelect={this.skuSelect}
+              />
+            </Col>
+          </Row>
+        </Container>
         <div>
-          <ImageGallery
-            currentStyle={this.state.currentStyle}
-          />
-        </div>
-        <StyleSelector
-          changeStyle={this.changeStyle}
-          currentProduct={this.props.currentProduct}
-          currentStyle={this.state.currentStyle}
-          styles={this.state.styles}
-        />
-        <SocialMedia />
-        <div>
-          <Cart
-            currentStyle={this.state.currentStyle}
-            currentSku={this.state.currentSku}
-            skuSelect={this.skuSelect}/>
+          <SocialMedia />
           <ProductOverview currentProduct={this.props.currentProduct} />
         </div>
       </div>
