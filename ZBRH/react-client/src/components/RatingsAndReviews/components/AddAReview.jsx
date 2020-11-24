@@ -40,12 +40,12 @@ const AddAReview = (props) => {
       errors.characteristics = {};
       Object.entries(props.meta.characteristics).map((x, i) => {
         if (!values.characteristics[x[1].id]) {
-          errors.characteristics[x[1].id] = "Required"
+          errors.characteristics[x[1].id] = 'Required';
         }
       });
     }
     if (values.recommended === 0) {
-      errors.recommended = "Required";
+      errors.recommended = 'Required';
     }
     return errors;
   };
@@ -117,18 +117,18 @@ const AddAReview = (props) => {
             <Grid item xs={12} key={i}>
               <Typography caption="body1">{x[0]}*</Typography>
               <RadioGroup required id="characteristics" name="characteristics" row aria-label="position" name="position" defaultValue="top" onChange={formik.handleChange} >
-                <FormControlLabel value="1" control={<Radio color="primary" />} label="1" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values) }} />
-                <FormControlLabel value="2" control={<Radio color="primary" />} label="2" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values) }} />
-                <FormControlLabel value="3" control={<Radio color="primary" />} label="3" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values) }} />
-                <FormControlLabel value="4" control={<Radio color="primary" />} label="4" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values) }} />
-                <FormControlLabel value="5" control={<Radio color="primary" />} label="5" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values) }} />
+                <FormControlLabel value="1" control={<Radio color="primary" />} label="1" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values); }} />
+                <FormControlLabel value="2" control={<Radio color="primary" />} label="2" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values); }} />
+                <FormControlLabel value="3" control={<Radio color="primary" />} label="3" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values); }} />
+                <FormControlLabel value="4" control={<Radio color="primary" />} label="4" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values); }} />
+                <FormControlLabel value="5" control={<Radio color="primary" />} label="5" onClick={(e) => { formik.values.characteristics[x[1].id] = e.target.value; validate(formik.values); }} />
               </RadioGroup>
               {formBool(x[1].id)}
             </Grid>
           );
         })}
       </Grid>
-    )
+    );
   };
 
   return (
@@ -173,8 +173,8 @@ const AddAReview = (props) => {
                 <Grid item xs={12}>
                   <Typography caption="body1">Do you recommend this product?*</Typography>
                   <RadioGroup row aria-label="position" name="position" defaultValue="top" onChange={formik.handleChange}>
-                    <FormControlLabel value="true" control={<Radio color="primary" />} label="Yes" onClick={(e) => { formik.values.recommended = Boolean(e.target.value); validate(formik.values) }} />
-                    <FormControlLabel value="false" control={<Radio color="primary" />} label="No" onClick={(e) => { formik.values.recommended = Boolean(e.target.value); validate(formik.values) }} />
+                    <FormControlLabel value="true" control={<Radio color="primary" />} label="Yes" onClick={(e) => { formik.values.recommended = Boolean(e.target.value); validate(formik.values); }} />
+                    <FormControlLabel value="false" control={<Radio color="primary" />} label="No" onClick={(e) => { formik.values.recommended = Boolean(e.target.value); validate(formik.values); }} />
                   </RadioGroup>
                   {formik.errors.recommended ? <Typography variant="caption">{formik.errors.recommended}</Typography> : null}
                 </Grid>
@@ -252,7 +252,7 @@ const AddAReview = (props) => {
       </Modal>
     </div>
   );
-}
+};
 
 export default AddAReview;
 

@@ -9,7 +9,7 @@ import axios from 'axios';
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
 import QuestionsAndAnswers from './components/Q&A/QuestionsAndAnswers.jsx';
-import RatingsAndReviews from './components/RatingsAndReviews/RatingsAndReviews.jsx';
+import RatingReviewApp from './components/RatingsAndReviews/RatingsAndReviews.jsx';
 import exampleData from './exampleData';
 
 class App extends React.Component {
@@ -72,9 +72,9 @@ class App extends React.Component {
             reviews = {[1, 2, 3]}
           />
           <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/>
-          {/*
-          <QuestionsAndAnswers />
-          <RatingsAndReviews /> */}
+
+          {/* <QuestionsAndAnswers /> */}
+          <RatingReviewApp />
           {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
         </>
       );

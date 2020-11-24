@@ -54,7 +54,7 @@ class RatingReviewApp extends Component {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
 
   getPaginatedReviews() {
@@ -82,7 +82,7 @@ class RatingReviewApp extends Component {
         page: page
       });
     }
-  };
+  }
 
   putHelpful(id) {
     axios.put(`http://3.137.191.193/reviews/${id}/helpful`)
@@ -124,17 +124,17 @@ class RatingReviewApp extends Component {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   postAReview(obj) {
     console.log(obj);
-  };
+  }
 
   changeReviewOrRating() {
     this.setState({
       filters: {}
     }, () => this.reviewOrRatingData(this.state.currentSortString, {}));
-  };
+  }
 
   handleChange(e) {
     this.setState({
@@ -142,7 +142,7 @@ class RatingReviewApp extends Component {
       page: 1,
       lengthTest: true
     }, () => this.reviewOrRatingData(e.target.value, this.state.filters));
-  };
+  }
 
   sortByRating(num) {
     var bool = false;
@@ -172,10 +172,10 @@ class RatingReviewApp extends Component {
     var filter = Object.keys(filters);
     var rating = [];
     var count = 0;
-    if (val === "") { data = this.state.reviewData; }
-    if (val === "relevant") { data = this.state.relevanceData; }
-    if (val === "helpful") { data = this.state.helpfulData; }
-    if (val === "newest") { data = this.state.newestData; }
+    if (val === '') { data = this.state.reviewData; }
+    if (val === 'relevant') { data = this.state.relevanceData; }
+    if (val === 'helpful') { data = this.state.helpfulData; }
+    if (val === 'newest') { data = this.state.newestData; }
 
     if (filter.length) {
       for (var i = 0; i < data.length; i++) {
@@ -221,10 +221,10 @@ class RatingReviewApp extends Component {
                   displayEmpty
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
-                  <MenuItem value={""}>None</MenuItem>
-                  <MenuItem value={"relevant"}>Relevant</MenuItem>
-                  <MenuItem value={"helpful"}>Helpful</MenuItem>
-                  <MenuItem value={"newest"}>Newest</MenuItem>
+                  <MenuItem value={''}>None</MenuItem>
+                  <MenuItem value={'relevant'}>Relevant</MenuItem>
+                  <MenuItem value={'helpful'}>Helpful</MenuItem>
+                  <MenuItem value={'newest'}>Newest</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -241,16 +241,16 @@ class RatingReviewApp extends Component {
           </Grid>
           <Grid item xs={2}>
           </Grid>
-            <div style={{ minWidth: 450, maxHeight: 50, margin: 'auto', paddingBottom: 150  }}>
-              <Grid item xs={12} container direction="row">
-                <Grid item xs={6}>
-                  {lengthTest ? <Button style={{ float: 'right' }} variant="outlined" onClick={() => this.getPaginatedReviews()}>MORE REVIEWS</Button> : null}
-                </Grid>
-                <Grid item xs={6}>
-                  {metaData ? <AddAReview style={{ float: 'left' }} postAReview={this.postAReview} meta={metaData} /> : null}
-                </Grid>
+          <div style={{ minWidth: 450, maxHeight: 50, margin: 'auto', paddingBottom: 150 }}>
+            <Grid item xs={12} container direction="row">
+              <Grid item xs={6}>
+                {lengthTest ? <Button style={{ float: 'right' }} variant="outlined" onClick={() => this.getPaginatedReviews()}>MORE REVIEWS</Button> : null}
               </Grid>
-            </div>
+              <Grid item xs={6}>
+                {metaData ? <AddAReview style={{ float: 'left' }} postAReview={this.postAReview} meta={metaData} /> : null}
+              </Grid>
+            </Grid>
+          </div>
         </Grid>
       </div>
     );

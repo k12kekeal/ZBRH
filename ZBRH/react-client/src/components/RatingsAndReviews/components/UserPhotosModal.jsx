@@ -40,7 +40,7 @@ const UserPhotosModal = (props) => {
     <div>
       <Button onClick={handleOpen}>
         Photos
-    </Button>
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -72,7 +72,7 @@ const UserPhotosModal = (props) => {
                         />
                       </a>
                     </Grid>
-                  )
+                  );
                 })}
               </Grid>
               <Grid item xs={7} style={{ height: '560px' }}>
@@ -90,7 +90,7 @@ const UserPhotosModal = (props) => {
                   {props.summary}
                 </Typography>
                 {/* <Break /> */}
-                <Typography variant="caption">{props.name + ", "} <AccurateDate date={props.date} /> </Typography>
+                <Typography variant="caption">{props.name + ', '} <AccurateDate date={props.date} /> </Typography>
                 <Typography style={{ wordBreak: 'break-all' }} variant="body2" gutterBottom>
                   {props.body}
                 </Typography>
@@ -101,7 +101,7 @@ const UserPhotosModal = (props) => {
       </Modal>
     </div>
   );
-}
+};
 
 
 export default UserPhotosModal;
