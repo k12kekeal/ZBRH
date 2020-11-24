@@ -24,16 +24,25 @@ class ProductComparison extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //used for RelatedProductList component
       currentProduct: props.currentProduct,
       relatedProductIds: [],
       relatedProductData: [],
-      outfit: example,
+
+      //used for OutfitList component
+      userOutfitList: example,
+      currProductToAdd: props.currentProduct,
+      keyForOutfitList: 10,
+
+      //used to prevent loading before props are fully passed
       isLoading: true,
     };
 
     this.getRelatedProductIds = this.getRelatedProductIds.bind(this);
     this.getRelatedProductData = this.getRelatedProductData.bind(this);
+    this.addOutfitToListInState = this.addOutfitToListInState.bind(this);
   }
+
 
   // possibly improved version...WIP
   componentDidMount() {
@@ -123,15 +132,17 @@ class ProductComparison extends React.Component {
         console.log(err);
       });
 
-
+    console.log('This is state in ProductComparison: ', this.state);
     console.log('componentDidMount has ended...');
   }
 
 
   // componentDidUpdate() {
-  //   document.title = `You clicked ${this.state.count} times`;
+  //   console.warn()
+  //   //document.title = `You clicked ${this.state.count} times`;
   // }
 
+  //passed to RelatedProductList component
   getRelatedProductIds(productId, callback) {
     getRelatedProductIdsRequest(productId, callback);
   }
@@ -139,6 +150,27 @@ class ProductComparison extends React.Component {
   getRelatedProductData(productIdArr, callback) {
     getRelatedProductDataRequest(productIdArr, callback);
   }
+
+
+  //passed to OutfistList compoenent
+  addOutfitToListInState(userClickedItem, e) {
+
+
+    //adds the outfit that user clicked into the array held in state
+    let temp = [...this.state.userOutfitList];
+    temp.push(userClickedItem);
+
+    //gives new key value to force update
+    var num = this.state.keyForOutfitList;
+    num++;
+
+    this.setState(
+      { userOutfitList: temp,
+        currProductToAdd: {},
+        keyForOutfitList: num,
+      });
+  }
+
 
   render() {
     if (this.state.isLoading) {
@@ -150,17 +182,17 @@ class ProductComparison extends React.Component {
           <br></br>
 
           <br></br>
-          {/*
+          {
             <RelatedProductList
               relatedProductData={this.state.relatedProductData} handleSelectProduct={this.props.handleSelectProduct}
             />
-          */}
+          }
           <br></br>
 
           <br></br>
           <br></br>
           <br></br>
-          {<OutfitList outfitData={this.state.outfit} addCurrProduct={this.state.currentProduct}/>}
+          {<OutfitList outfitData={this.state.userOutfitList} addCurrProduct={this.state.currProductToAdd} key={this.state.keyForOutfitList} addOutfitToListInState={this.addOutfitToListInState}/>}
         </div>
       );
     }

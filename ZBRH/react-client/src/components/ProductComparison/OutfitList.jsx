@@ -13,30 +13,14 @@ class OutfitList extends React.Component {
     this.state = {
       userOutfitList: this.props.outfitData,
       currProductToAdd: this.props.addCurrProduct,
-      keyValue: 10
     };
-    this.addOutfitToListInState = this.addOutfitToListInState.bind(this);
+
   }
 
-  addOutfitToListInState(userClickedItem) {
-    //adds the outfit that user clicked into the array held in state
-    let temp = [...this.state.userOutfitList];
-    temp.push(userClickedItem);
-
-    //gives new key value to force update
-    var num = this.state.keyValue;
-    num++;
-
-    this.setState(
-      { userOutfitList: temp,
-        currProductToAdd: [],
-        keyValue: num,
-      });
-  }
 
   render() {
 
-    if ([this.state.currProductToAdd].length === 1) {
+    if (Object.keys(this.state.currProductToAdd).length > 0) {
 
       return (<div>
         <header id="RelatedProductListHeader">YOUR OUTFIT</header>
@@ -50,7 +34,7 @@ class OutfitList extends React.Component {
 
                 < div className="carousel-item active" key={'active'}>
                   { console.log('single item', this.props.addCurrProduct.name)}
-                  <AddOutfit singleRelatedProduct={this.props.addCurrProduct} addOutfitToList={this.addOutfitToListInState}/>
+                  <AddOutfit singleRelatedProduct={this.props.addCurrProduct} addOutfitToList={this.props.addOutfitToListInState}/>
                 </div>
 
 
@@ -98,7 +82,65 @@ class OutfitList extends React.Component {
 
       </div >);
     } else {
-      return (<div>It updated!!!</div>);
+      return (<div>
+        <header id="RelatedProductListHeader">YOUR OUTFIT</header>
+
+        <div className="container text-center my-3">
+
+          <div id="recipeCarousel2" className="carousel slide w-100" data-ride="false" data-interval="false" data-pause="hover">
+            <div className="carousel-inner w-100" role="listbox">
+
+              {
+                /*Below are the items in Outfit*/
+                this.state.userOutfitList.map(function (singleRelatedProduct, index) {
+                  //below if statement sets a placeholder image if the API returned null for an image link
+                  if (singleRelatedProduct.styles === null) {
+                    singleRelatedProduct.styles = './imageNotFound.png';
+                  }
+                  //below if/ else statement creates active and inactive carousel items (necessary for bootstrap carousel)
+                  if (index === 0) {
+                    console.log('index is: ', index);
+
+                    return (
+                      < div className="carousel-item active" key={index}>
+                        { console.log('single item', singleRelatedProduct.name)}
+                        <Outfit singleRelatedProduct={singleRelatedProduct} />
+                      </div>
+                    );
+                  } else {
+
+                    return (
+                      <div className="carousel-item" key={index} >
+                        { console.log('single item', singleRelatedProduct.name)}
+                        < Outfit singleRelatedProduct={singleRelatedProduct}/>
+                      </div>
+                    );
+
+                  }
+
+
+
+
+                })
+              }
+
+              <a className="carousel-control-prev w-auto" href="#recipeCarousel2" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="carousel-control-next w-auto" href="#recipeCarousel2" role="button" data-slide="next">
+                <span className="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+
+          <h5 className="mt-2"></h5>
+        </div>
+
+
+
+      </div >);
     }
 
   }

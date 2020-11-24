@@ -76,7 +76,7 @@ class AddOutfit extends React.Component {
           {displayPrice}
         </div>
 
-        <div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {/*<div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -94,7 +94,7 @@ class AddOutfit extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+    </div>*/}
 
       </div>
 

@@ -77,7 +77,7 @@ class RelatedProduct extends React.Component {
           <img className="img-fluid" src={this.state.imageLink} role="button" onClick={this.handleCardClick} id="setHeight"></img>
           <h3>{this.state.singleRelatedProduct.category}</h3>
           <p>{this.state.singleRelatedProduct.name}</p>
-          <p>{displayPrice}</p>
+          {displayPrice}
         </div>
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

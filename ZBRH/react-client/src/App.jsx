@@ -33,8 +33,11 @@ class App extends React.Component {
 
   getProduct(productId, e) {
     if (e) {
+      console.warn('REFRESH IS PREVENTED');
       e.preventDefault();
     }
+    if (!e) { console.warn('PAGE REFRESHED'); }
+
     axios.get(`http://3.21.164.220/products/${productId}`)
       .then((response) => {
         var num = this.state.keyValue;
@@ -65,12 +68,12 @@ class App extends React.Component {
           <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
           </button>
-          { /*  <Overview
+          {/*   <Overview
             currentProduct={this.state.currentProduct}
             value={3.75}
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
-        /> */}
+          /> */}
           <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/>
           {/*
           <QuestionsAndAnswers />
