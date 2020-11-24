@@ -152,7 +152,7 @@ class ProductComparison extends React.Component {
   }
 
 
-  //passed to OutfistList compoenent
+  //passed to OutfistList component
   addOutfitToListInState(userClickedItem, e) {
 
 
