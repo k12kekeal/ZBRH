@@ -40,13 +40,15 @@ class Overview extends React.Component {
     } else {
       this.setState({
         currentSku: this.state.currentStyle.skus[sku]
-      }, console.log(this.state));
+      }, console.log('state after skuSelect:', this.state));
     }
   }
 
   componentDidMount() {
+    console.log('currentProduct.id when Overview mounts: ', this.props.currentProduct.id);
     this.getStyles(this.props.currentProduct.id);
   }
+
   changeStyle(styleId, e) {
     e.preventDefault();
     this.setState({
@@ -55,6 +57,7 @@ class Overview extends React.Component {
   }
 
   render() {
+    console.log('state in Overview on render: ', this.state);
     return (
       <div>
         <Rating
@@ -71,12 +74,12 @@ class Overview extends React.Component {
         {/* <ImageGallery
           currentStyle={this.state.currentStyle}
         /> */}
-        {/* <StyleSelector
+        <StyleSelector
           changeStyle={this.changeStyle}
           currentProduct={this.props.currentProduct}
           currentStyle={this.state.currentStyle}
           styles={this.state.styles}
-        /> */}
+        />
         <SocialMedia />
         <div>
           <Cart

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReviewList from './components/ReviewList.jsx';
