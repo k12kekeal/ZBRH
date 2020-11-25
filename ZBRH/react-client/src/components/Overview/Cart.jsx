@@ -12,7 +12,7 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
   return (
     <Container fluid>
       <Row>
-        <Col xs={3}>
+        <Col>
           <select
             className="select"
             name="size"

@@ -19,8 +19,8 @@ class App extends React.Component {
       currentProduct: exampleData[0],
       avgRating: 3.75,
       reviewNum: 0,
-      // isLoading: true,
-      // keyValue: 1
+      isLoading: true,
+      keyValue: 1
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
@@ -28,7 +28,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getProduct(1);
-    // this.setState( {isLoading: false} );
+    this.setState( {isLoading: false} );
   }
 
   getProduct(productId, e) {
@@ -37,11 +37,11 @@ class App extends React.Component {
     }
     axios.get(`http://3.21.164.220/products/${productId}`)
       .then(response => {
-        // var num = this.state.keyValue;
-        // num++;
+        var num = this.state.keyValue;
+        num++;
         this.setState({
-          currentProduct: response.data
-          // keyValue: num,
+          currentProduct: response.data,
+          keyValue: num,
         });
       })
       .catch((err) => console.log(err));
@@ -52,35 +52,35 @@ class App extends React.Component {
   }
 
   render() {
-    // if (this.state.isLoading === true) {
-    //   return (<div>is loading...</div>);
-    // } else {
+    if (this.state.isLoading === true) {
+      return (<div>is loading...</div>);
+    } else {
 
-    return (
-      <>
-        <h1>
+      return (
+        <>
+          <h1>
             WELCOME TO ZBRH, HRATX52!  {name}
-        </h1>
-        <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
+          </h1>
+          <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
-        </button>
-        <Overview
-          reviewNum={this.state.reviewNum}
-          currentProduct={this.state.currentProduct}
-          avgRating={this.state.avgRating}
-          getProduct={this.getProduct}
-          reviews = {[1, 2, 3]}
-        />
-        {/* <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/> */}
+          </button>
+          <Overview
+            reviewNum={this.state.reviewNum}
+            currentProduct={this.state.currentProduct}
+            avgRating={this.state.avgRating}
+            getProduct={this.getProduct}
+            reviews = {[1, 2, 3]}
+          />
+          <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/>
 
-        {/* <QuestionsAndAnswers /> */}
-        {/* <RatingReviewApp /> */}
-        {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
-      </>
-    );
+          {/* <QuestionsAndAnswers /> */}
+          <RatingReviewApp />
+          {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+        </>
+      );
 
+    }
   }
 }
-// }
 
 export default App;

@@ -13,7 +13,7 @@ const ImageGallery = ({currentStyle}) => {
   return (
     currentStyle.photos ?
       <div>
-        <GridList cellHeight={180}>
+        <GridList cellHeight={40}>
           {currentStyle.photos.map((photo, i) => (
             <GridListTile key={i}>
               <img
