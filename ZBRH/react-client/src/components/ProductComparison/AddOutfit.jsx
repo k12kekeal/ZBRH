@@ -48,9 +48,11 @@ class AddOutfit extends React.Component {
 
   }
 
-  handlePlusClick() {
-    console.log('Plus was clicked');
+  handlePlusClick(e) {
+    console.log('Plus was clicked', e);
+    e.preventDefault();
     this.props.addOutfitToList(this.state.singleRelatedProduct);
+    this.props.removeCurrProductToAddInOutfitList();
   }
 
 

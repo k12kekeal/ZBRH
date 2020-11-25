@@ -15,13 +15,37 @@ class OutfitList extends React.Component {
       currProductToAdd: this.props.addCurrProduct,
     };
 
+
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.outfitData !== prevProps.outfitData ) {
+      this.setState({userOutfitList: this.props.outfitData});
+    }
+    if (this.props.addCurrProduct !== prevProps.addCurrProduct ) {
+      this.setState({currProductToAdd: this.props.addCurrProduct});
+    }
+  }
+
+
+  //This is not getting called...will use wonky keys for now
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.props.userOutfitList !== prevProps.userOutfitList) {
+  //       this.setState({userOutfitList: this.props.outfitData});
+  //       console.warn("component did update in outfit list");
+  //   }
+  //   if (this.props.currProductToAdd !== prevProps.currProductToAdd) {
+  //     this.setState({currProductToAdd: this.props.addCurrProduct});
+  //     console.warn("component did update in outfit list");
+  // }
+  // }
+
 
 
   render() {
 
     if (Object.keys(this.state.currProductToAdd).length > 0) {
-
+      console.warn('in IF');
       return (<div>
         <header id="RelatedProductListHeader">YOUR OUTFIT</header>
 
@@ -33,14 +57,14 @@ class OutfitList extends React.Component {
               {/*Below is the active current product*/
 
                 < div className="carousel-item active" key={'active'}>
-                  { console.log('single item', this.props.addCurrProduct.name)}
-                  <AddOutfit singleRelatedProduct={this.props.addCurrProduct} addOutfitToList={this.props.addOutfitToListInState}/>
+                  { /*console.log('single item', this.props.addCurrProduct.name)*/}
+                  <AddOutfit singleRelatedProduct={this.props.addCurrProduct} addOutfitToList={this.props.addOutfitToListInState} removeCurrProductToAddInOutfitList={this.props.removeCurrProductToAddAtTop}/>
                 </div>
 
 
               }
 
-              {console.log('this is this.props in Outfitlist', this.props)}
+              {/*console.log('this is this.props in Outfitlist', this.props)*/}
 
               {
                 /*Below are the items in Outfit*/
@@ -54,7 +78,7 @@ class OutfitList extends React.Component {
 
                   return (
                     <div className="carousel-item" key={index} >
-                      { console.log('single item', singleRelatedProduct.name)}
+                      { /*console.log('single item', singleRelatedProduct.name)*/}
                       < Outfit singleRelatedProduct={singleRelatedProduct}/>
                     </div>
                   );
@@ -82,6 +106,7 @@ class OutfitList extends React.Component {
 
       </div >);
     } else {
+      console.warn('in ELSE');
       return (<div>
         <header id="RelatedProductListHeader">YOUR OUTFIT</header>
 

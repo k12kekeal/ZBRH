@@ -8,7 +8,7 @@ class RelatedProduct extends React.Component {
     super(props);
     this.state = {
       singleRelatedProduct: this.props.singleRelatedProduct,
-      imageLink: this.props.singleRelatedProduct.styles
+      imageLink: this.props.image
 
     };
 
@@ -42,9 +42,14 @@ class RelatedProduct extends React.Component {
         next.children(':first-child').clone().appendTo($(this));
       }
     });
+  }
 
+  componentDidUpdate(prevProps) {
+    //THIS IS NOT GETTING CALLED>??????
+    if (this.state.imageLink !== this.props.image) {
+      this.setState({imageLink: this.props.image});
 
-
+    }
 
   }
 
@@ -54,6 +59,7 @@ class RelatedProduct extends React.Component {
 
   handleCardClick() {
     console.log('card clicked...');
+
     console.log(this.props.handleSelectProduct(this.state.singleRelatedProduct.id, event));
     console.log(this.state.singleRelatedProduct.id);
 

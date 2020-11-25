@@ -20,10 +20,12 @@ class App extends React.Component {
       avgRating: 3.75,
       reviewNum: 0,
       isLoading: true,
-      keyValue: 1
+      keyValue: 1,
+
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
+
   }
 
   componentDidMount() {
@@ -55,6 +57,9 @@ class App extends React.Component {
     element.classList.toggle('dark-mode');
   }
 
+
+
+
   render() {
     if (this.state.isLoading === true) {
       return (<div>is loading...</div>);
@@ -74,7 +79,7 @@ class App extends React.Component {
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
           /> */}
-          <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/>
+          <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} /*key={this.state.keyValue}*/ />
           {/*
           <QuestionsAndAnswers />
           <RatingsAndReviews /> */}

@@ -33,6 +33,7 @@ class ProductComparison extends React.Component {
       userOutfitList: example,
       currProductToAdd: props.currentProduct,
       keyForOutfitList: 10,
+      isAdded: false,
 
       //used to prevent loading before props are fully passed
       isLoading: true,
@@ -40,7 +41,43 @@ class ProductComparison extends React.Component {
 
     this.getRelatedProductIds = this.getRelatedProductIds.bind(this);
     this.getRelatedProductData = this.getRelatedProductData.bind(this);
-    this.addOutfitToListInState = this.addOutfitToListInState.bind(this);
+    this.removeCurrProductToAdd = this.removeCurrProductToAdd.bind(this);
+    this.addOutfitToListInPCState = this.addOutfitToListInPCState.bind(this);
+    this.initialRender = this.initialRender.bind(this);
+
+  }
+
+  componentDidUpdate(prevProp, prevState) {
+    if (this.props.currentProduct !== prevProp.currentProduct) {
+      this.setState({currentProduct: this.props.currentProduct});
+      this.initialRender();
+      //this.forceUpdate();
+    }
+  }
+
+
+  removeCurrProductToAdd() {
+    console.warn('removeCurrProdcutToAdd is being called');
+    console.warn('before', this.state);
+    this.setState({currProductToAdd: {}});
+    console.warn('after', this.state);
+  }
+
+  //passed → ProductComparison → OutfitList component
+  addOutfitToListInPCState(userClickedItem, e) {
+    //adds the outfit that user clicked into the array held in state
+    let temp = [...this.state.userOutfitList];
+    temp.push(userClickedItem);
+
+    //gives new key value to force update
+    var num = this.state.keyValue;
+    num++;
+
+    this.setState(
+      { userOutfitList: temp,
+        keyValue: num,
+        isAdded: true,
+      });
   }
 
 
@@ -49,15 +86,22 @@ class ProductComparison extends React.Component {
     console.log('componentDidMount starting...');
     console.log('This is state in ProductComparison: ', this.state);
     console.log('This is props in ProductComparison: ', this.props);
+    this.initialRender();
+    console.log('componentDidMount has ended...');
+  }
 
+  initialRender() {
     let currProductId = this.state.currentProduct.id;
+    if (this.state.isAdded === true) {
+      this.setState({currProductToAdd: {}});
+    }
 
     //GETs an array of id numbers for products related to the current product in state
     axios
       .get(`http://3.21.164.220/products/${currProductId}/related`)
       .then((response) => {
-        console.log('here are the id_s of related products: ', response.data);
-        console.log('setting state of relatedProductIds');
+        //console.log('here are the id_s of related products: ', response.data);
+        //console.log('setting state of relatedProductIds');
         this.setState({ relatedProductIds: response.data });
 
         //creates an array of promises (GET requests for individual product data for each related product id)
@@ -71,7 +115,7 @@ class ProductComparison extends React.Component {
       })
       //uses the promisified array of related product data, set state
       .then((arrRelatedProductDataPromise) => {
-        console.log('This is result of Promise.all', arrRelatedProductDataPromise);
+        //console.log('This is result of Promise.all', arrRelatedProductDataPromise);
 
         let newRelatedProductDataState = arrRelatedProductDataPromise.map(
           function (currProduct) {
@@ -91,8 +135,8 @@ class ProductComparison extends React.Component {
         return Promise.all(arrGetRelatedProductStylesPromises);
       })
       .then((arrRelatedProductStyles) => {
-        console.log('So...this is state now: ', this.state);
-        console.log('And this is related product styles:', arrRelatedProductStyles);
+        //console.log('So...this is state now: ', this.state);
+        //console.log('And this is related product styles:', arrRelatedProductStyles);
 
 
         let newArrRelatedProductStyles = arrRelatedProductStyles.map(
@@ -100,7 +144,7 @@ class ProductComparison extends React.Component {
             return currProduct.data;
           }
         );
-        console.log('Individual styles: ', newArrRelatedProductStyles);
+        //console.log('Individual styles: ', newArrRelatedProductStyles);
 
         let newRelatedProductDataWithStyles = this.state.relatedProductData.map(function(currProduct) {
 
@@ -132,15 +176,10 @@ class ProductComparison extends React.Component {
         console.log(err);
       });
 
-    console.log('This is state in ProductComparison: ', this.state);
-    console.log('componentDidMount has ended...');
+    //console.log('This is state in ProductComparison: ', this.state);
+
   }
 
-
-  // componentDidUpdate() {
-  //   console.warn()
-  //   //document.title = `You clicked ${this.state.count} times`;
-  // }
 
   //passed to RelatedProductList component
   getRelatedProductIds(productId, callback) {
@@ -152,24 +191,23 @@ class ProductComparison extends React.Component {
   }
 
 
-  //passed to OutfistList component
-  addOutfitToListInState(userClickedItem, e) {
+  // //passed to OutfistList component
+  // addOutfitToListInState(userClickedItem, e) {
 
+  //   //adds the outfit that user clicked into the array held in state
+  //   let temp = [...this.state.userOutfitList];
+  //   temp.push(userClickedItem);
 
-    //adds the outfit that user clicked into the array held in state
-    let temp = [...this.state.userOutfitList];
-    temp.push(userClickedItem);
+  //   //gives new key value to force update
+  //   var num = this.state.keyForOutfitList;
+  //   num++;
 
-    //gives new key value to force update
-    var num = this.state.keyForOutfitList;
-    num++;
-
-    this.setState(
-      { userOutfitList: temp,
-        currProductToAdd: {},
-        keyForOutfitList: num,
-      });
-  }
+  //   this.setState(
+  //     { userOutfitList: temp,
+  //       currProductToAdd: {},
+  //       keyForOutfitList: num,
+  //     });
+  // }
 
 
   render() {
@@ -192,7 +230,7 @@ class ProductComparison extends React.Component {
           <br></br>
           <br></br>
           <br></br>
-          {<OutfitList outfitData={this.state.userOutfitList} addCurrProduct={this.state.currProductToAdd} key={this.state.keyForOutfitList} addOutfitToListInState={this.addOutfitToListInState}/>}
+          {<OutfitList outfitData={this.state.userOutfitList} addCurrProduct={this.state.currProductToAdd} key={this.state.keyForOutfitList} addOutfitToListInState={this.addOutfitToListInPCState} removeCurrProductToAddAtTop={this.removeCurrProductToAdd}/>}
         </div>
       );
     }
