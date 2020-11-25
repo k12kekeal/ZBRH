@@ -7,8 +7,8 @@ const ProductOverview = ({ currentProduct }) => {
 
       {currentProduct.description ? <p>{currentProduct.description}</p> : null}
 
-      {currentProduct.features ? currentProduct.features.map(feature => (
-        <ul>✓ {feature.feature}: {feature.value}</ul>
+      {currentProduct.features ? currentProduct.features.map((feature, i) => (
+        <ul key={i}>✓ {feature.feature}: {feature.value}</ul>
       )) : null}
     </div>
   );

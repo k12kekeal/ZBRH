@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import Rating from '@material-ui/lab/Rating';
 import Select from '@material-ui/core/Select';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import Cart from './Cart.jsx';
 import StyleSelector from './StyleSelector.jsx';
@@ -23,6 +26,16 @@ class Overview extends React.Component {
     this.skuSelect = this.skuSelect.bind(this);
   }
 
+  componentDidMount() {
+    this.getStyles(this.props.currentProduct.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProduct !== prevProps.currentProduct) {
+      this.getStyles(this.props.currentProduct.id);
+    }
+  }
+
   getStyles(productId) {
     axios.get(`http://3.21.164.220/products/${productId}/styles`)
       .then(response => {
@@ -34,19 +47,15 @@ class Overview extends React.Component {
   }
 
   skuSelect(sku, e) {
-    console.log(sku);
     if (sku === 0) {
       this.setState({currentSku: 0});
     } else {
       this.setState({
         currentSku: this.state.currentStyle.skus[sku]
-      }, console.log(this.state));
+      });
     }
   }
 
-  componentDidMount() {
-    this.getStyles(this.props.currentProduct.id);
-  }
   changeStyle(styleId, e) {
     e.preventDefault();
     this.setState({
@@ -57,32 +66,39 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <Rating
-          id="product-overview-rating"
-          name="quarter-rating"
-          value={this.props.avgRating}
-          defaultValue={4}
-          precision={0.25}
-          readOnly
-        />
-        {this.props.reviewNum > 0 && (
-          <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
-        )}
-        <ImageGallery
-          currentStyle={this.state.currentStyle}
-        />
-        <StyleSelector
-          changeStyle={this.changeStyle}
-          currentProduct={this.props.currentProduct}
-          currentStyle={this.state.currentStyle}
-          styles={this.state.styles}
-        />
-        <SocialMedia />
+        <Container>
+          <Row>
+            <Col xs={4}>
+              <ImageGallery currentStyle={this.state.currentStyle}/>
+            </Col>
+            <Col xs={4}>
+              <Rating
+                id="product-overview-rating"
+                name="quarter-rating"
+                value={this.props.avgRating}
+                defaultValue={4}
+                precision={0.25}
+                readOnly
+              />
+              {this.props.reviewNum > 0 && (
+                <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
+              )}
+              <StyleSelector
+                changeStyle={this.changeStyle}
+                currentProduct={this.props.currentProduct}
+                currentStyle={this.state.currentStyle}
+                styles={this.state.styles}
+              />
+              <Cart
+                currentStyle={this.state.currentStyle}
+                currentSku={this.state.currentSku}
+                skuSelect={this.skuSelect}
+              />
+            </Col>
+          </Row>
+        </Container>
         <div>
-          <Cart
-            currentStyle={this.state.currentStyle}
-            currentSku={this.state.currentSku}
-            skuSelect={this.skuSelect}/>
+          <SocialMedia />
           <ProductOverview currentProduct={this.props.currentProduct} />
         </div>
       </div>
