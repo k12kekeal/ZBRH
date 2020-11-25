@@ -9,7 +9,7 @@ import axios from 'axios';
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
 import QuestionsAndAnswers from './components/Q&A/QuestionsAndAnswers.jsx';
-import RatingsAndReviews from './components/RatingsAndReviews/RatingsAndReviews.jsx';
+import RatingReviewApp from './components/RatingsAndReviews/RatingsAndReviews.jsx';
 import exampleData from './exampleData';
 
 class App extends React.Component {
@@ -41,15 +41,14 @@ class App extends React.Component {
     if (!e) { console.warn('PAGE REFRESHED'); }
 
     axios.get(`http://3.21.164.220/products/${productId}`)
-      .then((response) => {
+      .then(response => {
         var num = this.state.keyValue;
         num++;
         this.setState({
           currentProduct: response.data,
           keyValue: num,
         });
-      }
-      )
+      })
       .catch((err) => console.log(err));
   }
   toggleDarkLight() {
@@ -73,20 +72,21 @@ class App extends React.Component {
           <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
           </button>
-          {/*   <Overview
+          <Overview
+            reviewNum={this.state.reviewNum}
             currentProduct={this.state.currentProduct}
-            value={3.75}
+            avgRating={this.state.avgRating}
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
-          /> */}
+          />
+
           <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} /*key={this.state.keyValue}*/ />
           {/*
           <QuestionsAndAnswers />
-          <RatingsAndReviews /> */}
-          {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+          */}
 
 
-
+          <RatingReviewApp />
 
         </>
       );
