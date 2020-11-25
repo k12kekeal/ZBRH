@@ -12,6 +12,7 @@
 
 .styles {
   transition: all .2s ease-in-out;
+  height: 400px
 }
 .styles:hover {
   cursor: pointer;

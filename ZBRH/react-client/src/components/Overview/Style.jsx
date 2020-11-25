@@ -2,6 +2,8 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 
+
+
 const Style = ({ changeStyle, style, currentStyle }) => {
   return (
     <Badge color="primary" badgeContent={currentStyle === style ? '✓' : null}>

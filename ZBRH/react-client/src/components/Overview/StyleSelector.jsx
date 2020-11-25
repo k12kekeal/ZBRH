@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Style from './Style.jsx';
+import Container from 'react-bootstrap/Container';
 
 const StyleSelector = ({
   value,
@@ -23,7 +24,7 @@ const StyleSelector = ({
           <p>${currentStyle.original_price}</p>
         )}
         <p><b>Style {'>'} </b>{currentStyle.name}</p>
-        <div>
+        <Container>
           {styles.map((style) => (
             <Style
               key={style.name}
@@ -31,7 +32,7 @@ const StyleSelector = ({
               style={style}
               currentStyle={currentStyle}/>
           ))}
-        </div>
+        </Container>
       </div>
       : null
   );
