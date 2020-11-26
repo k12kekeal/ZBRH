@@ -71,7 +71,7 @@ class Overview extends React.Component {
             <Col>
               <ImageGallery currentStyle={this.state.currentStyle}/>
             </Col>
-            <Col>
+            <Col xs={3}>
               <Rating
                 id="product-overview-rating"
                 name="quarter-rating"

@@ -22,9 +22,8 @@
 /* IMAGE GALLERY */
 
 .image-gallery-wrapper {
-  max-width: 680px;
-  height:535px;
-  position:relative
+  position: relative;
+  columns: 2;
 }
 
 
@@ -78,4 +77,28 @@
   height: 100%;
   object-fit: cover;
   z-index: 4;
+}
+
+.vertical-line {
+  border-left: 3px solid black;
+  height: 75%;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
+
+/* PRODUCT OVERVIEW */
+
+.product-overview-container {
+  position: relative;
+  columns: 3;
+}
+
+.product-slogan-description {
+  justify-content: left;
+}
+
+.product-features {
+  justify-content: right;
 }
