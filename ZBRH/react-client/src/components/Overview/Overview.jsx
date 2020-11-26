@@ -68,10 +68,10 @@ class Overview extends React.Component {
       <div>
         <Container>
           <Row>
-            <Col xs={4}>
+            <Col>
               <ImageGallery currentStyle={this.state.currentStyle}/>
             </Col>
-            <Col xs={4}>
+            <Col>
               <Rating
                 id="product-overview-rating"
                 name="quarter-rating"
@@ -94,13 +94,14 @@ class Overview extends React.Component {
                 currentSku={this.state.currentSku}
                 skuSelect={this.skuSelect}
               />
+              <SocialMedia />
             </Col>
           </Row>
+          <Row>
+            <ProductOverview currentProduct={this.props.currentProduct} />
+          </Row>
         </Container>
-        <div>
-          <SocialMedia />
-          <ProductOverview currentProduct={this.props.currentProduct} />
-        </div>
+
       </div>
     );
   }

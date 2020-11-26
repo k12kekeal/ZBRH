@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import {GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Badge from '@material-ui/core/Badge';
+import Grid from '@material-ui/core/Grid';
+
 
 const ImageGallery = ({currentStyle}) => {
 
@@ -12,26 +15,41 @@ const ImageGallery = ({currentStyle}) => {
 
   return (
     currentStyle.photos ?
-      <div>
-        <GridList cellHeight={40}>
-          {currentStyle.photos.map((photo, i) => (
-            <GridListTile key={i}>
-              <img
-                value={i}
-                src={photo.thumbnail_url}
-                alt={currentStyle.name}
-                onClick={e => handleSelect(i, e)} />
-            </GridListTile>
-          ))}
-        </GridList>
+      <div className="image-gallery-wrapper">
+        <div className="image-gallery-carousel-container">
+          <Carousel
+            className="image-gallery-carousel"
+            activeIndex={index}
+            onSelect={handleSelect}>
+            {currentStyle.photos ? currentStyle.photos.map(photo => (
+              <Carousel.Item>
+                <img
+                  src={photo.url}
+                  className="image-gallery-carousel-images"
+                />
+              </Carousel.Item>
+            )) : null}
+          </Carousel>
+        </div>
+        <div>
 
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-          {currentStyle.photos ? currentStyle.photos.map(photo => (
-            <Carousel.Item>
-              <img src={photo.url} width="400"/>
-            </Carousel.Item>
-          )) : null}
-        </Carousel>
+        </div>
+        <div className="image-gallery-thumb-container">
+          {currentStyle.photos.map(
+            (photo, i) => (
+              <div
+                className="image-gallery-thumb">
+                <img
+                  className="image-gallery-thumb-image"
+                  key={i}
+                  value={i}
+                  src={photo.thumbnail_url}
+                  alt={currentStyle.name}
+                  onClick={e => handleSelect(i, e)}
+                />
+              </div>
+            ))}
+        </div>
       </div>
       : null
   );
