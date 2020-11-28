@@ -13,39 +13,28 @@ class OutfitList extends React.Component {
     this.state = {
       userOutfitList: this.props.outfitData,
       currProductToAdd: this.props.addCurrProduct,
+      isAdded: this.props.isAdded
     };
-
 
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.outfitData !== prevProps.outfitData ) {
       this.setState({userOutfitList: this.props.outfitData});
     }
     if (this.props.addCurrProduct !== prevProps.addCurrProduct ) {
       this.setState({currProductToAdd: this.props.addCurrProduct});
     }
+    if (this.props.isAdded !== prevProps.isAdded ) {
+      this.setState({isAdded: this.props.isAdded});
+    }
   }
 
-
-  //This is not getting called...will use wonky keys for now
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.props.userOutfitList !== prevProps.userOutfitList) {
-  //       this.setState({userOutfitList: this.props.outfitData});
-  //       console.warn("component did update in outfit list");
-  //   }
-  //   if (this.props.currProductToAdd !== prevProps.currProductToAdd) {
-  //     this.setState({currProductToAdd: this.props.addCurrProduct});
-  //     console.warn("component did update in outfit list");
-  // }
-  // }
-
-
-
   render() {
+    { /*If statement will display the current product as an option to be added into outfit*/ }
+    if (this.state.isAdded === false) {
+      //Object.keys(this.state.currProductToAdd).length > 0
 
-    if (Object.keys(this.state.currProductToAdd).length > 0) {
-      console.warn('in IF');
       return (<div>
         <header id="RelatedProductListHeader">YOUR OUTFIT</header>
 
@@ -58,7 +47,10 @@ class OutfitList extends React.Component {
 
                 < div className="carousel-item active" key={'active'}>
                   { /*console.log('single item', this.props.addCurrProduct.name)*/}
-                  <AddOutfit singleRelatedProduct={this.props.addCurrProduct} addOutfitToList={this.props.addOutfitToListInState} removeCurrProductToAddInOutfitList={this.props.removeCurrProductToAddAtTop}/>
+                  <AddOutfit
+                    singleRelatedProduct={this.props.addCurrProduct}
+                    addOutfitToList={this.props.addOutfitToListInState} removeCurrProductToAddInOutfitList={this.props.removeCurrProductToAddAtTop}
+                  />
                 </div>
 
 
@@ -69,23 +61,20 @@ class OutfitList extends React.Component {
               {
                 /*Below are the items in Outfit*/
                 this.state.userOutfitList.map(function (singleRelatedProduct, index) {
-                  //below if statement sets a placeholder image if the API returned null for an image link
-                  if (singleRelatedProduct.styles === null) {
-                    singleRelatedProduct.styles = './imageNotFound.png';
-                  }
-                  //below if/ else statement creates active and inactive carousel items (necessary for bootstrap carousel)
 
-
+                  //below else statement creates inactive carousel items (necessary for bootstrap carousel)
                   return (
                     <div className="carousel-item" key={index} >
                       { /*console.log('single item', singleRelatedProduct.name)*/}
-                      < Outfit singleRelatedProduct={singleRelatedProduct}/>
+                      < Outfit
+                        singleRelatedProduct={singleRelatedProduct}
+                        handleXClick={this.props.handleXClick}/>
                     </div>
                   );
 
 
 
-                })
+                }, this)
               }
 
               <a className="carousel-control-prev w-auto" href="#recipeCarousel2" role="button" data-slide="prev">
@@ -106,7 +95,8 @@ class OutfitList extends React.Component {
 
       </div >);
     } else {
-      console.warn('in ELSE');
+      { /*else statement only diplays items in the user's outfit*/ }
+
       return (<div>
         <header id="RelatedProductListHeader">YOUR OUTFIT</header>
 
@@ -118,26 +108,25 @@ class OutfitList extends React.Component {
               {
                 /*Below are the items in Outfit*/
                 this.state.userOutfitList.map(function (singleRelatedProduct, index) {
-                  //below if statement sets a placeholder image if the API returned null for an image link
-                  if (singleRelatedProduct.styles === null) {
-                    singleRelatedProduct.styles = './imageNotFound.png';
-                  }
+
                   //below if/ else statement creates active and inactive carousel items (necessary for bootstrap carousel)
                   if (index === 0) {
-                    console.log('index is: ', index);
 
                     return (
                       < div className="carousel-item active" key={index}>
-                        { console.log('single item', singleRelatedProduct.name)}
-                        <Outfit singleRelatedProduct={singleRelatedProduct} />
+                        <Outfit
+                          singleRelatedProduct={singleRelatedProduct}
+                          handleXClick={this.props.handleXClick}/>
                       </div>
                     );
                   } else {
 
                     return (
                       <div className="carousel-item" key={index} >
-                        { console.log('single item', singleRelatedProduct.name)}
-                        < Outfit singleRelatedProduct={singleRelatedProduct}/>
+
+                        < Outfit
+                          singleRelatedProduct={singleRelatedProduct}
+                          handleXClick={this.props.handleXClick}/>
                       </div>
                     );
 
@@ -146,7 +135,7 @@ class OutfitList extends React.Component {
 
 
 
-                })
+                }, this)
               }
 
               <a className="carousel-control-prev w-auto" href="#recipeCarousel2" role="button" data-slide="prev">

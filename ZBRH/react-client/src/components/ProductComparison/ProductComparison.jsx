@@ -31,12 +31,11 @@ class ProductComparison extends React.Component {
 
       //used for OutfitList component
       userOutfitList: example,
-      currProductToAdd: props.currentProduct,
-      keyForOutfitList: 10,
       isAdded: false,
 
       //used to prevent loading before props are fully passed
       isLoading: true,
+      isOutfitLoading: true,
     };
 
     this.getRelatedProductIds = this.getRelatedProductIds.bind(this);
@@ -44,22 +43,57 @@ class ProductComparison extends React.Component {
     this.removeCurrProductToAdd = this.removeCurrProductToAdd.bind(this);
     this.addOutfitToListInPCState = this.addOutfitToListInPCState.bind(this);
     this.initialRender = this.initialRender.bind(this);
+    this.handleXClick = this.handleXClick.bind(this);
+    this.initialOutfitRender = this.initialOutfitRender.bind(this);
 
   }
+
 
   componentDidUpdate(prevProp, prevState) {
+
     if (this.props.currentProduct !== prevProp.currentProduct) {
-      this.setState({currentProduct: this.props.currentProduct});
+      this.setState({
+        currentProduct: this.props.currentProduct,
+        isAdded: false
+      });
       this.initialRender();
-      //this.forceUpdate();
     }
+
+
   }
+
+  handleXClick(productToRemove, e) {
+    let updatedUserOutfitListWithRemovedProduct = this.state.userOutfitList.filter(function(currProd) {
+      console.log(currProd);
+      return currProd.id !== productToRemove.id;
+
+    });
+
+    // let empty = {
+    //   'id': 0,
+    //   'name': '',
+    //   'slogan': '',
+    //   'description': '',
+    //   'category': '',
+    //   'default_price': ''
+    // }
+
+    // while(updatedUserOutfitListWithRemovedProduct.length < 3){
+    //   updatedUserOutfitListWithRemovedProduct.push(empty)
+    // }
+
+    console.log(updatedUserOutfitListWithRemovedProduct);
+
+    this.setState({userOutfitList: updatedUserOutfitListWithRemovedProduct});
+
+  }
+
 
 
   removeCurrProductToAdd() {
     console.warn('removeCurrProdcutToAdd is being called');
     console.warn('before', this.state);
-    this.setState({currProductToAdd: {}});
+    this.setState({isAdded: true});
     console.warn('after', this.state);
   }
 
@@ -69,32 +103,30 @@ class ProductComparison extends React.Component {
     let temp = [...this.state.userOutfitList];
     temp.push(userClickedItem);
 
-    //gives new key value to force update
-    var num = this.state.keyValue;
-    num++;
-
     this.setState(
       { userOutfitList: temp,
-        keyValue: num,
         isAdded: true,
       });
   }
 
 
-  // possibly improved version...WIP
+
   componentDidMount() {
     console.log('componentDidMount starting...');
-    console.log('This is state in ProductComparison: ', this.state);
-    console.log('This is props in ProductComparison: ', this.props);
+    //console.log('This is state in ProductComparison: ', this.state);
+    //console.log('This is props in ProductComparison: ', this.props);
+
+    this.initialOutfitRender();
     this.initialRender();
+
     console.log('componentDidMount has ended...');
   }
 
   initialRender() {
     let currProductId = this.state.currentProduct.id;
-    if (this.state.isAdded === true) {
-      this.setState({currProductToAdd: {}});
-    }
+
+    //this setState prevents page from loading BEFORE props are fully passed down
+    this.setState({ isLoading: true });
 
     //GETs an array of id numbers for products related to the current product in state
     axios
@@ -171,7 +203,6 @@ class ProductComparison extends React.Component {
         this.setState({ isLoading: false });
 
       })
-
       .catch((err) => {
         console.log(err);
       });
@@ -180,6 +211,41 @@ class ProductComparison extends React.Component {
 
   }
 
+
+  initialOutfitRender() {
+    //loops through userOutfitList, grabs all ids and searches up styles
+    let arrGetUserOutfitProductStylesPromises = [];
+
+
+    for (var j = 0; j < this.state.userOutfitList.length; j++) {
+      arrGetUserOutfitProductStylesPromises.push(
+        axios.get(`http://3.21.164.220/products/${this.state.userOutfitList[j].id}/styles`)
+      );
+    }
+
+    Promise.all(arrGetUserOutfitProductStylesPromises)
+      .then((arrUserOutfitProductStyles)=> {
+
+        //maps through the userOutfitList in state and adds an image url to each object
+        let updatedUserOutfitListWIthImages = this.state.userOutfitList.map(function(currOutfit) {
+
+          //loops through the styles data received through previous GET request
+          for (var i = 0; i < arrUserOutfitProductStyles.length; i++) {
+
+            //NOTE: product_id returned from styles GET request is a STRING not a number
+            if (arrUserOutfitProductStyles[i].data.product_id === currOutfit.id.toString()) {
+              currOutfit.image = arrUserOutfitProductStyles[i].data.results[0].photos[0].url;
+            }
+          }
+          return currOutfit;
+        }, this);
+
+        this.setState({ isOutfitLoading: false });
+      })
+      .catch((err)=>{ console.warn(err); });
+
+
+  }
 
   //passed to RelatedProductList component
   getRelatedProductIds(productId, callback) {
@@ -191,27 +257,8 @@ class ProductComparison extends React.Component {
   }
 
 
-  // //passed to OutfistList component
-  // addOutfitToListInState(userClickedItem, e) {
-
-  //   //adds the outfit that user clicked into the array held in state
-  //   let temp = [...this.state.userOutfitList];
-  //   temp.push(userClickedItem);
-
-  //   //gives new key value to force update
-  //   var num = this.state.keyForOutfitList;
-  //   num++;
-
-  //   this.setState(
-  //     { userOutfitList: temp,
-  //       currProductToAdd: {},
-  //       keyForOutfitList: num,
-  //     });
-  // }
-
-
   render() {
-    if (this.state.isLoading) {
+    if (this.state.isLoading || this.state.isOutfitLoading) {
       return <div>We are still loading....</div>;
     } else {
 
@@ -222,15 +269,25 @@ class ProductComparison extends React.Component {
           <br></br>
           {
             <RelatedProductList
-              relatedProductData={this.state.relatedProductData} handleSelectProduct={this.props.handleSelectProduct}
+              relatedProductData={this.state.relatedProductData}
+              handleSelectProduct={this.props.handleSelectProduct}
+              currProductToCompare={this.state.currentProduct}
             />
           }
           <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          {<OutfitList
+            outfitData={this.state.userOutfitList}
+            addCurrProduct={this.state.currentProduct}
+            isAdded={this.state.isAdded}
 
+            addOutfitToListInState={this.addOutfitToListInPCState}
+            removeCurrProductToAddAtTop={this.removeCurrProductToAdd}
+            handleXClick={this.handleXClick}/>}
           <br></br>
           <br></br>
-          <br></br>
-          {<OutfitList outfitData={this.state.userOutfitList} addCurrProduct={this.state.currProductToAdd} key={this.state.keyForOutfitList} addOutfitToListInState={this.addOutfitToListInPCState} removeCurrProductToAddAtTop={this.removeCurrProductToAdd}/>}
         </div>
       );
     }

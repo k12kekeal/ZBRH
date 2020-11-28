@@ -22,6 +22,7 @@ class App extends React.Component {
       isLoading: true,
       keyValue: 1,
 
+
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
@@ -35,10 +36,8 @@ class App extends React.Component {
 
   getProduct(productId, e) {
     if (e) {
-      console.warn('REFRESH IS PREVENTED');
       e.preventDefault();
     }
-    if (!e) { console.warn('PAGE REFRESHED'); }
 
     axios.get(`http://3.21.164.220/products/${productId}`)
       .then(response => {
@@ -80,7 +79,9 @@ class App extends React.Component {
             reviews = {[1, 2, 3]}
           />
 
-          <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} /*key={this.state.keyValue}*/ />
+          <ProductComparison
+            currentProduct={this.state.currentProduct}
+            handleSelectProduct={this.getProduct}/>
           {/*
           <QuestionsAndAnswers />
           */}

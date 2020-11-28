@@ -41,8 +41,8 @@ class RelatedProductList extends React.Component {
 
                   return (
                     < div className="carousel-item active" key={singleRelatedProduct.id}>
-                      { console.log('single item', singleRelatedProduct.name)}
-                      <RelatedProduct singleRelatedProduct={singleRelatedProduct} handleSelectProduct={this.props.handleSelectProduct} image={singleRelatedProduct.styles}/>
+
+                      <RelatedProduct singleRelatedProduct={singleRelatedProduct} handleSelectProduct={this.props.handleSelectProduct} image={singleRelatedProduct.styles} currProductToCompare={this.props.currProductToCompare}/>
                     </div>
                   );
                 } else {
@@ -50,8 +50,8 @@ class RelatedProductList extends React.Component {
 
                   return (
                     <div className="carousel-item" key={singleRelatedProduct.id} >
-                      { /*console.log('single item', singleRelatedProduct.name)*/}
-                      < RelatedProduct singleRelatedProduct={singleRelatedProduct} handleSelectProduct={this.props.handleSelectProduct} image={singleRelatedProduct.styles}/>
+
+                      < RelatedProduct singleRelatedProduct={singleRelatedProduct} handleSelectProduct={this.props.handleSelectProduct} image={singleRelatedProduct.styles} currProductToCompare={this.props.currProductToCompare}/>
                     </div>
                   );
                 }

@@ -8,17 +8,26 @@ class Outfit extends React.Component {
     super(props);
     this.state = {
       singleRelatedProduct: this.props.singleRelatedProduct,
-      imageLink: this.props.singleRelatedProduct.styles
+      imageLink: this.props.singleRelatedProduct.image,
+
+
 
     };
 
-    this.handleStarClick = this.handleStarClick.bind(this);
+    // this.handleXClick = this.handleXClick.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.wrappedHandleXClick = this.wrappedHandleXClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.singleRelatedProduct !== prevProps.singleRelatedProduct) {
+      this.setState({singleRelatedProduct: this.props.singleRelatedProduct});
+    }
+
   }
 
   componentDidMount() {
-    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
-
+    //console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
 
     $('#recipeCarousel2').carousel({
       pause: true,
@@ -44,22 +53,19 @@ class Outfit extends React.Component {
     });
 
 
-
-
   }
 
-  handleStarClick() {
-    console.log('Star was clicked');
+  wrappedHandleXClick() {
+    this.props.handleXClick(this.state.singleRelatedProduct);
   }
 
   handleCardClick() {
     console.log('card clicked...');
-    console.log(this.props.handleSelectProduct(this.state.singleRelatedProduct.id, event));
-    console.log(this.state.singleRelatedProduct.id);
-
   }
 
   render() {
+
+
     //if statement determines whether to render default price or default price AND sale price
     let displayPrice = (<p>${this.state.singleRelatedProduct.default_price}</p>);
 
@@ -71,7 +77,7 @@ class Outfit extends React.Component {
       <div className="col-md-4">
         <div className="card card-body">
           <div className="overlay">
-            <img className="btn btn-primary" className="overlayImage" src='./xicon.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal2"></img>
+            <img className="btn btn-primary" className="overlayImage" src='./xicon.svg' role="button" onClick={this.wrappedHandleXClick} data-toggle="modal" data-target="#exampleModal2"></img>
           </div>
           {/* EDIT IMAGE SRC BELOW */}
           <img className="img-fluid" src={this.state.imageLink} role="button" onClick={this.handleCardClick} id="setHeight"></img>
@@ -81,74 +87,40 @@ class Outfit extends React.Component {
         </div>
 
         {/* <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel2">Do y liek?</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                This is where stuff ..I don't know goes...
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel2">Do y liek?</h5>
+                    <button type="button" className="close" data-dismiss="modal"  aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  This is where stuff ..I don't know goes...
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 
+                </div>
               </div>
             </div>
-          </div>
-    </div>*/}
+           </div>*/
+        }
 
       </div>
 
 
 
     );
+
+
+
   }
 }
 
 
-/*
-
-<div className="col-md-4">
-        <div className="card card-body">
-          <div className="overlay">
-            <img className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick}></img>
-          </div>
-          <img className="img-fluid" src='./placeHolderImage.jpg'></img>
-          <h3>{this.state.singleRelatedProduct.category}</h3>
-          <p>{this.state.singleRelatedProduct.name}</p>
-          <p>  ${this.state.singleRelatedProduct.default_price}</p>
-        </div>
-      </div>
 
 
-
-*/
-
-
-/*
-
-      <Carousel.Item interval={1000}>
-
-        <Card style={{ width: '18rem' }} id="card" className="acard">
-          <Card.Img variant='top' src='./placeHolderImage.jpg' />
-          <Card.Body id="cardbody">
-            <Card.Title id="cardtitle">{this.state.singleRelatedProduct.category}</Card.Title>
-            <Card.Text id="cardtext">
-              {this.state.singleRelatedProduct.name} <br></br>
-              ${this.state.singleRelatedProduct.default_price}
-              <br></br>
-              star rating here....
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-      </Carousel.Item>
-
-*/
 
 
 export default Outfit;

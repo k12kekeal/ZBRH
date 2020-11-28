@@ -17,8 +17,6 @@ class AddOutfit extends React.Component {
   }
 
   componentDidMount() {
-    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
-
 
     $('#recipeCarousel2').carousel({
       pause: true,
@@ -43,7 +41,10 @@ class AddOutfit extends React.Component {
       }
     });
 
-
+    axios.get(`http://3.21.164.220/products/${this.props.singleRelatedProduct.id}/styles`).then((styles)=>{
+      this.setState({imageLink: styles.data.results[0].photos[0].url});
+    })
+      .catch((err)=>{ console.log(err); });
 
 
   }
