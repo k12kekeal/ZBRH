@@ -112,28 +112,30 @@ describe('Star Rating', () => {
 // [TODO:] If valid size and quantity are selected, clicking will add the right style, size, and quantity of product to user's cart
 
 //  IMAGE GALLERY
-// [TODO:] Render gallery photos based on currentStyle
-// [TODO:]
-//  The largest piece of the Overview module will be a photo gallery showing images of the product.  The photos presented in this gallery will be specific to the currently selected product style.  Each time a new style is chosen, the gallery will update to show photos corresponding to the new style.   Each style will have a set of images associated with it.  The gallery will allow customers to browse between and zoom in on these photos.
-// The gallery will be viewable in two states.  A default collapsed view, and an expanded view.
+// [X] Render gallery photos based on currentStyle
+// [X] Upon new style selection, gallery will update photos corresponding to new style
+// [X] Each style will have a set of images associated with it
+// [X] Gallery will allow customers to browse between photos
+// [TODO:] Gallery will allow customers to zoom in on photos
+// [TODO:] The gallery will have two states - default collapsed and expanded view
 
 //  >>>Default View<<<
-// [TODO:] Create ImageGallery, a class component that holds currentImage in state
-// [TODO:] Should display a single main image
-// [TODO:] Should have an overlay
-// [TODO:] Overlay should dynamically render list of thumbnail images
-// [TODO:] Should show first image in set as main image
-// [TODO:] Main image should match first thumbnail
-// [FIXME:] Index of current image should be maintained after update to new style <= what does this mean
-// [TODO:] When thumbnail is clicked, should update main image to thumbnail image
+// [X] Create ImageGallery - functional component, use hooks to hold current index in state
+// [X] Should display a single main image
+// [X] Should have an overlay
+// [X] Overlay should dynamically render list of thumbnail images
+// [X] Should show first image in set as main image
+// [X] Main image should match first thumbnail
+// [X] Index of current image should be maintained after update to new style
+// [X] When thumbnail is clicked, should update main image to thumbnail image
 // [TODO:] Thumbnail corresponding to main image should be highlighted to indicate current selection
-// [TODO:] Clicking on currently selected thumbnail should have no further effect
+// [X] Clicking on currently selected thumbnail should have no further effect
 // [TODO:] Up to 7 thumbnail images will be displayed at a given time in the list
 // [TODO:] The user should be able to scroll forward and backwards through the thumbnails if +7 styles
 // [TODO:] Two arrow buttons in either direction for scrolling
-// [TODO:] Arrow buttons on main image will change main image to next image in list
+// [X] Arrow buttons on main image will change main image to next image in list
 // [TODO:] Thumbnail list should scroll with main image such that selected thumbnail is always visible
-// [TODO:] Mouse on hover over main image becomes magnifying glass
+// [X] Mouse on hover over main image becomes magnifying glass
 // [TODO:] If user clicks on image, gallery should change to expanded view
 // [TODO:] If first image is selected, left arrow should disappear. Same for last image and right arrow
 

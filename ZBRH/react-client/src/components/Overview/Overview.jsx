@@ -32,6 +32,7 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.currentProduct !== prevProps.currentProduct) {
+      console.log('currentProduct in Overview: ', this.props.currentProduct, 'previous currentProduct in Overview: ', prevProps.currentProduct);
       this.getStyles(this.props.currentProduct.id);
     }
   }
@@ -66,12 +67,12 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <Container>
+        <Container fluid>
           <Row>
-            <Col>
+            <Col sm={8}>
               <ImageGallery currentStyle={this.state.currentStyle}/>
             </Col>
-            <Col xs={3}>
+            <Col sm={4}>
               <Rating
                 id="product-overview-rating"
                 name="quarter-rating"
