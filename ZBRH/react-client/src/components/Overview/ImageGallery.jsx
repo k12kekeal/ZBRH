@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import {GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-const ImageGallery = ({currentStyle}) => {
+
+const ImageGallery = ({currentStyle, toggleExpanded, expanded}) => {
 
   const [index, setIndex] = useState(0);
 
@@ -11,30 +14,51 @@ const ImageGallery = ({currentStyle}) => {
   };
 
   return (
-    currentStyle.photos ?
-      <div>
-        <GridList cellHeight={40}>
-          {currentStyle.photos.map((photo, i) => (
-            <GridListTile key={i}>
-              <img
-                value={i}
-                src={photo.thumbnail_url}
-                alt={currentStyle.name}
-                onClick={e => handleSelect(i, e)} />
-            </GridListTile>
-          ))}
-        </GridList>
+    <div>
+      {currentStyle ?
+        <div className="image-gallery-wrapper">
+          <span aria-hidden="true" className="carousel-control-prev-icon" />
+          <Carousel
+            fade={true}
+            slide={false}
+            interval={null}
+            wrap={false}
+            prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon" />}
+            className="image-gallery-carousel"
+            activeIndex={index}
+            onSelect={handleSelect}>
+            {currentStyle.photos ? currentStyle.photos.map(photo => (
+              <Carousel.Item>
+                <img
+                  src={photo.url}
+                  className='image-gallery-carousel-images'
+                  onClick={toggleExpanded}
+                />
+              </Carousel.Item>
+            )) : null}
+          </Carousel>
+          <div className="image-gallery-thumb-container">
+            {currentStyle.photos ? currentStyle.photos.map(
+              (photo, i) => (
+                <div
+                  className={index === i ? 'image-gallery-thumb-selected' : 'image-gallery-thumb'}>
+                  <img
+                    className='image-gallery-thumb-image'
+                    key={i}
+                    value={i}
+                    src={photo.thumbnail_url}
+                    alt={currentStyle.name}
+                    onClick={e => handleSelect(i, e)}
+                  />
+                </div>
+              )) : null}
+          </div>
 
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-          {currentStyle.photos ? currentStyle.photos.map(photo => (
-            <Carousel.Item>
-              <img src={photo.url} width="400"/>
-            </Carousel.Item>
-          )) : null}
-        </Carousel>
-      </div>
-      : null
+        </div>
+        : null}
+    </div>
   );
 };
+
 
 export default ImageGallery;

@@ -19,11 +19,13 @@ class Overview extends React.Component {
     this.state = {
       styles: [],
       currentStyle: {},
-      currentSku: 0
+      currentSku: 0,
+      expanded: false
     };
     this.getStyles = this.getStyles.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
     this.skuSelect = this.skuSelect.bind(this);
+    this.toggleExpanded = this.toggleExpanded.bind(this);
   }
 
   componentDidMount() {
@@ -58,49 +60,68 @@ class Overview extends React.Component {
 
   changeStyle(styleId, e) {
     e.preventDefault();
-    this.setState({
-      currentStyle: this.state.styles[styleId],
-    });
+    for (var i = 0; i < this.state.styles.length; i++) {
+      if (this.state.styles[i].style_id === styleId) {
+        this.setState({currentStyle: this.state.styles[i]});
+      }
+    }
+  }
+
+  toggleExpanded(e) {
+    this.setState({expanded: !this.state.expanded}, console.log('expanded? ', this.state.expanded));
   }
 
   render() {
     return (
       <div>
-        <Container>
+        <Container fluid>
           <Row>
-            <Col xs={4}>
-              <ImageGallery currentStyle={this.state.currentStyle}/>
-            </Col>
-            <Col xs={4}>
-              <Rating
-                id="product-overview-rating"
-                name="quarter-rating"
-                value={this.props.avgRating}
-                defaultValue={4}
-                precision={0.25}
-                readOnly
-              />
-              {this.props.reviewNum > 0 && (
-                <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
-              )}
-              <StyleSelector
-                changeStyle={this.changeStyle}
-                currentProduct={this.props.currentProduct}
-                currentStyle={this.state.currentStyle}
-                styles={this.state.styles}
-              />
-              <Cart
-                currentStyle={this.state.currentStyle}
-                currentSku={this.state.currentSku}
-                skuSelect={this.skuSelect}
-              />
-            </Col>
+            { this.state.expanded === false ?
+              <>
+                <Col lg={8}>
+                  <ImageGallery
+                    currentStyle={this.state.currentStyle}
+                    toggleExpanded={this.toggleExpanded}
+                    expanded={this.state.expanded} />
+                </Col>
+                <Col lg={4}>
+                  <Rating
+                    id="product-overview-rating"
+                    name="quarter-rating"
+                    value={this.props.avgRating}
+                    defaultValue={4}
+                    precision={0.25}
+                    readOnly
+                  />
+                  {this.props.reviewNum > 0 && (
+                    <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
+                  )}
+                  <StyleSelector
+                    changeStyle={this.changeStyle}
+                    currentProduct={this.props.currentProduct}
+                    currentStyle={this.state.currentStyle}
+                    styles={this.state.styles}
+                  />
+                  <Cart
+                    currentStyle={this.state.currentStyle}
+                    currentSku={this.state.currentSku}
+                    skuSelect={this.skuSelect}
+                  />
+                  <SocialMedia />
+                </Col>
+              </>
+
+              : <Col lg={12}>
+                <ImageGallery
+                  currentStyle={this.state.currentStyle}
+                  toggleExpanded={this.toggleExpanded} />
+              </Col>}
+          </Row>
+          <Row>
+            <ProductOverview currentProduct={this.props.currentProduct} />
           </Row>
         </Container>
-        <div>
-          <SocialMedia />
-          <ProductOverview currentProduct={this.props.currentProduct} />
-        </div>
+
       </div>
     );
   }
