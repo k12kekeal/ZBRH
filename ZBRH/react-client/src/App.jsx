@@ -20,10 +20,13 @@ class App extends React.Component {
       avgRating: 3.75,
       reviewNum: 0,
       isLoading: true,
-      keyValue: 1
+      keyValue: 1,
+
+
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
+
   }
 
   componentDidMount() {
@@ -35,6 +38,7 @@ class App extends React.Component {
     if (e) {
       e.preventDefault();
     }
+
     axios.get(`http://3.21.164.220/products/${productId}`)
       .then(response => {
         var num = this.state.keyValue;
@@ -50,6 +54,9 @@ class App extends React.Component {
     var element = document.body;
     element.classList.toggle('dark-mode');
   }
+
+
+
 
   render() {
     if (this.state.isLoading === true) {
@@ -71,11 +78,17 @@ class App extends React.Component {
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
           />
-          <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/>
 
-          {/* <QuestionsAndAnswers /> */}
+          <ProductComparison
+            currentProduct={this.state.currentProduct}
+            handleSelectProduct={this.getProduct}/>
+          {/*
+          <QuestionsAndAnswers />
+          */}
+
+
           <RatingReviewApp />
-          {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+
         </>
       );
 

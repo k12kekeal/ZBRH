@@ -17,8 +17,6 @@ class AddOutfit extends React.Component {
   }
 
   componentDidMount() {
-    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
-
 
     $('#recipeCarousel2').carousel({
       pause: true,
@@ -43,14 +41,19 @@ class AddOutfit extends React.Component {
       }
     });
 
-
+    axios.get(`http://3.21.164.220/products/${this.props.singleRelatedProduct.id}/styles`).then((styles)=>{
+      this.setState({imageLink: styles.data.results[0].photos[0].url});
+    })
+      .catch((err)=>{ console.log(err); });
 
 
   }
 
-  handlePlusClick() {
-    console.log('Plus was clicked');
+  handlePlusClick(e) {
+    console.log('Plus was clicked', e);
+    e.preventDefault();
     this.props.addOutfitToList(this.state.singleRelatedProduct);
+    this.props.removeCurrProductToAddInOutfitList();
   }
 
 
@@ -76,7 +79,7 @@ class AddOutfit extends React.Component {
           {displayPrice}
         </div>
 
-        <div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {/*<div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -94,7 +97,7 @@ class AddOutfit extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+    </div>*/}
 
       </div>
 
