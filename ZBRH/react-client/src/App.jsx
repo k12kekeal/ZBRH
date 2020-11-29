@@ -16,9 +16,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProduct: exampleData[0],
+      currentProduct: {},
       avgRating: 3.75,
-      reviewNum: 0,
+      reviewNum: 4,
       isLoading: true,
       keyValue: 1,
 
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getProduct(1);
+    this.getProduct(3);
     this.setState( {isLoading: false} );
   }
 
@@ -55,9 +55,6 @@ class App extends React.Component {
     element.classList.toggle('dark-mode');
   }
 
-
-
-
   render() {
     if (this.state.isLoading === true) {
       return (<div>is loading...</div>);
@@ -68,9 +65,10 @@ class App extends React.Component {
           <h1>
             WELCOME TO ZBRH, HRATX52!  {name}
           </h1>
-          <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
+          {/* <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
-          </button>
+          </button> */}
+
           <Overview
             reviewNum={this.state.reviewNum}
             currentProduct={this.state.currentProduct}
@@ -85,7 +83,6 @@ class App extends React.Component {
           {/*
           <QuestionsAndAnswers />
           */}
-
 
           <RatingReviewApp />
 
