@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import StarMaker from './StarMaker.jsx';
 import AccurateDate from './AccurateDate.jsx';
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '28px',
     minWidth: '28px',
     minHeight: '28px',
-    color: "grey",
+    color: 'grey',
   },
 }));
 
@@ -44,7 +45,7 @@ const OneReview = (props) => {
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="caption" style={{ float: 'right' }}>{reviewer_name + ", "} <AccurateDate date={date} /> </Typography>
+              <Typography variant="caption" style={{ float: 'right' }}>{reviewer_name + ', '} <AccurateDate date={date} /> </Typography>
             </Grid>
           </Grid>
           <Grid item xs={12} sm container>
@@ -63,16 +64,16 @@ const OneReview = (props) => {
                   <UserPhotosModal photos={photos} summary={summary} body={body} rating={rating} name={reviewer_name} date={date} /> :
                   null}
                 <Typography variant="caption">
-                  {recommend ? "I recommend this product" : null}
+                  {recommend ? 'I recommend this product' : null}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  {response !== "" && response !== null ? 'Response:' : null}
+                  {response !== '' && response !== null ? 'Response:' : null}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  {response !== "" && response !== null ? response : null}
+                  {response !== '' && response !== null ? response : null}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  Was this review helpful? <Typography variant="caption" color="textSecondary" onClick={() => { props.putHelpful(review_id) }}>Yes</Typography>{`(${helpfulness})`} | <Typography variant="caption" color="textSecondary" onClick={() => { props.putReport(review_id) }}>Report</Typography>
+                  Was this review helpful? <Typography variant="caption" color="textSecondary" onClick={() => { props.putHelpful(review_id); }}>Yes</Typography>{`(${helpfulness})`} | <Typography variant="caption" color="textSecondary" onClick={() => { props.putReport(review_id); }}>Report</Typography>
                 </Typography>
               </Grid>
             </Grid>

@@ -6,20 +6,19 @@ import axios from 'axios';
 class RelatedProduct extends React.Component {
   constructor(props) {
     super(props);
-    console.log('THIS IS PROPS HERE          ', this.props.singleRelatedProduct.styles);
-
     this.state = {
       singleRelatedProduct: this.props.singleRelatedProduct,
-      //imageLink: './imageNotFound.png',
-      imageLink: this.props.singleRelatedProduct.styles
+      imageLink: this.props.image,
+      currProductToCompare: this.props.currProductToCompare
 
     };
 
     this.handleStarClick = this.handleStarClick.bind(this);
+    this.handleCardClick = this.handleCardClick.bind(this);
   }
 
   componentDidMount() {
-    console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
+    //console.log('THIS IS STATE', this.state.singleRelatedProduct.styles);
 
 
     $('#recipeCarousel').carousel({
@@ -44,19 +43,35 @@ class RelatedProduct extends React.Component {
         next.children(':first-child').clone().appendTo($(this));
       }
     });
-
-
-
-
   }
 
   handleStarClick() {
     console.log('Star was clicked');
   }
 
-  render() {
+  handleCardClick() {
+    console.log('card clicked...');
 
-    console.log('MONICA LOOK AT STATE', this.state.singleRelatedProduct.styles);
+    console.log(this.props.handleSelectProduct(this.state.singleRelatedProduct.id, event));
+    console.log(this.state.singleRelatedProduct.id);
+
+  }
+
+  render() {
+    //if statement determines whether to render default price or default price AND sale price
+    let displayPrice = (<p>${this.state.singleRelatedProduct.default_price}</p>);
+    let displayPrice2 = 'placeholder';
+
+    if (this.state.singleRelatedProduct.salePrice) {
+      displayPrice = (<p><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </p>);
+      displayPrice2 = (<><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </>);
+
+    }
+
+    //only renders currProductToCompare if it is defined
+    let currProductName = this.state.currProductToCompare ? this.state.currProductToCompare.name : 'placeholder name';
+    let currProductCategory = this.state.currProductToCompare ? this.state.currProductToCompare.category : 'placeholder category';
+    let currProductPrice = this.state.currProductToCompare ? this.state.currProductToCompare.default_price : 'placeholder price';
 
     return (
       <div className="col-md-4">
@@ -65,23 +80,26 @@ class RelatedProduct extends React.Component {
             <img className="btn btn-primary" className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal"></img>
           </div>
           {/* EDIT IMAGE SRC BELOW */}
-          <img className="img-fluid" src={this.state.imageLink}></img>
+          <img className="img-fluid" src={this.state.imageLink} role="button" onClick={this.handleCardClick} id="setHeight"></img>
           <h3>{this.state.singleRelatedProduct.category}</h3>
-          <p>{this.state.singleRelatedProduct.name}</p>
-          <p>  ${this.state.singleRelatedProduct.default_price}</p>
+          {this.state.singleRelatedProduct.name}
+          {displayPrice}
         </div>
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 className="modal-title" id="exampleModalLabel">ʕ•́ᴥ•̀ʔっComparing...</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div className="modal-body">
-                This is where comparison info goes....
+                <p>Differences between our two amazing products!</p>
+                {currProductName} vs {this.state.singleRelatedProduct.name}<br></br>
+                {currProductCategory} vs {this.state.singleRelatedProduct.category}<br></br>
+                <p>${currProductPrice} vs {displayPrice2}</p><br></br>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -90,6 +108,7 @@ class RelatedProduct extends React.Component {
             </div>
           </div>
         </div>
+
       </div>
 
 

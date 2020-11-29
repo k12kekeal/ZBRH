@@ -41,7 +41,7 @@ describe('Star Rating', () => {
 //  --Review Link--
 
 //  [X] Should be a link that reads "Read all [#] reviews"
-//  [FIXME:] [#] should dynamically render the number of reviews for the chosen product
+//  [X] [#] should dynamically render the number of reviews for the chosen product
 //  [X] Clicking the link should take you to the Ratings & Reviews section
 //  [X] This segment should be hidden if there are no reviews
 
@@ -55,9 +55,9 @@ describe('Star Rating', () => {
 
 //  --Price--
 
-//  [X] Should be a price
-//[X:] When currentStyle changes, dynamically render new price
-//  [X] If discounted, sale price should appear in red followed by the origin price, struckthrough
+//[X] Should be a price
+//[X] When currentStyle changes, dynamically render new price
+//[X] If discounted, sale price should appear in red followed by the origin price, struckthrough
 //[X] Look up how to do basic CSS lol - color, strikethrough, conditional rendering
 //[X] Toggle between CSS styling for sale price & origin price
 
@@ -83,59 +83,61 @@ describe('Star Rating', () => {
 //[X] Style instance should be clickable and update state, affecting the following: displayed image and preview image, available sizes, available quantity, style name, price
 //[X] Style instance should have round thumbnail - materialUI Avatar or https://react-bootstrap.github.io/components/images/
 // [FIXME:] styles should display in rows of 4
-// [TODO:]The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.
+// [X]The current selection should be indicated within the list by the overlay of a checkmark on top of the thumbnail for that style.
 // [X] The title for that style should appear typed out in full above the thumbnail list.
 // [X] A user will be able to change the selected style by clicking on the thumbnail displaying that style.   Clicking on the thumbnail for the currently selected style will have no impact.3
 // [X] By default, the style selected will be the first in the list.
-// [TODO:] A product will always have at least one style.
+// [X] A product will always have at least one style.
 // [X] Only one style can be selected at a time.  A style must be selected at all times.
 
 //  ADD TO CART
 
 //>>>SIZE SELECTOR<<<
 // [X] Dropdown menu for size that dynamically renders available sizes for selected style
-// [TODO:] If size is not available, the size should not appear in the list
-// [TODO:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
+// [X] If size is not available, the size should not appear in the list
+// [FIXME:] If there is no remaining stock of the current style, the dropdown should become inactive and read "OUT OF STOCK"
 // [X] When collapsed, the dropdown should show the currently selected size
 // [X] By default, the dropdown should show "Select Size"
 
 //  >>>Quantity Selector<<<
-// [TODO:] Dropdown menu for quantity that dynamically renders numbers
-// [TODO:] Options will be a sequence of integers ranging from 1 to the maximum, either the quantity of size and style in stock or a hard limit of 15
-// [TODO:] If size has not been selected, quantity dropdown will display '-' and dropdown will be disabled
+// [X] Dropdown menu for quantity that dynamically renders numbers
+// [X] Options will be a sequence of integers ranging from 1 to the maximum, either the quantity of size and style in stock or a hard limit of 15
+// [X] If size has not been selected, quantity dropdown will display '-' and dropdown will be disabled
 // [TODO:] Once a size has been selected, the dropdown should default to 1
 
 //  >>>Add to Cart<<<
-// [TODO:] A button labeled "Add to Cart" will appear below the two selectors
+// [X] A button labeled "Add to Cart" will appear below the two selectors
 // [TODO:] If a size has not been selected, clicking the button will open the size menu, and a dropdown should appear saying "Please select size"
-// [TODO:] If there is no stock, this button should be hidden
+// [X] If there is no stock, this button should be hidden
 // [TODO:] If valid size and quantity are selected, clicking will add the right style, size, and quantity of product to user's cart
 
 //  IMAGE GALLERY
-// [TODO:] Render gallery photos based on currentStyle
-// [TODO:]
-//  The largest piece of the Overview module will be a photo gallery showing images of the product.  The photos presented in this gallery will be specific to the currently selected product style.  Each time a new style is chosen, the gallery will update to show photos corresponding to the new style.   Each style will have a set of images associated with it.  The gallery will allow customers to browse between and zoom in on these photos.
-// The gallery will be viewable in two states.  A default collapsed view, and an expanded view.
+// [X] Render gallery photos based on currentStyle
+// [X] Upon new style selection, gallery will update photos corresponding to new style
+// [X] Each style will have a set of images associated with it
+// [X] Gallery will allow customers to browse between photos
+// [TODO:] Gallery will allow customers to zoom in on photos
+// [TODO:] The gallery will have two states - default collapsed and expanded view
 
 //  >>>Default View<<<
-// [TODO:] Create ImageGallery, a class component that holds currentImage in state
-// [TODO:] Should display a single main image
-// [TODO:] Should have an overlay
-// [TODO:] Overlay should dynamically render list of thumbnail images
-// [TODO:] Should show first image in set as main image
-// [TODO:] Main image should match first thumbnail
-// [FIXME:] Index of current image should be maintained after update to new style <= what does this mean
-// [TODO:] When thumbnail is clicked, should update main image to thumbnail image
-// [TODO:] Thumbnail corresponding to main image should be highlighted to indicate current selection
-// [TODO:] Clicking on currently selected thumbnail should have no further effect
+// [X] Create ImageGallery - functional component, use hooks to hold current index in state
+// [X] Should display a single main image
+// [X] Should have an overlay
+// [X] Overlay should dynamically render list of thumbnail images
+// [X] Should show first image in set as main image
+// [X] Main image should match first thumbnail
+// [X] Index of current image should be maintained after update to new style
+// [X] When thumbnail is clicked, should update main image to thumbnail image
+// [X Thumbnail corresponding to main image should be highlighted to indicate current selection
+// [X] Clicking on currently selected thumbnail should have no further effect
 // [TODO:] Up to 7 thumbnail images will be displayed at a given time in the list
 // [TODO:] The user should be able to scroll forward and backwards through the thumbnails if +7 styles
 // [TODO:] Two arrow buttons in either direction for scrolling
-// [TODO:] Arrow buttons on main image will change main image to next image in list
+// [X] Arrow buttons on main image will change main image to next image in list
 // [TODO:] Thumbnail list should scroll with main image such that selected thumbnail is always visible
-// [TODO:] Mouse on hover over main image becomes magnifying glass
+// [X] Mouse on hover over main image becomes magnifying glass
 // [TODO:] If user clicks on image, gallery should change to expanded view
-// [TODO:] If first image is selected, left arrow should disappear. Same for last image and right arrow
+// [X] If first image is selected, left arrow should disappear. Same for last image and right arrow
 
 //  >>>Expanded View<<<
 //  The expanded view of the image gallery will overlay the rest of the item detail page.   Much of the same functionality on the default view will also be available on the expanded view.

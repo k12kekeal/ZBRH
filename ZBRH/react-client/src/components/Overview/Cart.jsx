@@ -1,39 +1,64 @@
 import React from 'react';
+import {Container, Row, Col} from 'react-bootstrap/';
 
-// TODO: add to cart button functionality
-class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const Cart = ({currentSku, currentStyle, skuSelect}) => {
 
-    };
-    // this.styleClick = this.styleClick.bind(this);
+  var quantity = [];
+  if (currentSku) {
+    for (var i = 0; i <= Math.min(currentSku.quantity, 15); i++) {
+      quantity.push(<option key={i} value={i}>{i}</option>);
+    }
   }
+  return (
+    <div>
+      {currentStyle ?
+        <Container fluid>
+          <Row>
+            <Col>
+              <select
+                className="select"
+                name="size"
+                onChange={e => {
+                  e.preventDefault();
+                  skuSelect(e.target.value, e);
+                }}
+              >
+                <option value={0}>SELECT SIZE</option>
+                {currentStyle.skus ? Object.keys(currentStyle.skus).map((skuNum, index) => (
+                  <option
+                    key={index}
+                    value={skuNum}>
+                    {currentStyle.skus[skuNum].size}
+                  </option>
+                )) : console.log('no skus yet')
+                }
+              </select>
+            </Col>
+            <Col>
+              <select
+                className="select"
+                name="quantity"
+                disabled={!currentSku}>
+                <option defaultValue="">-</option>
+                {currentSku !== 0 ? quantity : null}
+              </select>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              {!currentSku ?
+                <button>Add to Cart</button> :
+                <button>Add to Cart</button>}
+            </Col>
+            <Col>
+              <button>FAVE</button>
+            </Col>
+          </Row>
 
-  // styleClick() {
-  //   this.setState({
-  //     currentSku: 0
-  //   });
-  // }
-
-  render() {
-    return (
-      <div>
-        <button>Add to Cart</button>
-        <select className="select" name="size">
-          <option defaultValue="">SELECT SIZE</option>
-          {this.props.currentStyle.skus ? Object.values(this.props.currentStyle.skus).map(sku => (
-            <option>{sku.size}</option>
-          )) : console.log('no skus yet')
-          }
-        </select>
-        <select className="select" name="quantity">
-          {/* TODO: render quantity dropdown up to either 15 or available stock of selected sku quantity */}
-        </select>
-
-      </div>
-    );
-  }
-}
+        </Container>
+        : null}
+    </div>
+  );
+};
 
 export default Cart;

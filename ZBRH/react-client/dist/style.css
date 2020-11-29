@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 body {
+  background-image: url('pinstripeLight.png');
   font-family: "Montserrat", sans-serif;
   color: black;
 }
 
 .dark-mode {
-  background-color: black;
+  background-image: url('pinstripeDark.png');
   color: white;
 }
 
@@ -83,7 +84,7 @@ button:hover {
   position: absolute;
   top: 0px;
   right: 0px;
-  border-top: 50px solid #35373f;
+  border-top: 50px solid #cdd0da;
   border-left: 50px solid transparent;
 }
 
@@ -98,3 +99,12 @@ button:hover {
 Zebra image is from: https://unsplash.com/photos/w85Oo3eOKRY
 
 */
+
+/*below sets height for related products carousel height*/
+#setHeight {
+  height: 300px;
+}
+
+#RelatedProductListHeader {
+  text-align: center;
+}

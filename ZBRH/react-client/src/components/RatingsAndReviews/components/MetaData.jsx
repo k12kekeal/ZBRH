@@ -17,9 +17,9 @@ const MetaData = (props) => {
   };
 
   const averageCalculator = (ratings) => {
-    let starTotal = 0,
-      voteTotal = 0,
-      chart = {};
+    let starTotal = 0;
+    let voteTotal = 0;
+    let chart = {};
     for (let i = 1; i <= 5; i++) {
       if (ratings[i]) {
         starTotal += ratings[i] * i;
@@ -31,11 +31,11 @@ const MetaData = (props) => {
 
   const recommendedCalculator = (data) => {
     if (!data[0]) {
-      return "100%";
+      return '100%';
     } else if (!data[1]) {
-      return "0%";
+      return '0%';
     } else {
-      return JSON.stringify(~~((data[1] / (data[0] + data[1])) * 100)) + "%";
+      return JSON.stringify(~~((data[1] / (data[0] + data[1])) * 100)) + '%';
     }
   };
 
@@ -46,7 +46,7 @@ const MetaData = (props) => {
           <Typography variant="caption">{`${x} stars`}</Typography>
         </Grid>
       ))
-    )
+    );
   };
 
   const chartDataCalculator = (data) => {
@@ -62,11 +62,11 @@ const MetaData = (props) => {
 
     let total = chart[1] + chart[2] + chart[3] + chart[4] + chart[5];
 
-    const style1 = hovered.hovered === 1 ? { color: "red", textDecoration: 'underline' } : {};
-    const style2 = hovered.hovered === 2 ? { color: "red", textDecoration: 'underline' } : {};
-    const style3 = hovered.hovered === 3 ? { color: "red", textDecoration: 'underline' } : {};
-    const style4 = hovered.hovered === 4 ? { color: "red", textDecoration: 'underline' } : {};
-    const style5 = hovered.hovered === 5 ? { color: "red", textDecoration: 'underline' } : {};
+    const style1 = hovered.hovered === 1 ? { color: 'red', textDecoration: 'underline' } : {};
+    const style2 = hovered.hovered === 2 ? { color: 'red', textDecoration: 'underline' } : {};
+    const style3 = hovered.hovered === 3 ? { color: 'red', textDecoration: 'underline' } : {};
+    const style4 = hovered.hovered === 4 ? { color: 'red', textDecoration: 'underline' } : {};
+    const style5 = hovered.hovered === 5 ? { color: 'red', textDecoration: 'underline' } : {};
 
     const func = (x) => {
       if (x === 1) {
@@ -128,7 +128,7 @@ const MetaData = (props) => {
           );
         })}
       </Grid>
-    )
+    );
   };
   const { filters } = props;
   const { ratings, recommended } = props.meta;
@@ -157,7 +157,7 @@ const MetaData = (props) => {
         {chartDataCalculator(ratings)}
       </Grid>
     </div>
-  )
-}
+  );
+};
 
 export default MetaData;
