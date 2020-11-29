@@ -20,10 +20,13 @@ class App extends React.Component {
       avgRating: 3.75,
       reviewNum: 4,
       isLoading: true,
-      keyValue: 1
+      keyValue: 1,
+
+
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
+
   }
 
   componentDidMount() {
@@ -35,6 +38,7 @@ class App extends React.Component {
     if (e) {
       e.preventDefault();
     }
+
     axios.get(`http://3.21.164.220/products/${productId}`)
       .then(response => {
         var num = this.state.keyValue;
@@ -73,11 +77,15 @@ class App extends React.Component {
             reviews = {[1, 2, 3]}
           />
 
-          {/* <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/> */}
+          <ProductComparison
+            currentProduct={this.state.currentProduct}
+            handleSelectProduct={this.getProduct}/>
+          {/*
+          <QuestionsAndAnswers />
+          */}
 
-          {/* <QuestionsAndAnswers /> */}
-          {/* <RatingReviewApp /> */}
-          {/*console.log("This is the current product from App.jsx", this.state.currentProduct)*/}
+          <RatingReviewApp />
+
         </>
       );
 

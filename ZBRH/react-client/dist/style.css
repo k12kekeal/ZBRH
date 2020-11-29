@@ -104,3 +104,7 @@ Zebra image is from: https://unsplash.com/photos/w85Oo3eOKRY
 #setHeight {
   height: 300px;
 }
+
+#RelatedProductListHeader {
+  text-align: center;
+}
