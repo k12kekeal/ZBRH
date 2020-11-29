@@ -55,9 +55,9 @@ describe('Star Rating', () => {
 
 //  --Price--
 
-//  [X] Should be a price
-//[X:] When currentStyle changes, dynamically render new price
-//  [X] If discounted, sale price should appear in red followed by the origin price, struckthrough
+//[X] Should be a price
+//[X] When currentStyle changes, dynamically render new price
+//[X] If discounted, sale price should appear in red followed by the origin price, struckthrough
 //[X] Look up how to do basic CSS lol - color, strikethrough, conditional rendering
 //[X] Toggle between CSS styling for sale price & origin price
 
@@ -128,7 +128,7 @@ describe('Star Rating', () => {
 // [X] Main image should match first thumbnail
 // [X] Index of current image should be maintained after update to new style
 // [X] When thumbnail is clicked, should update main image to thumbnail image
-// [TODO:] Thumbnail corresponding to main image should be highlighted to indicate current selection
+// [X Thumbnail corresponding to main image should be highlighted to indicate current selection
 // [X] Clicking on currently selected thumbnail should have no further effect
 // [TODO:] Up to 7 thumbnail images will be displayed at a given time in the list
 // [TODO:] The user should be able to scroll forward and backwards through the thumbnails if +7 styles
@@ -137,7 +137,7 @@ describe('Star Rating', () => {
 // [TODO:] Thumbnail list should scroll with main image such that selected thumbnail is always visible
 // [X] Mouse on hover over main image becomes magnifying glass
 // [TODO:] If user clicks on image, gallery should change to expanded view
-// [TODO:] If first image is selected, left arrow should disappear. Same for last image and right arrow
+// [X] If first image is selected, left arrow should disappear. Same for last image and right arrow
 
 //  >>>Expanded View<<<
 //  The expanded view of the image gallery will overlay the rest of the item detail page.   Much of the same functionality on the default view will also be available on the expanded view.

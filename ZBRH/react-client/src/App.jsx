@@ -18,7 +18,7 @@ class App extends React.Component {
     this.state = {
       currentProduct: {},
       avgRating: 3.75,
-      reviewNum: 0,
+      reviewNum: 4,
       isLoading: true,
       keyValue: 1
     };

@@ -5,13 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-const ImageGallery = ({currentStyle}) => {
+const ImageGallery = ({currentStyle, toggleExpanded}) => {
 
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
   return (
     <div>
       {currentStyle ?
@@ -31,7 +32,8 @@ const ImageGallery = ({currentStyle}) => {
                 <Carousel.Item>
                   <img
                     src={photo.url}
-                    className="image-gallery-carousel-images"
+                    className='image-gallery-carousel-images'
+                    onClick={toggleExpanded}
                   />
                 </Carousel.Item>
               )) : null}
@@ -43,9 +45,9 @@ const ImageGallery = ({currentStyle}) => {
             {currentStyle.photos ? currentStyle.photos.map(
               (photo, i) => (
                 <div
-                  className="image-gallery-thumb">
+                  className={index === i ? 'image-gallery-thumb-selected' : 'image-gallery-thumb'}>
                   <img
-                    className="image-gallery-thumb-image"
+                    className='image-gallery-thumb-image'
                     key={i}
                     value={i}
                     src={photo.thumbnail_url}
