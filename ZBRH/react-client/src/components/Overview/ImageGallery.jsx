@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-const ImageGallery = ({currentStyle, toggleExpanded}) => {
+const ImageGallery = ({currentStyle, toggleExpanded, expanded}) => {
 
   const [index, setIndex] = useState(0);
 
@@ -17,30 +17,26 @@ const ImageGallery = ({currentStyle, toggleExpanded}) => {
     <div>
       {currentStyle ?
         <div className="image-gallery-wrapper">
-          <div className="image-gallery-carousel-container">
-            <span aria-hidden="true" className="carousel-control-prev-icon" />
-            <Carousel
-              fade={true}
-              slide={false}
-              interval={null}
-              wrap={false}
-              prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon" />}
-              className="image-gallery-carousel"
-              activeIndex={index}
-              onSelect={handleSelect}>
-              {currentStyle.photos ? currentStyle.photos.map(photo => (
-                <Carousel.Item>
-                  <img
-                    src={photo.url}
-                    className='image-gallery-carousel-images'
-                    onClick={toggleExpanded}
-                  />
-                </Carousel.Item>
-              )) : null}
-            </Carousel>
-          </div>
-          <div>
-          </div>
+          <span aria-hidden="true" className="carousel-control-prev-icon" />
+          <Carousel
+            fade={true}
+            slide={false}
+            interval={null}
+            wrap={false}
+            prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon" />}
+            className="image-gallery-carousel"
+            activeIndex={index}
+            onSelect={handleSelect}>
+            {currentStyle.photos ? currentStyle.photos.map(photo => (
+              <Carousel.Item>
+                <img
+                  src={photo.url}
+                  className='image-gallery-carousel-images'
+                  onClick={toggleExpanded}
+                />
+              </Carousel.Item>
+            )) : null}
+          </Carousel>
           <div className="image-gallery-thumb-container">
             {currentStyle.photos ? currentStyle.photos.map(
               (photo, i) => (
@@ -57,6 +53,7 @@ const ImageGallery = ({currentStyle, toggleExpanded}) => {
                 </div>
               )) : null}
           </div>
+
         </div>
         : null}
     </div>

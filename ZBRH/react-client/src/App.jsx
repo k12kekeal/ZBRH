@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getProduct(5);
+    this.getProduct(3);
     this.setState( {isLoading: false} );
   }
 

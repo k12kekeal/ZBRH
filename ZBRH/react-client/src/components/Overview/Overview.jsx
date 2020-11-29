@@ -81,7 +81,8 @@ class Overview extends React.Component {
                 <Col lg={8}>
                   <ImageGallery
                     currentStyle={this.state.currentStyle}
-                    toggleExpanded={this.toggleExpanded} />
+                    toggleExpanded={this.toggleExpanded}
+                    expanded={this.state.expanded} />
                 </Col>
                 <Col lg={4}>
                   <Rating
