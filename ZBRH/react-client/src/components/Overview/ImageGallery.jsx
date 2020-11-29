@@ -23,6 +23,7 @@ const ImageGallery = ({currentStyle}) => {
               slide={false}
               interval={null}
               wrap={false}
+              prevIcon={<span aria-hidden="true" className="carousel-control-prev-icon" />}
               className="image-gallery-carousel"
               activeIndex={index}
               onSelect={handleSelect}>

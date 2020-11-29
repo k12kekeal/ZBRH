@@ -32,7 +32,6 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.currentProduct !== prevProps.currentProduct) {
-      console.log('currentProduct in Overview: ', this.props.currentProduct, 'previous currentProduct in Overview: ', prevProps.currentProduct);
       this.getStyles(this.props.currentProduct.id);
     }
   }
@@ -59,9 +58,11 @@ class Overview extends React.Component {
 
   changeStyle(styleId, e) {
     e.preventDefault();
-    this.setState({
-      currentStyle: this.state.styles[styleId],
-    });
+    for (var i = 0; i < this.state.styles.length; i++) {
+      if (this.state.styles[i].style_id === styleId) {
+        this.setState({currentStyle: this.state.styles[i + 1]});
+      }
+    }
   }
 
   render() {
@@ -69,10 +70,10 @@ class Overview extends React.Component {
       <div>
         <Container fluid>
           <Row>
-            <Col sm={8}>
+            <Col lg={8}>
               <ImageGallery currentStyle={this.state.currentStyle}/>
             </Col>
-            <Col sm={4}>
+            <Col lg={4}>
               <Rating
                 id="product-overview-rating"
                 name="quarter-rating"

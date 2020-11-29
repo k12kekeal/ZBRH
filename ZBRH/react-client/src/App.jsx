@@ -42,7 +42,7 @@ class App extends React.Component {
         this.setState({
           currentProduct: response.data,
           keyValue: num,
-        }, console.log('state after getProduct: ', this.state));
+        });
       })
       .catch((err) => console.log(err));
   }
@@ -64,6 +64,7 @@ class App extends React.Component {
           {/* <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
           </button> */}
+
           <Overview
             reviewNum={this.state.reviewNum}
             currentProduct={this.state.currentProduct}
@@ -71,6 +72,7 @@ class App extends React.Component {
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
           />
+
           {/* <ProductComparison currentProduct={this.state.currentProduct} handleSelectProduct={this.getProduct} key={this.state.keyValue}/> */}
 
           {/* <QuestionsAndAnswers /> */}
