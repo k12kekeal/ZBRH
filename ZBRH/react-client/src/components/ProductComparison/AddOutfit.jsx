@@ -1,4 +1,3 @@
-//comment 11.29.2020
 import React from 'react';
 import { Card, Carousel, Button } from 'react-bootstrap';
 import 'bootstrap';
@@ -61,10 +60,10 @@ class AddOutfit extends React.Component {
 
   render() {
     //if statement determines whether to render default price or default price AND sale price
-    let displayPrice = (<p>${this.state.singleRelatedProduct.default_price}</p>);
+    let displayPrice = (<>${this.state.singleRelatedProduct.default_price}</>);
 
     if (this.state.singleRelatedProduct.salePrice) {
-      displayPrice = (<p><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </p>);
+      displayPrice = (<><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </>);
     }
 
     return (
@@ -75,9 +74,14 @@ class AddOutfit extends React.Component {
           </div>
           {/* EDIT IMAGE SRC BELOW */}
           <img className="img-fluid" src={this.state.imageLink} role="button" onClick={this.handleCardClick} id="setHeight"></img>
-          <h3>{this.state.singleRelatedProduct.category}</h3>
-          <p>{this.state.singleRelatedProduct.name}</p>
-          {displayPrice}
+          <p style={{textAlign: 'left'}}>
+            {this.state.singleRelatedProduct.category.toUpperCase()}
+            <br></br>
+            <b>{this.state.singleRelatedProduct.name}</b>
+            <br></br>
+            {displayPrice}
+          </p>
+
         </div>
 
         {/*<div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

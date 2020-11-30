@@ -1,8 +1,10 @@
-//comment 11.29.2020
 import React from 'react';
 import { Card, Carousel, Button } from 'react-bootstrap';
 import 'bootstrap';
 import axios from 'axios';
+import Rating from '@material-ui/lab/Rating';
+
+import InteractionsContext from './InteractionsContext';
 
 class RelatedProduct extends React.Component {
   constructor(props) {
@@ -46,11 +48,17 @@ class RelatedProduct extends React.Component {
     });
   }
 
-  handleStarClick() {
+  handleStarClick(event) {
     console.log('Star was clicked');
+
+    return ({
+      'Element': event.target.nodeName,
+      'time': event.timeStamp,
+      'widget': 'Related Products and Comparison'
+    });
   }
 
-  handleCardClick() {
+  handleCardClick(event) {
     console.log('card clicked...');
 
     console.log(this.props.handleSelectProduct(this.state.singleRelatedProduct.id, event));
@@ -60,11 +68,11 @@ class RelatedProduct extends React.Component {
 
   render() {
     //if statement determines whether to render default price or default price AND sale price
-    let displayPrice = (<p>${this.state.singleRelatedProduct.default_price}</p>);
-    let displayPrice2 = 'placeholder';
+    let displayPrice = (<>${this.state.singleRelatedProduct.default_price}</>);
+    let displayPrice2 = this.state.singleRelatedProduct.default_price;
 
     if (this.state.singleRelatedProduct.salePrice) {
-      displayPrice = (<p><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </p>);
+      displayPrice = (<><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </>);
       displayPrice2 = (<><del>${this.state.singleRelatedProduct.default_price}</del><em style={{color: 'red'}}> ${this.state.singleRelatedProduct.salePrice}</em> </>);
 
     }
@@ -75,16 +83,32 @@ class RelatedProduct extends React.Component {
     let currProductPrice = this.state.currProductToCompare ? this.state.currProductToCompare.default_price : 'placeholder price';
 
     return (
+
       <div className="col-md-4">
+
         <div className="card card-body">
           <div className="overlay">
+
             <img className="btn btn-primary" className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal"></img>
+
           </div>
           {/* EDIT IMAGE SRC BELOW */}
+
           <img className="img-fluid" src={this.state.imageLink} role="button" onClick={this.handleCardClick} id="setHeight"></img>
-          <h3>{this.state.singleRelatedProduct.category}</h3>
-          {this.state.singleRelatedProduct.name}
-          {displayPrice}
+          <p style={{textAlign: 'left'}}>{this.state.singleRelatedProduct.category.toUpperCase()}
+            <br></br>
+            <b>{this.state.singleRelatedProduct.name}</b>
+            <br></br>
+            {displayPrice}
+          </p>
+          <Rating
+            //id="product-overview-rating"
+            name="quarter-rating"
+            value={this.props.singleRelatedProduct.averageRating}
+            defaultValue={4}
+            precision={0.25}
+            readOnly
+          />
         </div>
 
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -100,7 +124,8 @@ class RelatedProduct extends React.Component {
                 <p>Differences between our two amazing products!</p>
                 {currProductName} vs {this.state.singleRelatedProduct.name}<br></br>
                 {currProductCategory} vs {this.state.singleRelatedProduct.category}<br></br>
-                <p>${currProductPrice} vs {displayPrice2}</p><br></br>
+                <p>${currProductPrice} vs ${displayPrice2}</p><br></br>
+
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -111,6 +136,7 @@ class RelatedProduct extends React.Component {
         </div>
 
       </div>
+
 
 
 

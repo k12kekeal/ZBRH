@@ -19,17 +19,13 @@ class App extends React.Component {
       reviewNum: 4,
       isLoading: true,
       keyValue: 1,
-
-
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
-
   }
 
   componentDidMount() {
-    this.getProduct(5);
-    this.setState( {isLoading: false} );
+    this.getProduct(1);
   }
 
   getProduct(productId, e) {
@@ -44,6 +40,7 @@ class App extends React.Component {
         this.setState({
           currentProduct: response.data,
           keyValue: num,
+          isLoading: false
         });
       })
       .catch((err) => console.log(err));
@@ -75,9 +72,9 @@ class App extends React.Component {
             reviews = {[1, 2, 3]}
           />
 
-          {/* <ProductComparison
+          <ProductComparison
             currentProduct={this.state.currentProduct}
-            handleSelectProduct={this.getProduct}/> */}
+            handleSelectProduct={this.getProduct}/>
 
           <a id='ratings-and-reviews'><RatingReviewApp /></a>
 

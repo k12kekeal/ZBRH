@@ -1,4 +1,3 @@
-//comment 11.29.2020
 import React from 'react';
 import { Card, Carousel } from 'react-bootstrap';
 import 'bootstrap';
@@ -62,6 +61,9 @@ class OutfitList extends React.Component {
               {
                 /*Below are the items in Outfit*/
                 this.state.userOutfitList.map(function (singleRelatedProduct, index) {
+                  if (singleRelatedProduct.image === null) {
+                    singleRelatedProduct.image = './imageNotFound.png';
+                  }
 
                   //below else statement creates inactive carousel items (necessary for bootstrap carousel)
                   return (
