@@ -1,4 +1,3 @@
-//comment 11.29.2020
 import React from 'react';
 import 'bootstrap';
 import axios from 'axios';
@@ -201,8 +200,39 @@ class ProductComparison extends React.Component {
         });
 
         this.setState({ relatedProductData: newRelatedProductDataWithStyles });
-        this.setState({ isLoading: false });
 
+        //this creates an array of Promises to get reviews for each of the related products
+        let arrGetRelatedProductReviewPromise = [];
+        for (var k = 0; k < this.state.relatedProductIds.length; k++) {
+          arrGetRelatedProductReviewPromise.push(
+            axios.get(`http://3.21.164.220/reviews/?product_id=${this.state.relatedProductIds[k]}`)
+          );
+        }
+        return Promise.all(arrGetRelatedProductReviewPromise);
+      })
+      .then((arrRelatedProductReview)=>{
+        let newRelatedProductDataWithRatings = [...this.state.relatedProductData];
+
+        //This loops through all of the review
+        arrRelatedProductReview.forEach(function(currReview) {
+          //this is a counter for the sum of all reviews for a single product (currReview)
+          let sum = 0;
+          for (var i = 0; i < currReview.data.results.length; i++) {
+            sum += currReview.data.results[i].rating;
+          }
+          let averageRating = sum / currReview.data.results.length;
+
+
+          for (var j = 0; j < newRelatedProductDataWithRatings.length; j++) {
+
+            if (parseInt(currReview.data.product) === newRelatedProductDataWithRatings[j].id) {
+              newRelatedProductDataWithRatings[j].averageRating = averageRating;
+            }
+          }
+
+        });
+        this.setState({ relatedProductData: newRelatedProductDataWithRatings});
+        this.setState({ isLoading: false });
       })
       .catch((err) => {
         console.log(err);
@@ -277,6 +307,7 @@ class ProductComparison extends React.Component {
           }
           <br></br>
           <br></br>
+
           <br></br>
           <br></br>
           {<OutfitList

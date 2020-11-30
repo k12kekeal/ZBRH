@@ -31,8 +31,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getProduct(3);
-    this.setState( {isLoading: false} );
+    this.getProduct(1);
+
   }
 
   getProduct(productId, e) {
@@ -47,6 +47,7 @@ class App extends React.Component {
         this.setState({
           currentProduct: response.data,
           keyValue: num,
+          isLoading: false
         });
       })
       .catch((err) => console.log(err));
@@ -77,7 +78,14 @@ class App extends React.Component {
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
           />
-
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <ProductComparison
             currentProduct={this.state.currentProduct}
             handleSelectProduct={this.getProduct}/>

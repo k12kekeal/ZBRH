@@ -1,4 +1,3 @@
-//comment 11.29.2020
 import React from 'react';
 import { Card, Carousel } from 'react-bootstrap';
 import 'bootstrap';
