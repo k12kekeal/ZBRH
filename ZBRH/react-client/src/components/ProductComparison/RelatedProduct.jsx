@@ -4,6 +4,8 @@ import 'bootstrap';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 
+import InteractionsContext from './InteractionsContext';
+
 class RelatedProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -46,11 +48,17 @@ class RelatedProduct extends React.Component {
     });
   }
 
-  handleStarClick() {
+  handleStarClick(event) {
     console.log('Star was clicked');
+
+    return ({
+      'Element': event.target.nodeName,
+      'time': event.timeStamp,
+      'widget': 'Related Products and Comparison'
+    });
   }
 
-  handleCardClick() {
+  handleCardClick(event) {
     console.log('card clicked...');
 
     console.log(this.props.handleSelectProduct(this.state.singleRelatedProduct.id, event));
@@ -75,11 +83,14 @@ class RelatedProduct extends React.Component {
     let currProductPrice = this.state.currProductToCompare ? this.state.currProductToCompare.default_price : 'placeholder price';
 
     return (
+
       <div className="col-md-4">
 
         <div className="card card-body">
           <div className="overlay">
+
             <img className="btn btn-primary" className="overlayImage" src='./star.svg' role="button" onClick={this.handleStarClick} data-toggle="modal" data-target="#exampleModal"></img>
+
           </div>
           {/* EDIT IMAGE SRC BELOW */}
 
@@ -125,6 +136,7 @@ class RelatedProduct extends React.Component {
         </div>
 
       </div>
+
 
 
 

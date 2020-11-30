@@ -134,6 +134,14 @@ class ProductComparison extends React.Component {
       .then((response) => {
         //console.log('here are the id_s of related products: ', response.data);
         //console.log('setting state of relatedProductIds');
+
+        //this for loop removes the current product from the array of related products if it exists
+        for (var j = 0; j < response.data.length; j++) {
+          if (response.data[j] === this.state.currentProduct.id) {
+            response.data.splice(j, 1);
+          }
+        }
+
         this.setState({ relatedProductIds: response.data });
 
         //creates an array of promises (GET requests for individual product data for each related product id)
