@@ -34,7 +34,7 @@ class Outfit extends React.Component {
       interval: false
     });
 
-    $('.carousel .carousel-item').each(function () {
+    $('#recipeCarousel2 .carousel-item').each(function () {
       var minPerSlide = 3;
       var next = $(this).next();
       if (!next.length) {

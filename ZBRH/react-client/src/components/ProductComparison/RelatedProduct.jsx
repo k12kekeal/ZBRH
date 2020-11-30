@@ -4,7 +4,6 @@ import 'bootstrap';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 
-import InteractionsContext from './InteractionsContext';
 
 class RelatedProduct extends React.Component {
   constructor(props) {
@@ -29,7 +28,7 @@ class RelatedProduct extends React.Component {
       interval: false
     });
 
-    $('.carousel .carousel-item').each(function () {
+    $('#recipeCarousel .carousel-item').each(function () {
       var minPerSlide = 3;
       var next = $(this).next();
       if (!next.length) {
