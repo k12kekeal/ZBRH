@@ -45,16 +45,25 @@
 
 /* IMAGE GALLERY CAROUSEL */
 .image-gallery-carousel {
-  position:absolute;
+  position: absolute;
   width: 100%;
+  transition: all 1s ease-in-out;
+  border: 1px solid rgb(124, 124, 124);
+  overflow: hidden;
 }
 
 .image-gallery-carousel-images {
   object-fit: cover;
   width: 100%;
   z-index: 1;
+  object-position: 50% 50%;
   transition: opacity 1s ease-in-out;
-  height: 550px;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 .image-gallery-carousel-images:hover {
@@ -68,6 +77,12 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 2;
+  height: 430px;
+  overflow: auto;
+}
+
+.image-galler-thumb-container::-webkit-scrollbar {
+  display: none;
 }
 
 .image-gallery-thumb {

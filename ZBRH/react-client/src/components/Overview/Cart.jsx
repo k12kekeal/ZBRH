@@ -12,7 +12,7 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
   return (
     <div>
       {currentStyle ?
-        <Container fluid>
+        <Container>
           <Row>
             <Col>
               <select
@@ -54,7 +54,6 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
               <button>FAVE</button>
             </Col>
           </Row>
-
         </Container>
         : null}
     </div>
