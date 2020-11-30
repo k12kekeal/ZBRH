@@ -74,48 +74,55 @@ class Overview extends React.Component {
   render() {
     return (
       <div>
-        <Container fluid>
+        <Container>
           <Row>
-            { this.state.expanded === false ?
-              <>
-                <Col lg={8}>
-                  <ImageGallery
-                    currentStyle={this.state.currentStyle}
-                    toggleExpanded={this.toggleExpanded}
-                    expanded={this.state.expanded} />
-                </Col>
-                <Col lg={4}>
-                  <Rating
-                    id="product-overview-rating"
-                    name="quarter-rating"
-                    value={this.props.avgRating}
-                    defaultValue={4}
-                    precision={0.25}
-                    readOnly
-                  />
-                  {this.props.reviewNum > 0 && (
-                    <a href="#ratings-and-reviews">Read all {this.props.reviewNum} reviews</a>
-                  )}
-                  <StyleSelector
-                    changeStyle={this.changeStyle}
-                    currentProduct={this.props.currentProduct}
-                    currentStyle={this.state.currentStyle}
-                    styles={this.state.styles}
-                  />
-                  <Cart
-                    currentStyle={this.state.currentStyle}
-                    currentSku={this.state.currentSku}
-                    skuSelect={this.skuSelect}
-                  />
-                  <SocialMedia />
-                </Col>
-              </>
-
-              : <Col lg={12}>
-                <ImageGallery
-                  currentStyle={this.state.currentStyle}
-                  toggleExpanded={this.toggleExpanded} />
-              </Col>}
+            <div lg={1}></div>
+            <Col lg={this.state.expanded ? 12 : 8}>
+              <ImageGallery
+                style={{height: 'inherit'}}
+                currentStyle={this.state.currentStyle}
+                toggleExpanded={this.toggleExpanded}
+                expanded={this.state.expanded} />
+            </Col>
+            <Col lg={4} className={this.state.expanded ? '.d-none' : '.d-block'}>
+              <br></br>
+              <Rating
+                id="product-overview-rating"
+                name="quarter-rating"
+                value={this.props.avgRating}
+                defaultValue={4}
+                precision={0.25}
+                readOnly
+              />
+              {this.props.reviewNum > 0 && (
+                <a href="#ratings-and-reviews"><small>Read all {this.props.reviewNum} reviews</small></a>
+              )}
+              <StyleSelector
+                changeStyle={this.changeStyle}
+                currentProduct={this.props.currentProduct}
+                currentStyle={this.state.currentStyle}
+                styles={this.state.styles}
+              />
+              <br></br>
+              <Cart
+                currentStyle={this.state.currentStyle}
+                currentSku={this.state.currentSku}
+                skuSelect={this.skuSelect}
+              />
+              <SocialMedia />
+            </Col>
+          </Row>
+          <Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
           </Row>
           <Row>
             <ProductOverview currentProduct={this.props.currentProduct} />

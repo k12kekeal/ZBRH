@@ -19,6 +19,7 @@ const ImageGallery = ({currentStyle, toggleExpanded, expanded}) => {
         <div className="image-gallery-wrapper">
           <span aria-hidden="true" className="carousel-control-prev-icon" />
           <Carousel
+            indicators={expanded ? true : false}
             fade={true}
             slide={false}
             interval={null}
@@ -37,7 +38,8 @@ const ImageGallery = ({currentStyle, toggleExpanded, expanded}) => {
               </Carousel.Item>
             )) : null}
           </Carousel>
-          <div className="image-gallery-thumb-container">
+          <div
+            className={expanded ? 'image-gallery-thumb-container:hidden' : 'image-gallery-thumb-container'}>
             {currentStyle.photos ? currentStyle.photos.map(
               (photo, i) => (
                 <div
@@ -53,7 +55,6 @@ const ImageGallery = ({currentStyle, toggleExpanded, expanded}) => {
                 </div>
               )) : null}
           </div>
-
         </div>
         : null}
     </div>
