@@ -20,7 +20,6 @@ const ProductOverview = ({ currentProduct }) => {
           </div>
         </Col>
         <Col lg={1}></Col>
-
       </Row>
     </Container>
   );

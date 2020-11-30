@@ -3,13 +3,10 @@ import React from 'react';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// import { AppBar, Toolbar, } from '@material-ui/core'; <= if we wanna add a search bar
-import $ from 'jquery';
 import axios from 'axios';
 
 import Overview from './components/Overview/Overview.jsx';
 import ProductComparison from './components/ProductComparison/ProductComparison.jsx';
-import QuestionsAndAnswers from './components/Q&A/QuestionsAndAnswers.jsx';
 import RatingReviewApp from './components/RatingsAndReviews/RatingsAndReviews.jsx';
 import exampleData from './exampleData';
 
@@ -22,17 +19,13 @@ class App extends React.Component {
       reviewNum: 4,
       isLoading: true,
       keyValue: 1,
-
-
     };
     this.getProduct = this.getProduct.bind(this);
     this.toggleDarkLight = this.toggleDarkLight.bind(this);
-
   }
 
   componentDidMount() {
     this.getProduct(1);
-
   }
 
   getProduct(productId, e) {
@@ -65,7 +58,7 @@ class App extends React.Component {
       return (
         <>
           <h1>
-            WELCOME TO ZBRH, HRATX52!  {name}
+            WELCOME TO ZBRH, HRATX52!
           </h1>
           {/* <button type="button" className="btn btn-secondary" onClick={this.toggleDarkLight}>
             Dark/Light Toggle
@@ -78,22 +71,12 @@ class App extends React.Component {
             getProduct={this.getProduct}
             reviews = {[1, 2, 3]}
           />
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+
           <ProductComparison
             currentProduct={this.state.currentProduct}
             handleSelectProduct={this.getProduct}/>
-          {/*
-          <QuestionsAndAnswers />
-          */}
 
-          <RatingReviewApp />
+          <a id='ratings-and-reviews'><RatingReviewApp /></a>
 
         </>
       );
