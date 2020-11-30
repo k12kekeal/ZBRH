@@ -79,7 +79,7 @@ class App extends React.Component {
             currentProduct={this.state.currentProduct}
             handleSelectProduct={this.getProduct}/> */}
 
-          {/* <RatingReviewApp /> */}
+          <a id='ratings-and-reviews'><RatingReviewApp /></a>
 
         </>
       );

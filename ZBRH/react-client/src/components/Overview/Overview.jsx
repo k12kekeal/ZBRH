@@ -103,6 +103,7 @@ class Overview extends React.Component {
                 currentStyle={this.state.currentStyle}
                 styles={this.state.styles}
               />
+              <br></br>
               <Cart
                 currentStyle={this.state.currentStyle}
                 currentSku={this.state.currentSku}

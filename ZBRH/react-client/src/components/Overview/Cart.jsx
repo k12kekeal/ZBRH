@@ -34,7 +34,7 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
                 }
               </select>
             </Col>
-            <Col>
+            <Col xs={4}>
               <select
                 className="select"
                 name="quantity"
@@ -45,13 +45,13 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
             </Col>
           </Row>
           <Row>
-            <Col>
-              {!currentSku ?
-                <button>Add to Cart</button> :
-                <button>Add to Cart</button>}
+            <Col xs={6}>
+              <div>
+                <button className='add-to-cart' fluid>Add to Cart</button>
+              </div>
             </Col>
-            <Col>
-              <button>FAVE</button>
+            <Col xs={2}>
+              <button className='add-to-cart'>☆</button>
             </Col>
           </Row>
         </Container>

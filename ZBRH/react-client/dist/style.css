@@ -24,12 +24,12 @@ h1 {
 }
 
 button {
-  float: right;
+  display: inline-block;
   padding: 8px 12px;
   margin: 20px 0px 20px 0px;
-  border: 2px solid #181818;
+  border: 1px solid #2e2e2e;
   background: 0;
-  color: rgb(22, 22, 22);
+  color: rgb(58, 58, 58);
   cursor: pointer;
   transition: all 0.3s;
 }
