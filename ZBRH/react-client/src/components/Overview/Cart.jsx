@@ -47,7 +47,7 @@ const Cart = ({currentSku, currentStyle, skuSelect}) => {
           <Row>
             <Col xs={6}>
               <div>
-                <button className='add-to-cart' fluid>Add to Cart</button>
+                <button className='add-to-cart'>Add to Cart</button>
               </div>
             </Col>
             <Col xs={2}>
